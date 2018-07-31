@@ -1,0 +1,279 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"mapC",
+				"mapComponent"
+			],
+			[
+				"BA",
+				"bacwards"
+			],
+			[
+				"close",
+				"closeNode"
+			],
+			[
+				"charac",
+				"characterNode_"
+			],
+			[
+				"enemy",
+				"enemy_targets_"
+			],
+			[
+				"enem",
+				"enemy_targets_"
+			],
+			[
+				"mouse",
+				"mouse_world_position_"
+			],
+			[
+				"Urho3D",
+				"URHO3D_LOGWARNING"
+			],
+			[
+				"Uro",
+				"URHO3D_LOGWARNING"
+			],
+			[
+				"Con",
+				"ConstructMap"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 148.0,
+		"last_filter": "install",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Install Package Control"
+			]
+		],
+		"width": 444.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/jimmy/projects/cinder/cinderLab"
+	],
+	"file_history":
+	[
+		"/etc/httpd/conf/extra/php-fcgid.conf",
+		"/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Bullet3D/samples/HelloWorld/proj/cmake/CMakeLists.txt",
+		"/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Bullet3D/proj/cmake/printSource.py",
+		"/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Bullet3D/proj/cmake/Cinder-Bullet3DConfig.cmake",
+		"/home/jimmy/projects/cinder/Cinder/blocks/OSC/proj/cmake/OSCConfig.cmake",
+		"/home/jimmy/projects/cinder/Cinder/blocks/Box2D/proj/cmake/Box2DConfig.cmake",
+		"/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Bullet3D/cinderblock.xml",
+		"/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Bullet3D/samples/HelloWorld/proj/cmake/printSource.py",
+		"/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Bullet3D/src/bullet3/src/CMakeLists.txt",
+		"/home/jimmy/projects/cinder/Cinder/blocks/OSC/samples/BroadcastSender/proj/cmake/CMakeLists.txt",
+		"/home/jimmy/projects/cinder/Cinder/blocks/OSC/cinderblock.xml",
+		"/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Bullet3D/samples/HelloWorld/proj/cmake/CMakeList.txt",
+		"/home/jimmy/projects/cinder/Cinder/blocks/OSC/samples/SimpleReceiver/proj/cmake/CMakeLists.txt",
+		"/home/jimmy/projects/link/backend/mysql_login.php",
+		"/home/jimmy/projects/cinder/Cinder/samples/BasicApp/proj/cmake/CMakeLists.txt",
+		"/home/jimmy/projects/cinder/Cinder/proj/cmake/modules/cinderMakeApp.cmake",
+		"/home/jimmy/projects/urho/urho_chmup/src/levels/ProcLevel_Generator_1.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/levels/ProcLevel_v1.cpp",
+		"/home/jimmy/projects/urho/urho_DYN/include/Urho3D/Math/Vector3.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/Swarm.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/Swarm.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/NGenePool.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/NGenome.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/bin/nn_genePoolCoPilots_.xml",
+		"/home/jimmy/projects/urho/urho_DYN/include/Urho3D/Core/StringUtils.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/Controller.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/Character.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/enemies/Enemy.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/GliderController.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/Casing.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/Popcorn.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/Actor.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/Actor.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/Character.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/Controller.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/NCharacterController.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/NCharacterController.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/Projectile.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/levels/ProcLevel_v1.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/NCharacterController.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/NCharacterController.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/gui/GUIMap.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/gui/GUIGeo.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/gui/GUIGeo.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/gui/GUINeuralNet.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/gui/GUINeuralNet.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/NeuralNet.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/NeuralNet.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/CustomGeo.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/enemies/Enemy.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/enemies/SpawnEnemy.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/enemies/SpawnEnemy.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/Main.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/levels/ProcLevel_Generator_1.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/game/gui/GUIMap.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/Spawn.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/Spawn.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/levels/Chmup.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/bin/chmup.cfg",
+		"/home/jimmy/projects/urho/urho_chmup/.gitignore",
+		"/home/jimmy/projects/urho/urho_chmup/src/levels/ProcLevel_Generator_2.h",
+		"/home/jimmy/projects/urho/urho_chmup/src/levels/ProcLevel_Generator_2.cpp",
+		"/home/jimmy/projects/urho/urho_chmup/src/framework/src/Weapon.h"
+	],
+	"find":
+	{
+		"height": 24.975024975
+	},
+	"find_in_files":
+	{
+		"height": 135.864135864,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 24.975024975
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "cinderLab.sublime-project",
+	"replace":
+	{
+		"height": 45.954045954
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 244.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
