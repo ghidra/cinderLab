@@ -29,6 +29,12 @@ ipch/
 
 *.pyc
 
+#Linux Cruft
+**/cmake/CMakeCache.txt
+CMakeFiles/
+**/cmake/Makefile
+**/cmake/cmake_install.cmake
+
 # Android cruft
 *.swp
 .idea
