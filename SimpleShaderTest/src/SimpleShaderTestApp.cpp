@@ -16,6 +16,7 @@ public:
 	static void prepareSettings( Settings *settings );
 
 	void setup() override;
+	//void update() override;
 	void draw() override;
 
 public:
@@ -23,6 +24,8 @@ public:
 	gl::Texture2dRef	mColorsTexture;
 
 	vec2				mCenter;
+	float 				mLastTime = 0.0f;
+	float				mElapsedTime = 0.0f;
 };
 
 void SimpleShaderTestApp::prepareSettings( Settings *settings )
@@ -46,8 +49,21 @@ void SimpleShaderTestApp::setup()
 	mColorsTexture = gl::Texture::create( loadImage( loadResource( RES_COLORS_PNG ) ) );
 }
 
+//void SimpleShaderTestApp:update()
+//{
+	// float current = static_cast<float>( app::getElapsedSeconds() );
+
+	// mLastTime = current;
+//}
+
 void SimpleShaderTestApp::draw()
 {
+	//calc delta time
+	float current = static_cast<float>( app::getElapsedSeconds() );
+	float deltaTime = current - mLastTime;
+	mLastTime = current;
+	mElapsedTime += deltaTime;
+
 	//! Zoom in over time.
 	float t = math<float>::clamp( 0.01f * (float) getElapsedSeconds(), 0.0f, 1.0f );
 	float scale = math<float>::exp( 0.5f - t * 8.0f );
@@ -61,9 +77,9 @@ void SimpleShaderTestApp::draw()
 	gl::ScopedGlslProg glslScp( mBrotShader );
 	gl::ScopedTextureBind texScp( mColorsTexture );
 	mBrotShader->uniform( "uTex0", 0 );
-	mBrotShader->uniform( "uCenter", mCenter );
-	mBrotShader->uniform( "uScale", scale );
-	mBrotShader->uniform( "uAspectRatio", getWindowAspectRatio() );
+	mBrotShader->uniform( "uTime", mElapsedTime );
+	//mBrotShader->uniform( "uScale", scale );
+	//mBrotShader->uniform( "uAspectRatio", getWindowAspectRatio() );
 	gl::drawSolidRect( getWindowBounds() );
 }
 

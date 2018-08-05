@@ -1,14 +1,19 @@
-#version 150
+#version 420
+
+#include "noiselib.glsl"
 
 // Sets the maximum number of iterations per pixel.
 // Note: anything above 256 is a waste of energy,
 //       because of the limited floating point precision.
-const int kIterations = 256;
+uniform int uIterations = 6;
 
 uniform sampler2D uTex0;
-uniform vec2      uCenter;
-uniform float     uAspectRatio = 1.33333;
-uniform float     uScale = 1.0;
+//uniform vec2      uCenter;
+//uniform float     uAspectRatio = 1.33333;
+//uniform float     uScale = 1.0;
+uniform float uFreq = 1.0f;
+uniform float uTime;
+uniform float uPhase = 0.1f;
 
 in vec2 vertTexCoord0;
 
@@ -16,26 +21,23 @@ out vec4 fragColor;
 
 void main()
 {
-	vec2 texCoord = vec2( 0 );
-
-	// Perform MandelBrot iteration.
-	vec2 z, c;
-	c.x = z.x = uAspectRatio * ( vertTexCoord0.x * 2.0 - 1.0 ) * uScale + uCenter.x;
-	c.y = z.y = ( vertTexCoord0.y * 2.0 - 1.0 ) * uScale + uCenter.y;
-
-	int i;
-	for( i = 0; i < kIterations; i++ ) {
-		z = vec2( z.x * z.x - z.y * z.y, z.y * z.x + z.x * z.y ) + c;
-
-		if( dot( z, z ) > 4.0 ) {
-			texCoord = vec2( float( i ) / 100.0, 0.0 );
-			break;
-		}
+	vec2 cuv = vertTexCoord0 - vec2(0.5);
+	float outside = 1.0;
+	for (int i=0; i<uIterations; i++)
+	{
+		float nx = SimplexPerlin3D( vec3( 0.0, 0.0, (float(i)*uFreq) + (uTime*uPhase) ) );
+		float ny = SimplexPerlin3D( vec3( 30.0, 192.4, ( float(i)*uFreq ) + (uTime*uPhase) ) );
+		vec2 center = vec2(nx,ny)*0.5;
+		float d = length( cuv - center );
+		outside *= min(d*12.0,1.0f);
 	}
+		
+
+	
 
 	// Lookup color from LUT.
-	vec3 color = texture( uTex0, texCoord ).rgb;
+	//vec3 color = texture( uTex0, texCoord ).rgb;
 
 	// Output color.
-	fragColor = vec4( color, 1.0 );
+	fragColor = vec4( vec3(outside), 1.0 );
 }
