@@ -23,9 +23,10 @@ public:
 	gl::GlslProgRef		mBrotShader;
 	gl::Texture2dRef	mColorsTexture;
 
-	vec2				mCenter;
+	//vec2				mCenter;
 	float 				mLastTime = 0.0f;
 	float				mElapsedTime = 0.0f;
+	float				mTestArray[6];
 };
 
 void SimpleShaderTestApp::prepareSettings( Settings *settings )
@@ -37,8 +38,14 @@ void SimpleShaderTestApp::prepareSettings( Settings *settings )
 
 void SimpleShaderTestApp::setup()
 {
+	mTestArray[0] = 1.1f;
+	mTestArray[1] = 1.1f;
+	mTestArray[2] = 1.1f;
+	mTestArray[3] = 0.6f;
+	mTestArray[4] = 1.1f;
+	mTestArray[5] = 1.1f;
 	//! Zoom in on this location in the MandelBrot set.
-	mCenter = vec2( -0.5430f, 0.53398f );
+	//mCenter = vec2( -0.5430f, 0.53398f );
 	
 	//! Find other cool locations on: http://www.eddaardvark.co.uk/mandelbrot/webgl.html
 	//mCenter = vec2( -0.74699f, 0.08762f );
@@ -65,8 +72,8 @@ void SimpleShaderTestApp::draw()
 	mElapsedTime += deltaTime;
 
 	//! Zoom in over time.
-	float t = math<float>::clamp( 0.01f * (float) getElapsedSeconds(), 0.0f, 1.0f );
-	float scale = math<float>::exp( 0.5f - t * 8.0f );
+	//float t = math<float>::clamp( 0.01f * (float) getElapsedSeconds(), 0.0f, 1.0f );
+	//float scale = math<float>::exp( 0.5f - t * 8.0f );
 
 	//! Clear the window.
 	gl::clear();
@@ -78,8 +85,9 @@ void SimpleShaderTestApp::draw()
 	gl::ScopedTextureBind texScp( mColorsTexture );
 	mBrotShader->uniform( "uTex0", 0 );
 	mBrotShader->uniform( "uTime", mElapsedTime );
+	mBrotShader->uniform( "uTestArray", mTestArray, sizeof(mTestArray)/sizeof(mTestArray[0]) );
 	//mBrotShader->uniform( "uScale", scale );
-	//mBrotShader->uniform( "uAspectRatio", getWindowAspectRatio() );
+	mBrotShader->uniform( "uAspectRatio", getWindowAspectRatio() );
 	gl::drawSolidRect( getWindowBounds() );
 }
 
