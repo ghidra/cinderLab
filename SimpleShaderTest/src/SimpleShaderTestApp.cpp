@@ -43,7 +43,7 @@ void SimpleShaderTestApp::setup()
 	 mConnection = assets()->getShader( "mandelbrot.vert", "mandelbrot.frag",
                                       [this]( gl::GlslProgRef glsl ) {
                                           mShader = glsl;
-										  //mShader->uniform( "uResolution", vec2((float)app::getWindowSize().x, (float)app::getWindowSize().y));
+										  mShader->uniform( "uResolution", vec2((float)app::getWindowSize().x, (float)app::getWindowSize().y));
                                       } );
 	//! Load shader and texture from the resources.
 	//mShader = gl::GlslProg::create( loadResource( RES_VERT_GLSL ), loadResource( RES_FRAG_GLSL ) );

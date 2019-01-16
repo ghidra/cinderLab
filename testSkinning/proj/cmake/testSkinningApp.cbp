@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="testSkinningApp"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\Cinder\;CMake Files\..\..\..\..\Cinder\proj\;CMake Files\..\..\..\..\Cinder\proj\cmake\;CMake Files\..\..\..\..\Cinder\proj\cmake\modules\;CMake Files\..\..\..\..\Cinder\lib\;CMake Files\..\..\..\..\Cinder\lib\linux\;CMake Files\..\..\..\..\Cinder\lib\linux\x86_64\;CMake Files\..\..\..\..\Cinder\lib\linux\x86_64\ogl\;CMake Files\..\..\..\..\Cinder\lib\linux\x86_64\ogl\Debug\;CMake Files\..\..\..\..\Cinder\build\;CMake Files\..\..\..\..\Cinder\build\lib\;CMake Files\..\..\..\..\Cinder\build\lib\linux\;CMake Files\..\..\..\..\Cinder\build\lib\linux\x86_64\;CMake Files\..\..\..\..\Cinder\build\lib\linux\x86_64\ogl\;CMake Files\..\..\..\..\Cinder\build\lib\linux\x86_64\ogl\Debug\;CMake Files\..\..\..\..\Cinder\blocks\;CMake Files\..\..\..\..\Cinder\blocks\Cinder-\;CMake Files\..\..\..\..\Cinder\blocks\Cinder-\proj\;CMake Files\..\..\..\..\Cinder\blocks\Cinder-\proj\cmake\;CMake Files\..\..\..\..\Cinder\blocks\Cinder-ImGui\;CMake Files\..\..\..\..\Cinder\blocks\Cinder-ImGui\proj\;CMake Files\..\..\..\..\Cinder\blocks\Cinder-ImGui\proj\cmake\;CMake Files\..\..\..\..\Cinder\blocks\Cinder-Skinning\;CMake Files\..\..\..\..\Cinder\blocks\Cinder-Skinning\proj\;CMake Files\..\..\..\..\Cinder\blocks\Cinder-Skinning\proj\cmake\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Cinder-ImGui">
+				<Option output="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/libCinder-ImGui.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DFT2_BUILD_LIBRARY"/>
+					<Add option="-DFT_DEBUG_LEVEL_TRACE"/>
+					<Add option="-DCINDER_GL_CORE"/>
+					<Add option="-D_UNIX"/>
+					<Add option="-D_GLFW_X11"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-ImGui/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-ImGui/lib/imgui"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 Cinder-ImGui"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Cinder-ImGui/fast">
+				<Option output="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/libCinder-ImGui.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DFT2_BUILD_LIBRARY"/>
+					<Add option="-DFT_DEBUG_LEVEL_TRACE"/>
+					<Add option="-DCINDER_GL_CORE"/>
+					<Add option="-D_UNIX"/>
+					<Add option="-D_GLFW_X11"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-ImGui/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-ImGui/lib/imgui"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 Cinder-ImGui/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Cinder-Skinning">
+				<Option output="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/libCinder-Skinning.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DFT2_BUILD_LIBRARY"/>
+					<Add option="-DFT_DEBUG_LEVEL_TRACE"/>
+					<Add option="-DCINDER_GL_CORE"/>
+					<Add option="-D_UNIX"/>
+					<Add option="-D_GLFW_X11"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/lib/assimp/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 Cinder-Skinning"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Cinder-Skinning/fast">
+				<Option output="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/libCinder-Skinning.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DFT2_BUILD_LIBRARY"/>
+					<Add option="-DFT_DEBUG_LEVEL_TRACE"/>
+					<Add option="-DCINDER_GL_CORE"/>
+					<Add option="-D_UNIX"/>
+					<Add option="-D_GLFW_X11"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/lib/assimp/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 Cinder-Skinning/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="testSkinningApp">
+				<Option output="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Debug/testSkinningApp/testSkinningApp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DFT2_BUILD_LIBRARY"/>
+					<Add option="-DFT_DEBUG_LEVEL_TRACE"/>
+					<Add option="-DCINDER_GL_CORE"/>
+					<Add option="-D_UNIX"/>
+					<Add option="-D_GLFW_X11"/>
+					<Add directory="/home/jimmy/projects/cinder/cinderLab/testSkinning/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-ImGui/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-ImGui/lib/imgui"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/lib/assimp/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 testSkinningApp"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="testSkinningApp/fast">
+				<Option output="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Debug/testSkinningApp/testSkinningApp" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake"/>
+				<Option object_output="./"/>
+				<Option type="0"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DFT2_BUILD_LIBRARY"/>
+					<Add option="-DFT_DEBUG_LEVEL_TRACE"/>
+					<Add option="-DCINDER_GL_CORE"/>
+					<Add option="-D_UNIX"/>
+					<Add option="-D_GLFW_X11"/>
+					<Add directory="/home/jimmy/projects/cinder/cinderLab/testSkinning/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-ImGui/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-ImGui/lib/imgui"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/include"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/lib/assimp/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 testSkinningApp/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Cinder-">
+				<Option output="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/libCinder-.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DFT2_BUILD_LIBRARY"/>
+					<Add option="-DFT_DEBUG_LEVEL_TRACE"/>
+					<Add option="-DCINDER_GL_CORE"/>
+					<Add option="-D_UNIX"/>
+					<Add option="-D_GLFW_X11"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 Cinder-"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="Cinder-/fast">
+				<Option output="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/libCinder-.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DFT2_BUILD_LIBRARY"/>
+					<Add option="-DFT_DEBUG_LEVEL_TRACE"/>
+					<Add option="-DCINDER_GL_CORE"/>
+					<Add option="-D_UNIX"/>
+					<Add option="-D_GLFW_X11"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src"/>
+					<Add directory="/home/jimmy/projects/cinder/Cinder/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/x86_64-pc-linux-gnu"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/../../../../include/c++/8.2.1/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-linux-gnu/8.2.1/include-fixed"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 Cinder-/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/Assets.cpp">
+			<Option target="Cinder-"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/Assets.h">
+			<Option target="Cinder-"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/CameraBasic.cpp">
+			<Option target="Cinder-"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/CameraBasic.h">
+			<Option target="Cinder-"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/Compute.cpp">
+			<Option target="Cinder-"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/Compute.h">
+			<Option target="Cinder-"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/Environment.cpp">
+			<Option target="Cinder-"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/Environment.h">
+			<Option target="Cinder-"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/EnvironmentFilter.cpp">
+			<Option target="Cinder-"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/EnvironmentFilter.h">
+			<Option target="Cinder-"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-ImGui/lib/imgui/imgui.cpp">
+			<Option target="Cinder-ImGui"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-ImGui/lib/imgui/imgui.h">
+			<Option target="Cinder-ImGui"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-ImGui/lib/imgui/imgui_draw.cpp">
+			<Option target="Cinder-ImGui"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-ImGui/src/CinderImGui.cpp">
+			<Option target="Cinder-ImGui"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/AMeshSection.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/Actor.cpp">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/Actor.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/AnimCurve.cpp">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/AnimCurve.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/AnimTrack.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/AssimpLoader.cpp">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/AssimpLoader.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/CustomIOStream.cpp">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/CustomIOStream.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/Debug.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/ModelIo.cpp">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/ModelIo.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/MorphedMesh.cpp">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/MorphedMesh.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/Node.cpp">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/Node.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/Renderer.cpp">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/Renderer.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/SkeletalMesh.cpp">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/SkeletalMesh.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/SkeletalTriMesh.cpp">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/SkeletalTriMesh.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/Skeleton.cpp">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/Skeleton.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/StaticMesh.cpp">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/StaticMesh.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/SurfacePool.cpp">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-Skinning/src/model/SurfacePool.h">
+			<Option target="Cinder-Skinning"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/cinderLab/testSkinning/src/testSkinningApp.cpp">
+			<Option target="testSkinningApp"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/../../../../Cinder/proj/cmake/configure.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Cinder\proj\cmake\"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/../../../../Cinder/proj/cmake/utilities.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Cinder\proj\cmake\"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/../../../../Cinder/proj/cmake/modules/cinderMakeApp.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Cinder\proj\cmake\modules\"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/../../../../Cinder/lib/linux/x86_64/ogl/Debug/cinderConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Cinder\lib\linux\x86_64\ogl\Debug\"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/../../../../Cinder/build/lib/linux/x86_64/ogl/Debug/cinderTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Cinder\build\lib\linux\x86_64\ogl\Debug\"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/../../../../Cinder/blocks/Cinder-/proj/cmake/Cinder-Config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Cinder\blocks\Cinder-\proj\cmake\"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/../../../../Cinder/blocks/Cinder-ImGui/proj/cmake/Cinder-ImGuiConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Cinder\blocks\Cinder-ImGui\proj\cmake\"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/cinderLab/testSkinning/proj/cmake/../../../../Cinder/blocks/Cinder-Skinning/proj/cmake/Cinder-SkinningConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Cinder\blocks\Cinder-Skinning\proj\cmake\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
