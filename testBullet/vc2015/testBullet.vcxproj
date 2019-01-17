@@ -1,0 +1,655 @@
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{56BDA043-2DD9-481A-99E3-82C2352F556A}</ProjectGuid>
+    <RootNamespace>testBullet</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\include;..\..\..\Cinder\include;..\..\..\Cinder\blocks\Cinder-\src;..\..\..\Cinder\blocks\Cinder-Bullet3D\src;..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D;..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src;..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui;..\..\..\Cinder\blocks\Cinder-ImGui\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>"..\..\..\Cinder\include";..\include</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>cinder.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>"..\..\..\Cinder\lib\msw\$(PlatformTarget)";"..\..\..\Cinder\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)"</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+      <IgnoreSpecificDefaultLibraries>LIBCMT;LIBCPMT</IgnoreSpecificDefaultLibraries>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\include;"..\..\..\Cinder\include";..\..\..\Cinder\blocks\Cinder-\src;..\..\..\Cinder\blocks\Cinder-Bullet3D\src;..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D;..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src;..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui;..\..\..\Cinder\blocks\Cinder-ImGui\include</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <ProjectReference>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+    </ProjectReference>
+    <ResourceCompile>
+      <AdditionalIncludeDirectories>"..\..\..\Cinder\include";..\include</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Link>
+      <AdditionalDependencies>cinder.lib;OpenGL32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>"..\..\..\Cinder\lib\msw\$(PlatformTarget)";"..\..\..\Cinder\lib\msw\$(PlatformTarget)\$(Configuration)\$(PlatformToolset)"</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <GenerateMapFile>true</GenerateMapFile>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding />
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Resources.rc" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <ClCompile Include="..\src\testBulletApp.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\Assets.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\Compute.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\Environment.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\EnvironmentFilter.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\BulletContext.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\Common.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\ConstraintBase.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\ConstraintConeTwist.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\ConstraintGeneric6Dof.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\ConstraintHinge.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\ConstraintPoint2Point.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\PhyObjCharacterController.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\PhyObjTriggerVol.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\PhysicsDebugRenderable.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\RigidBody.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\SoftBody.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\src\CinderImGui.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui_draw.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui_demo.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\Resources.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\Assets.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\Compute.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\Environment.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\EnvironmentFilter.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\btBulletCollisionCommon.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\btBulletDynamicsCommon.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3BroadphaseCallback.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3DynamicBvh.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3DynamicBvhBroadphase.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3OverlappingPair.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3OverlappingPairCache.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\shared\b3Aabb.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\b3Config.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\b3Contact4.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\b3ConvexUtility.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\b3CpuNarrowPhase.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\b3RaycastInfo.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\b3RigidBodyCL.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3BvhSubtreeInfoData.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3BvhTraversal.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3ClipFaces.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3Collidable.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3Contact4Data.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3ContactConvexConvexSAT.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3ContactSphereSphere.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3ConvexPolyhedronData.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3FindConcaveSatAxis.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3FindSeparatingAxis.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3MprPenetration.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3NewContactReduction.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3QuantizedBvhNodeData.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3ReduceContacts.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3RigidBodyData.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared\b3UpdateAabbs.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3AlignedAllocator.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3AlignedObjectArray.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3CommandLineArgs.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3FileUtils.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3HashMap.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3Logging.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3Matrix3x3.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3MinMax.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3PoolAllocator.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3QuadWord.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3Quaternion.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3Random.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3ResizablePool.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3Scalar.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3StackAlloc.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3Transform.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3TransformUtil.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3Vector3.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\shared\b3Float4.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\shared\b3Int2.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\shared\b3Int4.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\shared\b3Mat3x3.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\shared\b3PlatformDefinitions.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\shared\b3Quat.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\b3CpuRigidBodyPipeline.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3ContactSolverInfo.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3FixedConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3Generic6DofConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3JacobianEntry.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3PgsJacobiSolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3Point2PointConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3SolverBody.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3SolverConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3TypedConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\shared\b3ContactConstraint4.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\shared\b3ConvertConstraint4.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\shared\b3Inertia.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\shared\b3IntegrateTransforms.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Geometry\b3AabbUtil.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Geometry\b3ConvexHullComputer.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Geometry\b3GeometryUtil.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Geometry\b3GrahamScan2dConvexHull.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3BulletFile.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3Chunk.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3Common.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3Defines.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3DNA.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3File.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3Serializer.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\autogenerated\bullet2.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btAxisSweep3.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btAxisSweep3Internal.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btBroadphaseInterface.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btBroadphaseProxy.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btDbvt.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btDbvtBroadphase.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btDispatcher.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btOverlappingPairCache.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btOverlappingPairCallback.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btQuantizedBvh.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btSimpleBroadphase.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btActivatingCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btBox2dBox2dCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btBoxBoxCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btBoxBoxDetector.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionConfiguration.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionCreateFunc.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionDispatcher.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionDispatcherMt.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionObject.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionObjectWrapper.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionWorld.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionWorldImporter.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCompoundCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCompoundCompoundCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvex2dConvex2dAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvexConcaveCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvexConvexAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvexPlaneCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btEmptyCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btGhostObject.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btHashedSimplePairCache.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btInternalEdgeUtility.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btManifoldResult.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSimulationIslandManager.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSphereBoxCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSphereSphereCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSphereTriangleCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btUnionFind.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\SphereTriangleDetector.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btBox2dShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btBoxShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btBvhTriangleMeshShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCapsuleShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCollisionMargin.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCollisionShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCompoundShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConcaveShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConeShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvex2dShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexHullShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexInternalShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexPointCloudShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexPolyhedron.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexTriangleMeshShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCylinderShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btEmptyShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btHeightfieldTerrainShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMaterial.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMiniSDF.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMinkowskiSumShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMultimaterialTriangleMeshShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMultiSphereShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btOptimizedBvh.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btPolyhedralConvexShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btScaledBvhTriangleMeshShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btSdfCollisionShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btShapeHull.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btSphereShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btStaticPlaneShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btStridingMeshInterface.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTetrahedronShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleBuffer.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleCallback.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleIndexVertexArray.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleIndexVertexMaterialArray.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleInfoMap.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleMesh.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleMeshShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btUniformScalingShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btBoxCollision.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btClipPolygon.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btCompoundFromGimpact.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btContactProcessing.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btContactProcessingStructs.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGenericPoolAllocator.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGeometryOperations.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactBvh.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactBvhStructs.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactMassUtil.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactQuantizedBvh.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactQuantizedBvhStructs.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactShape.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btQuantization.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btTriangleShapeEx.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_array.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_basic_geometry_operations.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_bitset.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_box_collision.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_box_set.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_clip_polygon.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_contact.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_geom_types.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_geometry.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_hash_table.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_linear_math.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_math.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_memory.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_radixsort.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_tri_collision.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btComputeGjkEpaPenetration.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btContinuousConvexCollision.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btConvexCast.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btConvexPenetrationDepthSolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btDiscreteCollisionDetectorInterface.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkCollisionDescription.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkConvexCast.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkEpa2.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkEpa3.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkEpaPenetrationDepthSolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkPairDetector.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btManifoldPoint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btMinkowskiPenetrationDepthSolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btMprPenetration.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btPersistentManifold.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btPointCollector.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btPolyhedralContactClipping.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btRaycastCallback.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btSimplexSolverInterface.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btSubSimplexConvexCast.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btVoronoiSimplexSolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Character\btCharacterControllerInterface.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Character\btKinematicCharacterController.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btBatchedConstraints.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btConeTwistConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btConstraintSolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btContactConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btContactSolverInfo.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btFixedConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGearConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofSpring2Constraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofSpringConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btHinge2Constraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btHingeConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btJacobianEntry.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btNNCGConstraintSolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btPoint2PointConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolverMt.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSliderConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSolve2LinearConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSolverBody.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSolverConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btTypedConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btUniversalConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btActionInterface.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btDiscreteDynamicsWorld.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btDiscreteDynamicsWorldMt.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btDynamicsWorld.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btRigidBody.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btSimpleDynamicsWorld.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btSimulationIslandManagerMt.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBody.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyConstraintSolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyDynamicsWorld.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyFixedConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyGearConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyJointFeedback.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyJointLimitConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyJointMotor.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyLink.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyLinkCollider.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyPoint2Point.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodySliderConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodySolverConstraint.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btDantzigLCP.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btDantzigSolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btLemkeAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btLemkeSolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btMLCPSolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btMLCPSolverInterface.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btPATHSolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btSolveProjectedGaussSeidel.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Vehicle\btRaycastVehicle.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Vehicle\btVehicleRaycaster.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Vehicle\btWheelInfo.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btDefaultSoftBodySolver.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBody.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyConcaveCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyData.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyHelpers.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyInternals.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyRigidBodyCollisionConfiguration.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodySolvers.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodySolverVertexBuffer.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftMultiBodyDynamicsWorld.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftRigidCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftRigidDynamicsWorld.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftSoftCollisionAlgorithm.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSparseSDF.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\clew\clew.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btAabbUtil2.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btAlignedAllocator.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btAlignedObjectArray.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btConvexHull.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btConvexHullComputer.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btCpuFeatureUtility.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btDefaultMotionState.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btGeometryUtil.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btGrahamScan2dConvexHull.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btHashMap.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btIDebugDraw.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btList.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btMatrix3x3.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btMatrixX.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btMinMax.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btMotionState.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btPolarDecomposition.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btPoolAllocator.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btQuadWord.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btQuaternion.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btQuickprof.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btRandom.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btScalar.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btSerializer.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btSpatialAlgebra.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btStackAlloc.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btThreads.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btTransform.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btTransformUtil.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btVector3.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler\btThreadSupportInterface.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\BulletContext.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\Common.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\ConstraintBase.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\ConstraintConeTwist.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\ConstraintGeneric6Dof.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\ConstraintHinge.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\ConstraintPoint2Point.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\MotionState.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\PhyObjCharacterController.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\PhyObjTriggerVol.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\PhysicsDebugRenderable.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\RigidBody.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\SoftBody.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3DynamicBvh.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3DynamicBvhBroadphase.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3OverlappingPairCache.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\b3ConvexUtility.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\b3CpuNarrowPhase.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3AlignedAllocator.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3Logging.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3Vector3.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\b3CpuRigidBodyPipeline.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3FixedConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3Generic6DofConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3PgsJacobiSolver.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3Point2PointConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3TypedConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Geometry\b3ConvexHullComputer.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Geometry\b3GeometryUtil.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3BulletFile.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3Chunk.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3DNA.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3File.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3Serializer.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btAxisSweep3.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btBroadphaseProxy.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btDbvt.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btDbvtBroadphase.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btDispatcher.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btOverlappingPairCache.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btQuantizedBvh.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btSimpleBroadphase.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btActivatingCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btBox2dBox2dCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btBoxBoxCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btBoxBoxDetector.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionDispatcher.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionDispatcherMt.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionObject.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionWorld.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionWorldImporter.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCompoundCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCompoundCompoundCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvex2dConvex2dAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvexConcaveCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvexConvexAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvexPlaneCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btEmptyCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btGhostObject.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btHashedSimplePairCache.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btInternalEdgeUtility.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btManifoldResult.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSimulationIslandManager.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSphereBoxCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSphereSphereCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSphereTriangleCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btUnionFind.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\SphereTriangleDetector.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btBox2dShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btBoxShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btBvhTriangleMeshShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCapsuleShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCollisionShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCompoundShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConcaveShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConeShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvex2dShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexHullShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexInternalShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexPointCloudShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexPolyhedron.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexTriangleMeshShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCylinderShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btEmptyShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btHeightfieldTerrainShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMiniSDF.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMinkowskiSumShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMultimaterialTriangleMeshShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMultiSphereShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btOptimizedBvh.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btPolyhedralConvexShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btScaledBvhTriangleMeshShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btSdfCollisionShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btShapeHull.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btSphereShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btStaticPlaneShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btStridingMeshInterface.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTetrahedronShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleBuffer.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleCallback.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleIndexVertexArray.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleIndexVertexMaterialArray.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleMesh.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleMeshShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btUniformScalingShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btContactProcessing.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGenericPoolAllocator.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactBvh.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactQuantizedBvh.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactShape.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btTriangleShapeEx.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_box_set.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_contact.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_memory.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_tri_collision.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btContinuousConvexCollision.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btConvexCast.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkConvexCast.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkEpa2.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkEpaPenetrationDepthSolver.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkPairDetector.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btMinkowskiPenetrationDepthSolver.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btPersistentManifold.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btPolyhedralContactClipping.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btRaycastCallback.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btSubSimplexConvexCast.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btVoronoiSimplexSolver.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Character\btKinematicCharacterController.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btBatchedConstraints.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btConeTwistConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btContactConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btFixedConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGearConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofSpring2Constraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofSpringConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btHinge2Constraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btHingeConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btNNCGConstraintSolver.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btPoint2PointConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolverMt.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSliderConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSolve2LinearConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btTypedConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btUniversalConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btDiscreteDynamicsWorld.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btDiscreteDynamicsWorldMt.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btRigidBody.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btSimpleDynamicsWorld.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btSimulationIslandManagerMt.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBody.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyConstraintSolver.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyDynamicsWorld.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyFixedConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyGearConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyJointLimitConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyJointMotor.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyPoint2Point.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodySliderConstraint.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btDantzigLCP.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btLemkeAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btMLCPSolver.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Vehicle\btRaycastVehicle.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Vehicle\btWheelInfo.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\IDMath.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\MultiBodyTree.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\details\MultiBodyTreeImpl.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\details\MultiBodyTreeInitCache.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btDefaultSoftBodySolver.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBody.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyConcaveCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyHelpers.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyRigidBodyCollisionConfiguration.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftMultiBodyDynamicsWorld.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftRigidCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftRigidDynamicsWorld.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftSoftCollisionAlgorithm.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btAlignedAllocator.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btConvexHull.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btConvexHullComputer.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btGeometryUtil.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btPolarDecomposition.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btQuickprof.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btSerializer.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btSerializer64.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btThreads.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btVector3.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler\btTaskScheduler.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler\btThreadSupportPosix.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler\btThreadSupportWin32.cpp" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-ImGui\include\CinderImGui.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imconfig.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui_internal.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets" />
+</Project>
