@@ -150,6 +150,12 @@
     <Filter Include="Blocks\ImGui\src">
       <UniqueIdentifier>{A1F27983-731B-49E6-8730-5DB18C10B74B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\bullet">
+      <UniqueIdentifier>{1278bb17-ddce-4ee1-bbc8-6d51ddfad45d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\bullet">
+      <UniqueIdentifier>{902a6c72-5109-40f6-8bed-c4b4c4f8d2a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\testBulletApp.cpp">
@@ -1796,10 +1802,22 @@
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui_demo.cpp">
       <Filter>Blocks\ImGui\lib\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\bullet\DrawablePlaneRBD.cpp">
+      <Filter>Source Files\bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\bullet\DrawableRBD.cpp">
+      <Filter>Source Files\bullet</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\bullet\DrawablePlaneRBD.h">
+      <Filter>Header Files\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\bullet\DrawableRBD.h">
+      <Filter>Header Files\bullet</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

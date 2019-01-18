@@ -3,6 +3,7 @@
 #include "Cinder-Bullet3D/RigidBody.h"
 #include "cinder/gl/Batch.h"
 
+typedef std::shared_ptr<class DrawablePlaneRBD> DrawablePlaneRBDRef;
 class DrawablePlaneRBD {
 public:
 	DrawablePlaneRBD(const ci::gl::GlslProgRef &shader);

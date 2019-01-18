@@ -102,6 +102,8 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
+    <ClCompile Include="..\src\bullet\DrawablePlaneRBD.cpp" />
+    <ClCompile Include="..\src\bullet\DrawableRBD.cpp" />
     <ClCompile Include="..\src\testBulletApp.cpp" />
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\Assets.cpp" />
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\CameraBasic.cpp" />
@@ -651,6 +653,8 @@
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imconfig.h" />
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui.h" />
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui_internal.h" />
+    <ClInclude Include="..\src\bullet\DrawablePlaneRBD.h" />
+    <ClInclude Include="..\src\bullet\DrawableRBD.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

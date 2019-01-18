@@ -3,6 +3,7 @@
 #include "Cinder-Bullet3D/RigidBody.h"
 #include "cinder/gl/Batch.h"
 
+typedef std::shared_ptr<class DrawableRBD> DrawableRBDRef;
 class DrawableRBD {
 public:
 	DrawableRBD(const ci::gl::BatchRef &visual, const bullet::RigidBodyRef &physics);
