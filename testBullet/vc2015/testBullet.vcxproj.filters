@@ -13,142 +13,142 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="Blocks">
-      <UniqueIdentifier>{08C0222A-1BC0-495C-820B-B838DD26BC94}</UniqueIdentifier>
+      <UniqueIdentifier>{472F4DDD-1C46-4FC3-ABC6-88A48435545A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-">
-      <UniqueIdentifier>{5605AAE3-D4FD-4B21-B7F5-010C6D72A8BD}</UniqueIdentifier>
+      <UniqueIdentifier>{A840882B-E568-4B17-946E-4762381899CC}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-\src">
-      <UniqueIdentifier>{23ACCC4D-37E3-4F7D-AEAD-EAE6678715E6}</UniqueIdentifier>
+      <UniqueIdentifier>{4590D33F-1062-443B-A911-1CD8C5FFF926}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D">
-      <UniqueIdentifier>{A38289FA-8B84-4AEF-B7DD-D557CC9AA738}</UniqueIdentifier>
+      <UniqueIdentifier>{521DA27F-3080-4435-8063-2C2CB96E5CEA}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src">
-      <UniqueIdentifier>{6ACE274F-9BA9-4907-8A12-58F559C0A005}</UniqueIdentifier>
+      <UniqueIdentifier>{F5ACAD34-059F-40F8-869C-2E965D61FDA2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3">
-      <UniqueIdentifier>{5093B133-4A55-4AF9-B6FD-ADBCECB6270F}</UniqueIdentifier>
+      <UniqueIdentifier>{D03D1DB7-4F00-4F64-9E72-E6F994D10FC8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src">
-      <UniqueIdentifier>{6475FF8D-7D6D-4C68-B42C-ECC8819B46CF}</UniqueIdentifier>
+      <UniqueIdentifier>{6293DD59-F657-420E-BF35-3D6337C12462}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision">
-      <UniqueIdentifier>{8AF31999-FD93-4A0D-B7B5-77DC71509501}</UniqueIdentifier>
+      <UniqueIdentifier>{132823DF-CDBB-4375-A60B-6FBA8F082D8B}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision">
-      <UniqueIdentifier>{7EDF4275-5EB1-413C-AF8F-75E786DFE509}</UniqueIdentifier>
+      <UniqueIdentifier>{E86D36F9-DFE8-4C74-8927-27C2FB33217D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\shared">
-      <UniqueIdentifier>{4F962765-656C-4676-9613-9FCAC849ABA6}</UniqueIdentifier>
+      <UniqueIdentifier>{86E44D66-221D-4125-BBE7-03BE5B4022F6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision">
-      <UniqueIdentifier>{C55B08D4-1263-4DE0-B6F4-BFB278F475C7}</UniqueIdentifier>
+      <UniqueIdentifier>{48D7F3EC-03A3-49EF-B1FE-32BCCFAD9A0A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\shared">
-      <UniqueIdentifier>{8B0B704F-AC17-4EF7-8866-C104E105D6A7}</UniqueIdentifier>
+      <UniqueIdentifier>{71A08CB1-B660-47D5-B396-14108A2CC8FF}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common">
-      <UniqueIdentifier>{1DF7449D-7C80-4337-A40D-D42F9F2C5F01}</UniqueIdentifier>
+      <UniqueIdentifier>{42507CC7-BFF6-4E10-A0D0-E3F3A91D6A11}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\shared">
-      <UniqueIdentifier>{1033CD4F-8ADB-4E5D-B9AC-6F1F8656B9E7}</UniqueIdentifier>
+      <UniqueIdentifier>{0E3930F6-020C-4944-A5A0-28801A31C094}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics">
-      <UniqueIdentifier>{701B9938-1235-47ED-9ACC-EEF78498F88F}</UniqueIdentifier>
+      <UniqueIdentifier>{C4D1BED2-F65E-4B3C-8212-1F673C03AD15}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver">
-      <UniqueIdentifier>{47E6F2AB-0AF9-440C-B20A-331F16416871}</UniqueIdentifier>
+      <UniqueIdentifier>{E1440B57-0397-4607-AD4A-629B5C9C071D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\shared">
-      <UniqueIdentifier>{7F743A9C-A91C-4447-B61A-C2CF83B4FFC3}</UniqueIdentifier>
+      <UniqueIdentifier>{F38C2C15-FDBD-4FD5-A7C0-2245D0FCABCD}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Geometry">
-      <UniqueIdentifier>{C75D260E-1DE9-4E19-896F-2BD66D57588F}</UniqueIdentifier>
+      <UniqueIdentifier>{E6364A5A-1E30-4E9B-8394-662B280EFCC4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize">
-      <UniqueIdentifier>{0FACB874-B7AD-4A25-929C-CB8FD4AC2085}</UniqueIdentifier>
+      <UniqueIdentifier>{3BC27E85-E547-49B5-9BC3-D4CA355BDAA3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader">
-      <UniqueIdentifier>{C4065FBB-2E77-444A-9DEF-F872E3F06ED0}</UniqueIdentifier>
+      <UniqueIdentifier>{496FCADF-DFD3-40D8-B4EE-D85DB921BC50}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\autogenerated">
-      <UniqueIdentifier>{29B16EF2-096F-4D51-A3F2-067EFA91C45D}</UniqueIdentifier>
+      <UniqueIdentifier>{3E54EA50-0001-4236-AD47-966CA190AB17}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision">
-      <UniqueIdentifier>{E11A2AA1-B3EB-4326-BB91-0D99E68AAABF}</UniqueIdentifier>
+      <UniqueIdentifier>{6758E43D-393F-47B1-9C76-E15397A77964}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision">
-      <UniqueIdentifier>{AA64A021-16B9-4915-8BDD-FE8EE509550C}</UniqueIdentifier>
+      <UniqueIdentifier>{0D2E39F7-B8E9-4351-A2FB-33DE979E0080}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch">
-      <UniqueIdentifier>{AF9973BB-5072-4F17-8C94-805E386EC1C4}</UniqueIdentifier>
+      <UniqueIdentifier>{1E12E340-7479-4817-ADB3-45DAB5B8D1D9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes">
-      <UniqueIdentifier>{5D435B89-6B63-441C-84C3-8C59E946B83C}</UniqueIdentifier>
+      <UniqueIdentifier>{F7755070-F38C-4AE1-8A52-F20878EC5C2E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact">
-      <UniqueIdentifier>{430CAABC-AA11-4804-9EB8-40341456B353}</UniqueIdentifier>
+      <UniqueIdentifier>{206824E9-95AA-46A4-8D67-D76195E7FC72}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision">
-      <UniqueIdentifier>{FFFDF467-27B2-4339-A20D-5BFB317BC10D}</UniqueIdentifier>
+      <UniqueIdentifier>{4C327E0F-5BF2-4A95-B226-6A234EA7231D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics">
-      <UniqueIdentifier>{A449D462-D82A-4CB1-BB98-C176616E1E95}</UniqueIdentifier>
+      <UniqueIdentifier>{DCA2E525-976D-4A06-BE75-E43B5A38598C}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Character">
-      <UniqueIdentifier>{7AC985D8-4A8E-412E-960A-6989C4DB4E21}</UniqueIdentifier>
+      <UniqueIdentifier>{02284531-D44D-4F8B-96D8-B3E790054445}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver">
-      <UniqueIdentifier>{98177DF2-F194-4196-AAFB-2E71BE6A4040}</UniqueIdentifier>
+      <UniqueIdentifier>{4ED29AE1-2EBF-4695-8B31-3EC9D6ABDB4A}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics">
-      <UniqueIdentifier>{AF29F0F5-F49D-4378-9FC3-08DCF659FF29}</UniqueIdentifier>
+      <UniqueIdentifier>{06D2EBC8-7928-4987-8090-08407161F864}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone">
-      <UniqueIdentifier>{7497AFC0-0855-4B42-88F4-83466BA9E4A9}</UniqueIdentifier>
+      <UniqueIdentifier>{A48DC2BA-E87A-4EA7-B0A0-ED15502BD935}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers">
-      <UniqueIdentifier>{FC0ACC60-4DAC-42FE-9251-A728537FF5B2}</UniqueIdentifier>
+      <UniqueIdentifier>{D53E04D3-B9A7-49DA-886D-5DC3251C1824}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Vehicle">
-      <UniqueIdentifier>{D073FEC2-C6DC-4AB5-8D2C-F85F969952EE}</UniqueIdentifier>
+      <UniqueIdentifier>{18C5755C-ADA5-48E8-B171-B22A01054CDE}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody">
-      <UniqueIdentifier>{9365E02D-3F31-4520-B038-ABF92A814CB6}</UniqueIdentifier>
+      <UniqueIdentifier>{1506E68E-A6E4-4882-8F36-CC0C9C140BBD}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\clew">
-      <UniqueIdentifier>{D3A920A5-D6FB-4D65-894C-2FD33E6F52D1}</UniqueIdentifier>
+      <UniqueIdentifier>{417D4B5F-69C1-4F10-AED8-F73DE6F402AB}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath">
-      <UniqueIdentifier>{8A1833FF-F8DB-47CB-B486-62DBA47094DA}</UniqueIdentifier>
+      <UniqueIdentifier>{A605CC1E-09E7-45D2-8F43-6807C757064E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler">
-      <UniqueIdentifier>{3A134183-00E3-4394-A3CA-EE3C27D3E56C}</UniqueIdentifier>
+      <UniqueIdentifier>{F45689D4-4F7F-40E8-BCAD-61E8EA7C0A36}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\Cinder-Bullet3D">
-      <UniqueIdentifier>{26A66136-4968-476A-858D-DB76E2E2B209}</UniqueIdentifier>
+      <UniqueIdentifier>{1952D0A8-06A7-4E9F-A3F3-AC6AD33CF531}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics">
-      <UniqueIdentifier>{56BDA60D-1E60-480B-8694-47E34EF21762}</UniqueIdentifier>
+      <UniqueIdentifier>{34D2A990-6C7D-4A2D-9D02-1F19594C3EA7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\details">
-      <UniqueIdentifier>{494747E6-34AA-4C3A-A898-5B0A3320693F}</UniqueIdentifier>
+      <UniqueIdentifier>{62B3D7D5-BD2F-401A-BCFB-058B0213576F}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\ImGui">
-      <UniqueIdentifier>{AFDCF79A-3481-4584-A616-FEB51D5C8114}</UniqueIdentifier>
+      <UniqueIdentifier>{19D792E3-D006-4B9E-8B0D-202C0EDA320D}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\ImGui\include">
-      <UniqueIdentifier>{BC98598F-1A89-4197-A07E-6BC1C3C47BD8}</UniqueIdentifier>
+      <UniqueIdentifier>{81457EC2-1A26-4ADF-8ACF-EF6E466AAD5E}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\ImGui\lib">
-      <UniqueIdentifier>{A7BF1822-55D0-4CB2-ADD2-E43F779AC54A}</UniqueIdentifier>
+      <UniqueIdentifier>{AE5D1CB0-E9F7-4D13-9F30-F26621D399AB}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\ImGui\lib\imgui">
-      <UniqueIdentifier>{69ACB496-CD64-42D6-AA5E-4549A91486BC}</UniqueIdentifier>
+      <UniqueIdentifier>{47462D17-282C-4FD7-A966-7A6AC4CDB4A4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\ImGui\src">
-      <UniqueIdentifier>{2FBC962F-C3B6-45EA-B755-EF3F952B9B07}</UniqueIdentifier>
+      <UniqueIdentifier>{A1F27983-731B-49E6-8730-5DB18C10B74B}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +164,9 @@
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\Assets.cpp">
       <Filter>Blocks\Cinder-\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\CameraBasic.cpp">
+      <Filter>Blocks\Cinder-\src</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\Compute.cpp">
       <Filter>Blocks\Cinder-\src</Filter>
     </ClCompile>
@@ -174,6 +177,9 @@
       <Filter>Blocks\Cinder-\src</Filter>
     </ClCompile>
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\Assets.h">
+      <Filter>Blocks\Cinder-\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\CameraBasic.h">
       <Filter>Blocks\Cinder-\src</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\Compute.h">
@@ -1181,555 +1187,555 @@
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\SoftBody.h">
       <Filter>Blocks\Cinder-Bullet3D\src\Cinder-Bullet3D</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3DynamicBvh.cpp">
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3DynamicBvh.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3DynamicBvhBroadphase.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3DynamicBvhBroadphase.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3OverlappingPairCache.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision\b3OverlappingPairCache.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\BroadPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\b3ConvexUtility.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\b3ConvexUtility.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\b3CpuNarrowPhase.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision\b3CpuNarrowPhase.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Collision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3AlignedAllocator.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3AlignedAllocator.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3Logging.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3Logging.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3Vector3.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common\b3Vector3.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\b3CpuRigidBodyPipeline.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\b3CpuRigidBodyPipeline.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3FixedConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3FixedConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3Generic6DofConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3Generic6DofConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3PgsJacobiSolver.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3PgsJacobiSolver.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3Point2PointConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3Point2PointConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3TypedConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver\b3TypedConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Dynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Geometry\b3ConvexHullComputer.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Geometry\b3ConvexHullComputer.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Geometry\b3GeometryUtil.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Geometry\b3GeometryUtil.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Geometry</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3BulletFile.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3BulletFile.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3Chunk.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3Chunk.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3DNA.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3DNA.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3File.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3File.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3Serializer.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader\b3Serializer.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\Bullet3Serialize\Bullet2FileLoader</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btAxisSweep3.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btAxisSweep3.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btBroadphaseProxy.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btBroadphaseProxy.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btDbvt.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btDbvt.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btDbvtBroadphase.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btDbvtBroadphase.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btDispatcher.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btDispatcher.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btOverlappingPairCache.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btOverlappingPairCache.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btQuantizedBvh.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btQuantizedBvh.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btSimpleBroadphase.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision\btSimpleBroadphase.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\BroadPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btActivatingCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btActivatingCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btBox2dBox2dCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btBox2dBox2dCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btBoxBoxCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btBoxBoxCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btBoxBoxDetector.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btBoxBoxDetector.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionDispatcher.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionDispatcher.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionDispatcherMt.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionDispatcherMt.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionObject.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionObject.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionWorld.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionWorld.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionWorldImporter.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCollisionWorldImporter.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCompoundCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCompoundCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCompoundCompoundCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btCompoundCompoundCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvex2dConvex2dAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvex2dConvex2dAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvexConcaveCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvexConcaveCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvexConvexAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvexConvexAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvexPlaneCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btConvexPlaneCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btDefaultCollisionConfiguration.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btEmptyCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btEmptyCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btGhostObject.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btGhostObject.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btHashedSimplePairCache.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btHashedSimplePairCache.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btInternalEdgeUtility.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btInternalEdgeUtility.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btManifoldResult.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btManifoldResult.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSimulationIslandManager.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSimulationIslandManager.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSphereBoxCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSphereBoxCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSphereSphereCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSphereSphereCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSphereTriangleCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btSphereTriangleCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btUnionFind.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\btUnionFind.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\SphereTriangleDetector.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch\SphereTriangleDetector.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionDispatch</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btBox2dShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btBox2dShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btBoxShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btBoxShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btBvhTriangleMeshShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btBvhTriangleMeshShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCapsuleShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCapsuleShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCollisionShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCollisionShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCompoundShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCompoundShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConcaveShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConcaveShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConeShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConeShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvex2dShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvex2dShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexHullShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexHullShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexInternalShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexInternalShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexPointCloudShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexPointCloudShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexPolyhedron.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexPolyhedron.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexTriangleMeshShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btConvexTriangleMeshShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCylinderShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btCylinderShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btEmptyShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btEmptyShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btHeightfieldTerrainShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btHeightfieldTerrainShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMiniSDF.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMiniSDF.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMinkowskiSumShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMinkowskiSumShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMultimaterialTriangleMeshShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMultimaterialTriangleMeshShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMultiSphereShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btMultiSphereShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btOptimizedBvh.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btOptimizedBvh.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btPolyhedralConvexShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btPolyhedralConvexShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btScaledBvhTriangleMeshShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btScaledBvhTriangleMeshShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btSdfCollisionShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btSdfCollisionShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btShapeHull.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btShapeHull.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btSphereShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btSphereShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btStaticPlaneShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btStaticPlaneShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btStridingMeshInterface.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btStridingMeshInterface.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTetrahedronShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTetrahedronShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleBuffer.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleBuffer.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleCallback.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleCallback.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleIndexVertexArray.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleIndexVertexArray.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleIndexVertexMaterialArray.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleIndexVertexMaterialArray.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleMesh.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleMesh.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleMeshShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btTriangleMeshShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btUniformScalingShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes\btUniformScalingShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\CollisionShapes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btContactProcessing.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btContactProcessing.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGenericPoolAllocator.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGenericPoolAllocator.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactBvh.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactBvh.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactQuantizedBvh.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactQuantizedBvh.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactShape.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btGImpactShape.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btTriangleShapeEx.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\btTriangleShapeEx.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_box_set.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_box_set.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_contact.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_contact.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_memory.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_memory.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_tri_collision.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact\gim_tri_collision.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\GImpact</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btContinuousConvexCollision.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btContinuousConvexCollision.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btConvexCast.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btConvexCast.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkConvexCast.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkConvexCast.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkEpa2.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkEpa2.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkEpaPenetrationDepthSolver.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkEpaPenetrationDepthSolver.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkPairDetector.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btGjkPairDetector.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btMinkowskiPenetrationDepthSolver.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btMinkowskiPenetrationDepthSolver.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btPersistentManifold.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btPersistentManifold.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btPolyhedralContactClipping.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btPolyhedralContactClipping.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btRaycastCallback.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btRaycastCallback.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btSubSimplexConvexCast.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btSubSimplexConvexCast.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btVoronoiSimplexSolver.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision\btVoronoiSimplexSolver.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletCollision\NarrowPhaseCollision</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Character\btKinematicCharacterController.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Character\btKinematicCharacterController.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Character</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btBatchedConstraints.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btBatchedConstraints.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btConeTwistConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btConeTwistConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btContactConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btContactConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btFixedConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btFixedConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGearConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGearConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofSpring2Constraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofSpring2Constraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofSpringConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btGeneric6DofSpringConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btHinge2Constraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btHinge2Constraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btHingeConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btHingeConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btNNCGConstraintSolver.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btNNCGConstraintSolver.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btPoint2PointConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btPoint2PointConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolver.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolverMt.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSequentialImpulseConstraintSolverMt.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSliderConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSliderConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSolve2LinearConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btSolve2LinearConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btTypedConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btTypedConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btUniversalConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver\btUniversalConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\ConstraintSolver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btDiscreteDynamicsWorld.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btDiscreteDynamicsWorld.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btDiscreteDynamicsWorldMt.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btDiscreteDynamicsWorldMt.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btRigidBody.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btRigidBody.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btSimpleDynamicsWorld.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btSimpleDynamicsWorld.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btSimulationIslandManagerMt.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics\btSimulationIslandManagerMt.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Dynamics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBody.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBody.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyConstraintSolver.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyConstraintSolver.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyDynamicsWorld.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyDynamicsWorld.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyFixedConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyFixedConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyGearConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyGearConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyJointLimitConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyJointLimitConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyJointMotor.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyJointMotor.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyPoint2Point.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodyPoint2Point.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodySliderConstraint.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone\btMultiBodySliderConstraint.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\FeatherStone</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btDantzigLCP.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btDantzigLCP.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btLemkeAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btLemkeAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btMLCPSolver.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers\btMLCPSolver.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\MLCPSolvers</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Vehicle\btRaycastVehicle.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Vehicle\btRaycastVehicle.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Vehicle</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Vehicle\btWheelInfo.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Vehicle\btWheelInfo.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletDynamics\Vehicle</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\IDMath.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\IDMath.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\MultiBodyTree.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\MultiBodyTree.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\details\MultiBodyTreeImpl.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\details\MultiBodyTreeImpl.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\details\MultiBodyTreeInitCache.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\details\MultiBodyTreeInitCache.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletInverseDynamics\details</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btDefaultSoftBodySolver.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btDefaultSoftBodySolver.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBody.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBody.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyConcaveCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyConcaveCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyHelpers.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyHelpers.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyRigidBodyCollisionConfiguration.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftBodyRigidBodyCollisionConfiguration.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftMultiBodyDynamicsWorld.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftMultiBodyDynamicsWorld.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftRigidCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftRigidCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftRigidDynamicsWorld.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftRigidDynamicsWorld.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftSoftCollisionAlgorithm.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody\btSoftSoftCollisionAlgorithm.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\BulletSoftBody</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btAlignedAllocator.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btAlignedAllocator.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btConvexHull.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btConvexHull.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btConvexHullComputer.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btConvexHullComputer.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btGeometryUtil.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btGeometryUtil.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btPolarDecomposition.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btPolarDecomposition.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btQuickprof.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btQuickprof.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btSerializer.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btSerializer.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btSerializer64.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btSerializer64.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btThreads.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btThreads.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btVector3.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\btVector3.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler\btTaskScheduler.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler\btTaskScheduler.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler\btThreadSupportPosix.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler\btThreadSupportPosix.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler\btThreadSupportWin32.cpp">
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler\btThreadSupportWin32.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\bullet3\src\LinearMath\TaskScheduler</Filter>
-    </ClInclude>
+    </ClCompile>
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-Bullet3D\src\Cinder-Bullet3D\BulletContext.cpp">
       <Filter>Blocks\Cinder-Bullet3D\src\Cinder-Bullet3D</Filter>
     </ClCompile>
