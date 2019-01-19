@@ -36,7 +36,13 @@ void main(void) {
 	float maxSpecular = max(specular.r, max(specular.g, specular.b));
 	float fConserve = 1.0 / max(1.0, maxDiffuse + maxSpecular);
 
+	///checkered
+	float s = 10.0;
+    vec2 Pos = floor(vec2(vVertex.x,vVertex.z) / s);
+    float PatternMask = mod(Pos.x + mod(Pos.y, 2.0), 2.0);
+    float checkColor = PatternMask * 1.0;
+
 	// final color
-	oColor.rgb = (diffuse + specular) * fConserve;
+	oColor.rgb = (diffuse + specular) * fConserve * checkColor;
 	oColor.a = 1.0;
 }

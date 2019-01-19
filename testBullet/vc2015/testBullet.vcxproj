@@ -102,6 +102,7 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\CameraFollow.cpp" />
     <ClCompile Include="..\src\bullet\DrawablePlaneRBD.cpp" />
     <ClCompile Include="..\src\bullet\DrawableRBD.cpp" />
     <ClCompile Include="..\src\testBulletApp.cpp" />
@@ -311,6 +312,7 @@
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui_demo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\CameraFollow.h" />
     <ClInclude Include="..\include\Resources.h" />
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\Assets.h" />
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\CameraBasic.h" />

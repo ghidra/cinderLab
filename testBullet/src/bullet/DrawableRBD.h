@@ -14,6 +14,7 @@ public:
 
 	ci::gl::BatchRef&		getBatch() { return mVisObj; }
 	bullet::RigidBodyRef&	getPhyObj() { return mPhyObj; }
+	ci::vec3& getCenter() { return ci::vec3(mModelMatrix*ci::vec4(0,0,0,1));}
 private:
 
 	ci::gl::BatchRef						mVisObj;

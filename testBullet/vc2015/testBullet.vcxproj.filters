@@ -1808,6 +1808,9 @@
     <ClCompile Include="..\src\bullet\DrawableRBD.cpp">
       <Filter>Source Files\bullet</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\CameraFollow.cpp">
+      <Filter>Blocks\Cinder-\src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
@@ -1818,6 +1821,9 @@
     </ClInclude>
     <ClInclude Include="..\src\bullet\DrawableRBD.h">
       <Filter>Header Files\bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\CameraFollow.h">
+      <Filter>Blocks\Cinder-\src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
