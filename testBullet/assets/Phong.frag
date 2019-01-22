@@ -2,6 +2,7 @@
 
 in VertexData	{
 	vec4 position;
+	vec4 worldposition;
 	vec3 normal;
 	vec4 color;
 } vVertexIn;
@@ -38,7 +39,7 @@ void main(void) {
 
 	///checkered
 	float s = 10.0;
-    vec2 Pos = floor(vec2(vVertex.x,vVertex.z) / s);
+    vec2 Pos = floor(vVertexIn.worldposition.xz / s);
     float PatternMask = mod(Pos.x + mod(Pos.y, 2.0), 2.0);
     float checkColor = PatternMask * 1.0;
 

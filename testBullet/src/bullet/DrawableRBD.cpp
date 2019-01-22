@@ -6,9 +6,14 @@ using namespace ci;
 using namespace ci::gl;
 using namespace bullet;
 
-DrawableRBD::DrawableRBD(const ci::gl::BatchRef &visual, const bullet::RigidBodyRef &physics)
-	: mVisObj(visual), mPhyObj(physics)
+DrawableRBD::DrawableRBD()
 {
+
+}
+void DrawableRBD::Setup(const ci::gl::BatchRef &visual, const bullet::RigidBodyRef &physics)
+{
+	mVisObj = visual;
+	mPhyObj = physics;
 	mMotionState = SimpleGlDynamicMotionStateRef(new SimpleGlDynamicMotionState(mPhyObj->getCenterOfMassTransform()));
 	mPhyObj->setMotionState(mMotionState);
 }

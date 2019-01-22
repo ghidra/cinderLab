@@ -1811,6 +1811,9 @@
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\CameraFollow.cpp">
       <Filter>Blocks\Cinder-\src</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\VehicleGeneric.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
@@ -1824,6 +1827,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\CameraFollow.h">
       <Filter>Blocks\Cinder-\src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\VehicleGeneric.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

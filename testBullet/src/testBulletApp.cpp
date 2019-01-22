@@ -5,9 +5,11 @@
 #include "cinder/gl/GlslProg.h"
 #include "cinder/TriMesh.h"
 
+#include "Cinder-Bullet3D/BulletContext.h"
+
 #include "bullet/DrawableRBD.h"
 #include "bullet/DrawablePlaneRBD.h"
-#include "Cinder-Bullet3D/BulletContext.h"
+#include "VehicleGeneric.h"
 
 #include "CameraFollow.h"
 
@@ -26,7 +28,7 @@ class testBulletApp : public App {
 	void draw() override;
 
 	bullet::ContextRef	mContext;
-	std::vector<DrawableRBDRef> mVisualPhysicsObjs;
+	//std::vector<DrawableRBDRef> mVisualPhysicsObjs;
 	DrawablePlaneRBDRef mVisualGround;
 	gl::GlslProgRef		mPhongShader;
 	CameraPersp			mCam;
@@ -35,7 +37,9 @@ class testBulletApp : public App {
 	gl::BatchRef			mVisPlane;
 	bullet::RigidBodyRef	mPhyPlane;
 
-	bool	mTMPApplyForce;
+	VehicleGenericRef	mFirstCar;
+
+	//bool	mTMPApplyForce;
 private:
 	float 				mLastTime = 0.0f;//for delta time calculation
 	float				mDeltaTime = 0.0f;
@@ -56,13 +60,22 @@ void testBulletApp::setup()
 
 	//make a cube
 	// All I need to do is create a Box Shape at a half extents of .5, .5, .5.
+	
+	/*
 	auto rigidBody = RigidBody::create(RigidBody::Format()
 		.collisionShape(createBoxShape(vec3(0.5f, 0.5f, 0.5f)))
 		.mass(1)
-		.initialPosition(vec3(0, 2, 0))
+		.initialPosition(vec3(0, 4, 0))
 		.addToWorld(true));
+
+	auto firstBox = DrawableRBDRef(new DrawableRBD());
+	firstBox->Setup(gl::Batch::create(geom::Cube(), mPhongShader), rigidBody);
 	
-	mVisualPhysicsObjs.emplace_back(DrawableRBDRef(new DrawableRBD(gl::Batch::create(geom::Cube(), mPhongShader), rigidBody)));
+	mVisualPhysicsObjs.emplace_back(firstBox);
+	*/
+
+	mFirstCar = VehicleGenericRef( new VehicleGeneric() );
+	mFirstCar->Setup(vec3(0, 2, 0), gl::Batch::create(geom::Cube(), mPhongShader));
 
 	gl::enableDepthRead();
 	gl::enableDepthWrite();
@@ -72,7 +85,7 @@ void testBulletApp::setup()
 
 	mCamera = CameraFollowRef(new CameraFollow());
 
-	mTMPApplyForce = false;
+	//mTMPApplyForce = false;
 }
 
 void testBulletApp::mouseDown( MouseEvent event )
@@ -81,14 +94,16 @@ void testBulletApp::mouseDown( MouseEvent event )
 
 void testBulletApp::keyDown(KeyEvent event)
 {
-	if (event.getChar() == KeyEvent::KEY_w)
-		mTMPApplyForce = true;
+	mFirstCar->keyDown(event);
+	//if (event.getChar() == KeyEvent::KEY_w)
+	//	mTMPApplyForce = true;
 }
 
 void testBulletApp::keyUp(KeyEvent event)
 {
-	if (event.getChar() == KeyEvent::KEY_w)
-		mTMPApplyForce = false;
+	mFirstCar->keyUp(event);
+	//if (event.getChar() == KeyEvent::KEY_w)
+	//	mTMPApplyForce = false;
 }
 void testBulletApp::update()
 {
@@ -102,16 +117,20 @@ void testBulletApp::update()
 
 	mContext->update();
 	// We'll update our Physics objects which will cash our Model Matrices.
+	/*
 	if (mTMPApplyForce)
 	{
-		mVisualPhysicsObjs[0]->getPhyObj()->applyForce(vec3(0.0f, 0.0f, 11.04f), vec3());
+		//mVisualPhysicsObjs[0]->getPhyObj()->applyForce(vec3(0.0f, 0.0f, 11.04f), vec3());
 		//CI_LOG_I("PUSH IT");
 	}
 	for (unsigned i=0;i< mVisualPhysicsObjs.size();++i)
 		mVisualPhysicsObjs[i]->update();
+	*/
+	mFirstCar->update();
 
 	//update the camera
-	mCamera->Update(mVisualPhysicsObjs[0]->getCenter(),mDeltaTime);
+	mCamera->Update(mFirstCar->getCenter(),mDeltaTime);
+	//mCamera->Update(mVisualPhysicsObjs[0]->getCenter(), mDeltaTime);
 }
 
 void testBulletApp::draw()
@@ -121,9 +140,14 @@ void testBulletApp::draw()
 	gl::setMatrices(mCamera->GetPerspective());
 	mVisualGround->draw();
 
+	/*
 	gl::pushModelMatrix();
 	for (unsigned i = 0; i< mVisualPhysicsObjs.size(); ++i)
 		mVisualPhysicsObjs[i]->draw();
+	gl::popModelMatrix();
+	*/
+	gl::pushModelMatrix();
+	mFirstCar->draw();
 	gl::popModelMatrix();
 }
 

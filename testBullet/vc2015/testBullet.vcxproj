@@ -310,6 +310,7 @@
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui.cpp" />
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui_draw.cpp" />
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui_demo.cpp" />
+    <ClCompile Include="..\src\VehicleGeneric.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\CameraFollow.h" />
@@ -657,6 +658,7 @@
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui_internal.h" />
     <ClInclude Include="..\src\bullet\DrawablePlaneRBD.h" />
     <ClInclude Include="..\src\bullet\DrawableRBD.h" />
+    <ClInclude Include="..\src\VehicleGeneric.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
