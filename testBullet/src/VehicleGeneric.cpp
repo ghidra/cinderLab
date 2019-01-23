@@ -1,5 +1,7 @@
 #include "VehicleGeneric.h"
 
+using namespace ci;
+
 VehicleGeneric::VehicleGeneric()
 	: DrawableRBD()
 	, mMovementSpeed(10.0f)
@@ -11,16 +13,19 @@ VehicleGeneric::VehicleGeneric()
 	, mMovingUpward(false)
 	, mMovingDownward(false)
 	, mInputForce(ci::vec3())
+	, mInputTorqueForce(ci::vec3())
 {
 }
 
-void VehicleGeneric::Setup(const ci::vec3 position, const ci::gl::BatchRef &visual)
+void VehicleGeneric::Setup(const vec3 position, const gl::BatchRef &visual)
 {
 	auto rigidBody = bullet::RigidBody::create(bullet::RigidBody::Format()
-		.collisionShape(bullet::createBoxShape(ci::vec3(0.5f, 0.5f, 0.5f)))
+		.collisionShape(bullet::createBoxShape(vec3(0.5f, 0.5f, 0.5f)))
 		.mass(1)
 		.initialPosition(position)
 		.addToWorld(true));
+
+	rigidBody->setDamping( rigidBody->getLinearDamping(),1.0f );
 
 	DrawableRBD::Setup(visual, rigidBody);
 }
@@ -29,27 +34,38 @@ void VehicleGeneric::update()
 {
 	//mLocalDeltaTime = deltaTime;
 
-	mInputForce = ci::vec3();
+	mInputForce = vec3();
+	mInputTorqueForce = vec3();
 
-	ci::vec3 forwardDirection = glm::normalize(ci::vec3( mModelMatrix * ci::vec4(0, 0, 1, 0) ) );
-	ci::vec3 upDirection = glm::normalize(ci::vec3(mModelMatrix * ci::vec4(0, 1, 0, 0)) );
-	ci::vec3 sideDirection = glm::normalize(glm::cross(upDirection, forwardDirection));
+	vec3 forwardDirection = glm::normalize(vec3( mModelMatrix * vec4(0, 0, 1, 0) ) );
+	vec3 upDirection = glm::normalize(vec3(mModelMatrix * vec4(0, 1, 0, 0)) );
+	vec3 sideDirection = glm::normalize(glm::cross(upDirection, forwardDirection));
 
 	if (mMovingForward)
-	{
 		mInputForce += forwardDirection;
-		//CI_LOG_I("MOVING");
-	}
-	if (mMovingLeft)
-		mInputForce += sideDirection;
 	if (mMovingBackward)
 		mInputForce -= forwardDirection;
+
+	if (mMovingLeft)
+		mInputTorqueForce += upDirection;
 	if (mMovingRight)
-		mInputForce -= sideDirection;
+		mInputTorqueForce -= upDirection;
 	/*if (mMovingUpward)
 		mInputForce += viewUp;
 	if (mMovingDownward)
 		mInputForce -= viewUp;*/
+
+	if (glm::length(mInputTorqueForce) > 0.0f)
+	{
+		mPhyObj->applyTorque(glm::normalize(mInputTorqueForce)*10.0f);
+		//if we are turning at all... we need to update the linear force to face the direction that we are turning.
+		vec3 lv = mPhyObj->getLinearVelocity();
+		vec3 nlv = glm::normalize(lv);
+		float llv = glm::length(lv);
+		///just use part of the turning directoin
+		vec3 updatedLinearVelocity = glm::lerp(nlv,forwardDirection,0.5f);
+		mPhyObj->setLinearVelocity(updatedLinearVelocity*llv*0.99f);
+	}
 
 	if (glm::length(mInputForce) > 0.0f)
 	{
@@ -58,6 +74,7 @@ void VehicleGeneric::update()
 		//CI_LOG_I("MOVING" );
 		mPhyObj->applyForce(mInputForce, ci::vec3());
 	}
+	
 
 	DrawableRBD::update();
 }

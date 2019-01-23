@@ -22,6 +22,6 @@ private:
 	float			mMovementSpeed, mLocalDeltaTime;
 	bool			mMovingForward, mMovingBackward, mMovingLeft, mMovingRight, mMovingUpward, mMovingDownward;
 
-	ci::vec3		mInputForce;
+	ci::vec3		mInputForce,mInputTorqueForce;
 };
 
