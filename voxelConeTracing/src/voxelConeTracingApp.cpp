@@ -19,15 +19,14 @@ class voxelConeTracingApp : public App {
 		gl::Texture3dRef mVoxelTex;
 		int mVoxelTexSize;
 		gl::GlslProgRef mVoxelizationProg;
-		gl::GlslProgRef mTexture3dDebugProg;//a program to look at the texture3D flat on screen
+		//gl::GlslProgRef mTexture3dDebugProg;//a program to look at the texture3D flat on screen
 };
 
 void voxelConeTracingApp::setup()
 {
 	auto loadGlslProg = [&](const gl::GlslProg::Format& format) -> gl::GlslProgRef
 	{
-		string names = format.getVertexPath().string() + " + " +
-			format.getFragmentPath().string();
+		string names = format.getVertexPath().string() + " + " + format.getFragmentPath().string();
 		gl::GlslProgRef glslProg;
 		try {
 			glslProg = gl::GlslProg::create(format);
@@ -43,9 +42,9 @@ void voxelConeTracingApp::setup()
 		.vertex(loadAsset("voxelization.vert"))
 		.geometry(loadAsset("voxelization.geom"))
 		.fragment(loadAsset("voxelization.frag")));
-	mTexture3dDebugProg = loadGlslProg(gl::GlslProg::Format().version(450)
+	/*mTexture3dDebugProg = loadGlslProg(gl::GlslProg::Format().version(450)
 		.vertex(loadAsset("pass_through.vert"))
-		.fragment(loadAsset("texture3dDebug.frag")));
+		.fragment(loadAsset("texture3dDebug.frag")));*/
 
 	mVoxelTexSize = 256;
 
