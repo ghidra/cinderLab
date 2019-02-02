@@ -16,10 +16,13 @@ class voxelConeTracingApp : public App {
 		void draw() override;
 
 	private:
+		
 		gl::Texture3dRef mVoxelTex;
 		int mVoxelTexSize;
 		gl::GlslProgRef mVoxelizationProg;
 		//gl::GlslProgRef mTexture3dDebugProg;//a program to look at the texture3D flat on screen
+
+		CameraOrtho mVoxelizationCamera;
 };
 
 void voxelConeTracingApp::setup()
@@ -60,6 +63,10 @@ void voxelConeTracingApp::setup()
 	mVoxelTex = gl::Texture3d::create(mVoxelTexSize, mVoxelTexSize, mVoxelTexSize, tex3dFmt);
 	//mVoxelTex->update(data.data(), GL_RGBA, tex3dFmt.getDataType(), 0, mVoxelTex->getWidth(), mVoxelTex->getHeight(), mVoxelTex->getDepth());
 
+	//set the orthographic camera information
+
+	mVoxelizationCamera.setOrtho(-1.0f,1.0f,-getWindowAspectRatio(), getWindowAspectRatio(),-1.0f,1.0f);
+	//mVoxelizationCamera.setOrtho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
 }
 
 void voxelConeTracingApp::mouseDown( MouseEvent event )
@@ -69,13 +76,33 @@ void voxelConeTracingApp::mouseDown( MouseEvent event )
 void voxelConeTracingApp::update()
 {
 
-	gl::ScopedTextureBind scoped3dTex(mVoxelTex);
+	//gl::ScopedTextureBind scoped3dTex(mVoxelTex);
 
 }
 
 void voxelConeTracingApp::draw()
 {
 	gl::clear( Color( 0, 0, 0 ) );
+
+	//---------------do the voxelization
+
+	gl::disable(GL_DEPTH_TEST);
+	gl::disable(GL_CULL_FACE);
+	gl::disable(GL_BLEND);
+
+	gl::setMatrices(mVoxelizationCamera);///set the camera up
+	gl::ScopedTextureBind scoped3dTex(mVoxelTex);//bind the voxel texture
+												 ///
+	gl::ScopedGlslProg scopedRenderProg(mVoxelizationProg);
+	//mVoxelizationProg->uniform("spriteSize", mSpriteSize);//set the uniforms in here
+
+	//now render the objects with these settings
+
+	//-------------done with the voxelization
+	
+	//now visualize the voxelization somehow
+
+
 }
 
 CINDER_APP( voxelConeTracingApp, RendererGl )
