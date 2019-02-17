@@ -1,19 +1,19 @@
-// Author:	Fredrik Präntare <prantare@gmail.com>
-// Date:	11/26/2016
-#version 450 core
+#version 440 core
 
-layout(location = 0) in vec3 position;
-layout(location = 1) in vec3 normal;
+in vec4		ciPosition;
+in vec3		ciNormal;
 
-uniform mat4 M;
-uniform mat4 V;
-uniform mat4 P;
+uniform mat4 ciModelMatrix;
+uniform mat4 ciModelMatrixInverseTranspose;
+uniform mat4 ciViewProjection;//view and projection together
 
-out vec3 worldPositionGeom;
-out vec3 normalGeom;
+out VertexData {
+	vec3 worldPositionGeom;
+	vec3 normalGeom;
+} vVertexOut;
 
 void main(){
-	worldPositionGeom = vec3(M * vec4(position, 1));
-	normalGeom = normalize(mat3(transpose(inverse(M))) * normal);
-	gl_Position = P * V * vec4(worldPositionGeom, 1);
+	vVertexOut.worldPositionGeom = vec3(ciModelMatrix * vec4(ciPosition, 1));
+	vVertexOut.normalGeom = normalize(mat3(ciModelMatrixInverseTranspose) * ciNormal);
+	gl_Position = ciViewProjection * vec4(worldPositionGeom, 1);
 }

@@ -16,13 +16,23 @@ class voxelConeTracingApp : public App {
 		void draw() override;
 
 	private:
-		
+
+		//------------------
+		// voxelization
+		//------------------
 		gl::Texture3dRef mVoxelTex;
 		int mVoxelTexSize;
 		gl::GlslProgRef mVoxelizationProg;
 		//gl::GlslProgRef mTexture3dDebugProg;//a program to look at the texture3D flat on screen
 
 		CameraOrtho mVoxelizationCamera;
+		//void initVoxelization();
+		//void voxelize(bool clearVoxelizationFirst=true);
+
+		// visualization of voxels
+		//void initVoxelVisualization();
+		//void renderVoxelVisualization();
+		//------------------
 };
 
 void voxelConeTracingApp::setup()
@@ -41,7 +51,7 @@ void voxelConeTracingApp::setup()
 		return glslProg;
 	};
 
-	mVoxelizationProg = loadGlslProg( gl::GlslProg::Format().version(450)
+	mVoxelizationProg = loadGlslProg( gl::GlslProg::Format().version(440)
 		.vertex(loadAsset("voxelization.vert"))
 		.geometry(loadAsset("voxelization.geom"))
 		.fragment(loadAsset("voxelization.frag")));
@@ -90,7 +100,7 @@ void voxelConeTracingApp::draw()
 	gl::disable(GL_CULL_FACE);
 	gl::disable(GL_BLEND);
 
-	gl::setMatrices(mVoxelizationCamera);///set the camera up
+	gl::setMatrices(mVoxelizationCamera);//set the camera up
 	gl::ScopedTextureBind scoped3dTex(mVoxelTex);//bind the voxel texture
 												 ///
 	gl::ScopedGlslProg scopedRenderProg(mVoxelizationProg);
@@ -99,7 +109,7 @@ void voxelConeTracingApp::draw()
 	//now render the objects with these settings
 
 	//-------------done with the voxelization
-	
+
 	//now visualize the voxelization somehow
 
 

@@ -35,6 +35,7 @@ CMakeFiles/
 **/cmake/Makefile
 **/cmake/cmake_install.cmake
 **/cmake/*.a
+**/cmake/*.cbp
 
 # Android cruft
 *.swp
