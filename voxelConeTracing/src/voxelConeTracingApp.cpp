@@ -30,9 +30,20 @@ class voxelConeTracingApp : public App {
 		//void voxelize(bool clearVoxelizationFirst=true);
 
 		// visualization of voxels
+		//gl::BatchRef		mVisualizeCubeFront;//this is the final rendered mesh
+		//gl::BatchRef		mVisualizeCubeBack;
+		//gl::GlslProgRef  mVisualizeVoxelWorldPosProg;
+		gl::GlslProgRef  mVisualizeVoxelSimpleProg;
 		//void initVoxelVisualization();
 		//void renderVoxelVisualization();
 		//------------------
+
+		//our first object
+		gl::BatchRef		mGeoCube;//this is the final rendered mesh
+        gl::BatchRef		mGeoCubeVoxelize;//this is the batch that will render to the 3d texture after voxelization
+
+        //This is the master shader, that will render the objects
+        gl::GlslProgRef		mVoxelConeTrace;
 };
 
 void voxelConeTracingApp::setup()
@@ -59,7 +70,7 @@ void voxelConeTracingApp::setup()
 		.vertex(loadAsset("pass_through.vert"))
 		.fragment(loadAsset("texture3dDebug.frag")));*/
 
-	mVoxelTexSize = 256;
+	mVoxelTexSize = 64;//256;
 
 	gl::Texture3d::Format tex3dFmt;
 	tex3dFmt.setWrapR(GL_REPEAT);
@@ -77,6 +88,9 @@ void voxelConeTracingApp::setup()
 
 	mVoxelizationCamera.setOrtho(-1.0f,1.0f,-getWindowAspectRatio(), getWindowAspectRatio(),-1.0f,1.0f);
 	//mVoxelizationCamera.setOrtho(-1.0f, 1.0f, -1.0f, 1.0f, -1.0f, 1.0f);
+
+	//make the first batch
+	mGeoCubeVoxelize = gl::Batch::create( geom::Cube() ,mVoxelizationProg);
 }
 
 void voxelConeTracingApp::mouseDown( MouseEvent event )
@@ -101,9 +115,10 @@ void voxelConeTracingApp::draw()
 	gl::disable(GL_BLEND);
 
 	gl::setMatrices(mVoxelizationCamera);//set the camera up
-	gl::ScopedTextureBind scoped3dTex(mVoxelTex);//bind the voxel texture
-												 ///
-	gl::ScopedGlslProg scopedRenderProg(mVoxelizationProg);
+	gl::ScopedTextureBind scoped3dTex(mVoxelTex,0);//bind the voxel texture
+
+    mGeoCubeVoxelize->draw();//draw the cube
+	//gl::ScopedGlslProg scopedRenderProg(mVoxelizationProg);
 	//mVoxelizationProg->uniform("spriteSize", mSpriteSize);//set the uniforms in here
 
 	//now render the objects with these settings
@@ -112,7 +127,13 @@ void voxelConeTracingApp::draw()
 
 	//now visualize the voxelization somehow
 
+    gl::clear();
+	gl::setMatricesWindow( getWindowSize() );
 
+	gl::ScopedGlslProg glslScp( mVisualizeVoxelSimpleProg );
+	mVisualizeVoxelSimpleProg->uniform( "texture3D", 0 );
+	mVisualizeVoxelSimpleProg->uniform( "uVoxelTexSize,  mVoxelTexSize);
+	gl::drawSolidRect( getWindowBounds() );
 }
 
 CINDER_APP( voxelConeTracingApp, RendererGl )

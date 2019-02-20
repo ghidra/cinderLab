@@ -12,7 +12,7 @@ struct Material {
 uniform Material material;
 uniform vec3 cameraPosition;
 
-layout(location = 0) uniform image3D texture3D;
+uniform image3D texture3D;
 
 in VertexData {
 	vec3 worldPositionFrag;
