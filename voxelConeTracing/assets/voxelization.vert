@@ -13,7 +13,7 @@ out VertexData {
 } vVertexOut;
 
 void main(){
-	vVertexOut.worldPositionGeom = vec3(ciModelMatrix * vec4(ciPosition, 1));
+	vVertexOut.worldPositionGeom = vec3(ciModelMatrix * vec4(ciPosition.xyz, 1));
 	vVertexOut.normalGeom = normalize(mat3(ciModelMatrixInverseTranspose) * ciNormal);
-	gl_Position = ciViewProjection * vec4(worldPositionGeom, 1);
+	gl_Position = ciViewProjection * vec4(vVertexOut.worldPositionGeom, 1);
 }

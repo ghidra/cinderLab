@@ -12,7 +12,7 @@ struct Material {
 uniform Material material;
 uniform vec3 cameraPosition;
 
-uniform image3D texture3D;
+layout(RGBA8)  uniform image3D texture3D;
 
 in VertexData {
 	vec3 worldPositionFrag;
@@ -25,9 +25,9 @@ bool isInsideCube(const vec3 p, float e) { return abs(p.x) < 1 + e && abs(p.y) <
 void main()
 {
 	vec3 color = vec3(0.0f);
-	if(!isInsideCube(VertexData.worldPositionFrag, 0)) return;
+	if(!isInsideCube(vVertexIn.worldPositionFrag, 0)) return;
 
-	vec3 voxel = scaleAndBias(VertexData.worldPositionFrag);
+	vec3 voxel = scaleAndBias(vVertexIn.worldPositionFrag);
 	ivec3 dim = imageSize(texture3D);
 	float alpha = pow(1 - material.transparency, 4); // For soft shadows to work better with transparent materials.
 	vec4 res = alpha * vec4(vec3(color), 1);

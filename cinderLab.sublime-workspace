@@ -57,11 +57,19 @@
 			}
 		},
 		{
-			"file": "SimpleShaderTest/resources/noiselib.glsl",
+			"file": "voxelConeTracing/assets/voxelization.frag",
 			"settings":
 			{
-				"buffer_size": 113719,
+				"buffer_size": 910,
 				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/jimmy/projects/cinder/Cinder/samples/_opengl/Cube/src/CubeApp.cpp",
+			"settings":
+			{
+				"buffer_size": 1985,
 				"line_ending": "Unix"
 			}
 		}
@@ -74,7 +82,7 @@
 	"command_palette":
 	{
 		"height": 148.0,
-		"last_filter": "install",
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -90,9 +98,10 @@
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 138.878814697,
 		"history":
 		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
 		]
 	},
 	"distraction_free":
@@ -108,8 +117,14 @@
 	[
 		"/home/jimmy/projects/cinder/cinderLab",
 		"/home/jimmy/projects/cinder/cinderLab/SimpleShaderTest",
-		"/home/jimmy/projects/cinder/cinderLab/SimpleShaderTest/include",
-		"/home/jimmy/projects/cinder/cinderLab/SimpleShaderTest/src"
+		"/home/jimmy/projects/cinder/cinderLab/SimpleShaderTest/src",
+		"/home/jimmy/projects/cinder/cinderLab/voxelConeTracing",
+		"/home/jimmy/projects/cinder/cinderLab/voxelConeTracing/assets",
+		"/home/jimmy/projects/cinder/Cinder",
+		"/home/jimmy/projects/cinder/Cinder/samples",
+		"/home/jimmy/projects/cinder/Cinder/samples/_opengl",
+		"/home/jimmy/projects/cinder/Cinder/samples/_opengl/FboMultipleRenderTargets",
+		"/home/jimmy/projects/cinder/Cinder/samples/_opengl/FboMultipleRenderTargets/src"
 	],
 	"file_history":
 	[
@@ -186,7 +201,7 @@
 	],
 	"find":
 	{
-		"height": 38.0
+		"height": 25.2897787144
 	},
 	"find_in_files":
 	{
@@ -220,7 +235,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -236,13 +251,42 @@
 						"selection":
 						[
 							[
-								1127,
-								1127
+								2582,
+								2582
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 900.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "voxelConeTracing/assets/voxelization.frag",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 910,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								252,
+								252
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/OpenGL SL.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -253,33 +297,32 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "SimpleShaderTest/resources/noiselib.glsl",
-					"semi_transient": true,
+					"buffer": 2,
+					"file": "/home/jimmy/projects/cinder/Cinder/samples/_opengl/Cube/src/CubeApp.cpp",
+					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 113719,
+						"buffer_size": 1985,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								73589,
-								73589
+								1877,
+								1877
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/OpenGL SL.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/C++/C++.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 23277.7222777,
+						"translation.y": 660.695468915,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				}
 			]
@@ -287,7 +330,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 24.975024975
+		"height": 25.2897787144
 	},
 	"input":
 	{
@@ -324,7 +367,7 @@
 	"project": "cinderLab.sublime-project",
 	"replace":
 	{
-		"height": 45.954045954
+		"height": 46.3645943098
 	},
 	"save_all_on_build": true,
 	"select_file":

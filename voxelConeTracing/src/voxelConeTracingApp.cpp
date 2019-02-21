@@ -2,6 +2,8 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 
+#include "Assets.h"
+
 #include "cinder/Log.h"
 
 using namespace ci;
@@ -10,6 +12,7 @@ using namespace std;
 
 class voxelConeTracingApp : public App {
 	public:
+	    static void prepareSettings( Settings *settings );
 		void setup() override;
 		void mouseDown( MouseEvent event ) override;
 		void update() override;
@@ -34,8 +37,10 @@ class voxelConeTracingApp : public App {
 		//gl::BatchRef		mVisualizeCubeBack;
 		//gl::GlslProgRef  mVisualizeVoxelWorldPosProg;
 		gl::GlslProgRef  mVisualizeVoxelSimpleProg;
+		signals::ScopedConnection		mVisualizeVoxelSimpleConnection;
 		//void initVoxelVisualization();
 		//void renderVoxelVisualization();
+
 		//------------------
 
 		//our first object
@@ -45,6 +50,13 @@ class voxelConeTracingApp : public App {
         //This is the master shader, that will render the objects
         gl::GlslProgRef		mVoxelConeTrace;
 };
+
+void voxelConeTracingApp::prepareSettings( Settings *settings )
+{
+	settings->setWindowSize( 1024, 768 );
+	settings->disableFrameRate();
+	settings->setFullScreen( false );
+}
 
 void voxelConeTracingApp::setup()
 {
@@ -91,6 +103,21 @@ void voxelConeTracingApp::setup()
 
 	//make the first batch
 	mGeoCubeVoxelize = gl::Batch::create( geom::Cube() ,mVoxelizationProg);
+
+	//make the simple visualization shader
+	mVisualizeVoxelSimpleConnection = assets()->getShader( "quadpassthrough.vert", "voxelvisualizationsimple.frag",
+                                      [this]( gl::GlslProgRef glsl ) {
+                                          mVisualizeVoxelSimpleProg = glsl;
+                                          mVisualizeVoxelSimpleProg->uniform( "uVoxels",0);
+										  mVisualizeVoxelSimpleProg->uniform( "uResolution", vec2((float)app::getWindowSize().x, (float)app::getWindowSize().y));
+										  mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize);
+                                      } );
+    /*mVisualizeVoxelSimpleProg = loadGlslProg( gl::GlslProg::Format()
+		.vertex(loadAsset("quadpassthrough.vert"))
+		.fragment(loadAsset("voxelvisualizationsimple.frag")));
+    mVisualizeVoxelSimpleProg->uniform( "uVoxels",0);
+      mVisualizeVoxelSimpleProg->uniform( "uResolution", vec2((float)app::getWindowSize().x, (float)app::getWindowSize().y));
+      mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize);*/
 }
 
 void voxelConeTracingApp::mouseDown( MouseEvent event )
@@ -106,18 +133,20 @@ void voxelConeTracingApp::update()
 
 void voxelConeTracingApp::draw()
 {
-	gl::clear( Color( 0, 0, 0 ) );
+    {
+        gl::clear( Color( 0, 0, 0 ) );
 
-	//---------------do the voxelization
+        //---------------do the voxelization
 
-	gl::disable(GL_DEPTH_TEST);
-	gl::disable(GL_CULL_FACE);
-	gl::disable(GL_BLEND);
+        gl::disable(GL_DEPTH_TEST);
+        gl::disable(GL_CULL_FACE);
+        gl::disable(GL_BLEND);
 
-	gl::setMatrices(mVoxelizationCamera);//set the camera up
-	gl::ScopedTextureBind scoped3dTex(mVoxelTex,0);//bind the voxel texture
+        gl::setMatrices(mVoxelizationCamera);//set the camera up
+        gl::ScopedTextureBind scoped3dTex(mVoxelTex,0);//bind the voxel texture
 
-    mGeoCubeVoxelize->draw();//draw the cube
+        mGeoCubeVoxelize->draw();//draw the cube
+    }
 	//gl::ScopedGlslProg scopedRenderProg(mVoxelizationProg);
 	//mVoxelizationProg->uniform("spriteSize", mSpriteSize);//set the uniforms in here
 
@@ -126,14 +155,15 @@ void voxelConeTracingApp::draw()
 	//-------------done with the voxelization
 
 	//now visualize the voxelization somehow
+    {
+        gl::clear();
+        gl::setMatricesWindow( getWindowSize() );
 
-    gl::clear();
-	gl::setMatricesWindow( getWindowSize() );
+        gl::ScopedGlslProg glslScp( mVisualizeVoxelSimpleProg );
+        gl::ScopedTextureBind scoped3dTexb(mVoxelTex,0);//bind the voxel texture AGAIN JUST IN CASE
+        gl::drawSolidRect( getWindowBounds() );
 
-	gl::ScopedGlslProg glslScp( mVisualizeVoxelSimpleProg );
-	mVisualizeVoxelSimpleProg->uniform( "texture3D", 0 );
-	mVisualizeVoxelSimpleProg->uniform( "uVoxelTexSize,  mVoxelTexSize);
-	gl::drawSolidRect( getWindowBounds() );
+	}
 }
 
-CINDER_APP( voxelConeTracingApp, RendererGl )
+CINDER_APP( voxelConeTracingApp, RendererGl, &voxelConeTracingApp::prepareSettings )
