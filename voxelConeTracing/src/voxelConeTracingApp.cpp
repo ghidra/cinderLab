@@ -4,11 +4,23 @@
 
 #include "Assets.h"
 
+#include "Material.h"
+
 #include "cinder/Log.h"
 
 using namespace ci;
 using namespace ci::app;
 using namespace std;
+
+//struct Material
+//{
+ //   vec3 diffuseColor;
+  //  vec3 specularColor;
+   // float diffuseReflectivity;
+   // float specularReflectivity;
+   // float emisivity;
+    //float transparency;
+//};
 
 class voxelConeTracingApp : public App {
 	public:
@@ -26,6 +38,7 @@ class voxelConeTracingApp : public App {
 		gl::Texture3dRef mVoxelTex;
 		int mVoxelTexSize;
 		gl::GlslProgRef mVoxelizationProg;
+		//signals::ScopedConnection		mVoxelizationConnection;
 		//gl::GlslProgRef mTexture3dDebugProg;//a program to look at the texture3D flat on screen
 
 		CameraOrtho mVoxelizationCamera;
@@ -46,6 +59,8 @@ class voxelConeTracingApp : public App {
 		//our first object
 		gl::BatchRef		mGeoCube;//this is the final rendered mesh
         gl::BatchRef		mGeoCubeVoxelize;//this is the batch that will render to the 3d texture after voxelization
+        //Material mGeoCubeMaterial;
+        //gl::UboRef mGeoCubeUbo;
 
         //This is the master shader, that will render the objects
         gl::GlslProgRef		mVoxelConeTrace;
@@ -78,11 +93,24 @@ void voxelConeTracingApp::setup()
 		.vertex(loadAsset("voxelization.vert"))
 		.geometry(loadAsset("voxelization.geom"))
 		.fragment(loadAsset("voxelization.frag")));
-	/*mTexture3dDebugProg = loadGlslProg(gl::GlslProg::Format().version(450)
-		.vertex(loadAsset("pass_through.vert"))
-		.fragment(loadAsset("texture3dDebug.frag")));*/
 
-	mVoxelTexSize = 64;//256;
+    //mVoxelizationProg->uniform( "texture3D",0);
+    //mGeoCubeUbo.diffuseColor = vec3(1,0,0);
+    //mGeoCubeUbo.specularColor = vec3(1,1,1);
+    //mGeoCubeUbo.diffuseReflectivity = 0.2f;
+    //mGeoCubeUbo.specularReflectivity = 0.2f;
+    //mGeoCubeUbo.emissivity = 0.0f;
+    //mGeoCubeUbo.transparency = 0.0f;
+
+    //mVoxelizationProg->uniform( "material.diffuseColor",vec3(1,0,0));
+    //mVoxelizationProg->uniform( "material.specularColor",vec3(1,1,1));
+    //mVoxelizationProg->uniform( "material.diffuseReflectivity",0.2f);
+   // mVoxelizationProg->uniform( "material.specularReflectivity",0.2f);
+    //mVoxelizationProg->uniform( "material.emissivity",0.0f);
+    //mVoxelizationProg->uniform( "material.transparency",0.0f);
+
+
+	mVoxelTexSize = 64;//128 //256;
 
 	gl::Texture3d::Format tex3dFmt;
 	tex3dFmt.setWrapR(GL_REPEAT);
@@ -92,6 +120,7 @@ void voxelConeTracingApp::setup()
 	tex3dFmt.setMinFilter(GL_LINEAR);
 	tex3dFmt.setDataType(GL_FLOAT);
 	tex3dFmt.setInternalFormat(GL_RGBA8_SNORM);
+	//tex3dFmt.setInternalFormat(GL_IMAGE_3D);
 
 	mVoxelTex = gl::Texture3d::create(mVoxelTexSize, mVoxelTexSize, mVoxelTexSize, tex3dFmt);
 	//mVoxelTex->update(data.data(), GL_RGBA, tex3dFmt.getDataType(), 0, mVoxelTex->getWidth(), mVoxelTex->getHeight(), mVoxelTex->getDepth());
@@ -103,7 +132,8 @@ void voxelConeTracingApp::setup()
 
 	//make the first batch
 	mGeoCubeVoxelize = gl::Batch::create( geom::Cube() ,mVoxelizationProg);
-
+	//mGeoCubeUbo = gl::Ubo::create(sizeof(mGeoCubeUbo),&mGeoCubeUbo,GL_DYNAMIC_COPY)
+    //mGeoCubeUbo->bindBufferBase(0);
 	//make the simple visualization shader
 	mVisualizeVoxelSimpleConnection = assets()->getShader( "quadpassthrough.vert", "voxelvisualizationsimple.frag",
                                       [this]( gl::GlslProgRef glsl ) {
