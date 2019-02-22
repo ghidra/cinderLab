@@ -15,7 +15,7 @@ struct Material {
 uniform Material material;
 uniform vec3 cameraPosition;
 
-layout(RGBA8)  uniform image3D texture3D;
+layout(binding = 0, RGBA8) writeonly uniform image3D texture3D;
 
 in VertexData {
 	vec3 worldPositionFrag;

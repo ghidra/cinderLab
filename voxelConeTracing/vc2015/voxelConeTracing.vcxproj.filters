@@ -30,6 +30,9 @@
     <Filter Include="Blocks\ImGui\src">
       <UniqueIdentifier>{64537521-6B0A-40A7-AB81-149398DFA36A}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Blocks\Cinder-">
+      <UniqueIdentifier>{dc9114c6-1f7e-42e8-983f-86e94c794455}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\voxelConeTracingApp.cpp">
@@ -65,10 +68,52 @@
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui_demo.cpp">
       <Filter>Blocks\ImGui\lib\imgui</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Material.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\Assets.cpp">
+      <Filter>Blocks\Cinder-</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\CameraBasic.cpp">
+      <Filter>Blocks\Cinder-</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\CameraFollow.cpp">
+      <Filter>Blocks\Cinder-</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\Compute.cpp">
+      <Filter>Blocks\Cinder-</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\Environment.cpp">
+      <Filter>Blocks\Cinder-</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\EnvironmentFilter.cpp">
+      <Filter>Blocks\Cinder-</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Material.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\Assets.h">
+      <Filter>Blocks\Cinder-</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\CameraBasic.h">
+      <Filter>Blocks\Cinder-</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\CameraFollow.h">
+      <Filter>Blocks\Cinder-</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\Compute.h">
+      <Filter>Blocks\Cinder-</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\Environment.h">
+      <Filter>Blocks\Cinder-</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\EnvironmentFilter.h">
+      <Filter>Blocks\Cinder-</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

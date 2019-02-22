@@ -3,6 +3,7 @@
 #include "cinder/gl/gl.h"
 
 #include "Assets.h"
+#include "Compute.h"
 
 #include "Material.h"
 
@@ -54,6 +55,15 @@ class voxelConeTracingApp : public App {
 		//void initVoxelVisualization();
 		//void renderVoxelVisualization();
 
+		///LETS TRY GETTING EVERYTHING DONE IN THE COMPUTER SHADERS
+		ComputeShaderRef			mVoxelizationShader;
+		ComputeBufferRef			mVoxelBuffer;
+		struct Voxel
+		{
+			alignas(16) vec3 P;
+			alignas(16) vec3 Cd;
+		};
+
 		//------------------
 
 		//our first object
@@ -64,6 +74,8 @@ class voxelConeTracingApp : public App {
 
         //This is the master shader, that will render the objects
         gl::GlslProgRef		mVoxelConeTrace;
+
+		//std::shared_ptr<log::LoggerBreakpoint> mLog;
 };
 
 void voxelConeTracingApp::prepareSettings( Settings *settings )
@@ -71,10 +83,14 @@ void voxelConeTracingApp::prepareSettings( Settings *settings )
 	settings->setWindowSize( 1024, 768 );
 	settings->disableFrameRate();
 	settings->setFullScreen( false );
+
+	
 }
 
 void voxelConeTracingApp::setup()
 {
+	//mLog = log::makeLogger<log::LoggerBreakpoint>();
+
 	auto loadGlslProg = [&](const gl::GlslProg::Format& format) -> gl::GlslProgRef
 	{
 		string names = format.getVertexPath().string() + " + " + format.getFragmentPath().string();
@@ -148,6 +164,30 @@ void voxelConeTracingApp::setup()
     mVisualizeVoxelSimpleProg->uniform( "uVoxels",0);
       mVisualizeVoxelSimpleProg->uniform( "uResolution", vec2((float)app::getWindowSize().x, (float)app::getWindowSize().y));
       mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize);*/
+
+
+	//////////////////////
+	/// MAKE THE COMPUTE SHADER
+	/////////////////////
+	mVoxelizationShader = ComputeShader::create(loadAsset("voxelization.comp"));
+	//////////////////////
+	/// VOXEL DATA
+	/////////////////////
+	vector<Voxel> voxels;
+	voxels.assign(mVoxelTexSize*mVoxelTexSize*mVoxelTexSize, Voxel());
+	for (unsigned int i = 0; i < voxels.size(); ++i)
+	{
+		auto &v = voxels.at(i);
+		v.P = vec3(0.0f, 0.0f, 0.0f);
+		v.Cd = vec3(0.0f, 0.0f, 0.0f);
+	}
+	//////////////////////
+	/// MAKE THE BUFFER
+	/////////////////////
+	ivec3 count = gl::getMaxComputeWorkGroupCount();
+	CI_ASSERT(count.x >= (mVoxelTexSize / mVoxelizationShader->getWorkGroupSize().x));
+
+	mVoxelBuffer = ComputeBuffer::create(voxels.data(), (int)voxels.size(), sizeof(Voxel));
 }
 
 void voxelConeTracingApp::mouseDown( MouseEvent event )
@@ -194,6 +234,7 @@ void voxelConeTracingApp::draw()
         gl::drawSolidRect( getWindowBounds() );
 
 	}
+	CI_CHECK_GL();
 }
 
-CINDER_APP( voxelConeTracingApp, RendererGl, &voxelConeTracingApp::prepareSettings )
+CINDER_APP( voxelConeTracingApp, RendererGl(RendererGl::Options().version(4,3)), &voxelConeTracingApp::prepareSettings )

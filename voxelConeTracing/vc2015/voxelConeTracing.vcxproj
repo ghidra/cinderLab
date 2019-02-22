@@ -46,7 +46,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\include;"..\..\..\Cinder\include";..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui;..\..\..\Cinder\blocks\Cinder-ImGui\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\include;..\..\..\Cinder\include;..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui;..\..\..\Cinder\blocks\Cinder-ImGui\include;..\..\..\Cinder\blocks\Cinder-\src</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32_WINNT=0x0601;_WINDOWS;NOMINMAX;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -102,6 +102,13 @@
   <ItemGroup />
   <ItemGroup />
   <ItemGroup>
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\Assets.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\CameraBasic.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\CameraFollow.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\Compute.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\Environment.cpp" />
+    <ClCompile Include="..\..\..\Cinder\blocks\Cinder-\src\EnvironmentFilter.cpp" />
+    <ClCompile Include="..\src\Material.cpp" />
     <ClCompile Include="..\src\voxelConeTracingApp.cpp" />
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\src\CinderImGui.cpp" />
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui.cpp" />
@@ -109,11 +116,18 @@
     <ClCompile Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui_demo.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\Assets.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\CameraBasic.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\CameraFollow.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\Compute.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\Environment.h" />
+    <ClInclude Include="..\..\..\Cinder\blocks\Cinder-\src\EnvironmentFilter.h" />
     <ClInclude Include="..\include\Resources.h" />
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-ImGui\include\CinderImGui.h" />
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imconfig.h" />
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui.h" />
     <ClInclude Include="..\..\..\Cinder\blocks\Cinder-ImGui\lib\imgui\imgui_internal.h" />
+    <ClInclude Include="..\src\Material.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

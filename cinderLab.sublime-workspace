@@ -60,26 +60,9 @@
 			"file": "voxelConeTracing/assets/voxelization.frag",
 			"settings":
 			{
-				"buffer_size": 1783,
+				"buffer_size": 1937,
 				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/jimmy/projects/git/voxel-cone-tracing/Shaders/Voxelization/voxelization.frag",
-			"settings":
-			{
-				"buffer_size": 2391,
-				"encoding": "Western (Windows 1252)",
 				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/home/jimmy/projects/cinder/Cinder/samples/_opengl/FboBasic/src/FboBasicApp.cpp",
-			"settings":
-			{
-				"buffer_size": 3177,
-				"line_ending": "Unix"
 			}
 		}
 	],
@@ -124,10 +107,10 @@
 	},
 	"expanded_folders":
 	[
-		"/home/jimmy/projects/cinder/cinderLab"
 	],
 	"file_history":
 	[
+		"/home/jimmy/projects/git/voxel-cone-tracing/Shaders/Voxelization/voxelization.frag",
 		"/home/jimmy/projects/cinder/cinderLab/voxelConeTracing/assets/voxelvisualizationsimple.frag",
 		"/home/jimmy/projects/cinder/cinderLab/voxelConeTracing/assets/voxelization.vert",
 		"/home/jimmy/projects/cinder/Cinder/samples/_opengl/Cube/src/CubeApp.cpp",
@@ -205,7 +188,7 @@
 	],
 	"find":
 	{
-		"height": 25.2897787144
+		"height": 24.0
 	},
 	"find_in_files":
 	{
@@ -239,7 +222,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -268,7 +251,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -277,65 +260,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1783,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1518,
-								1518
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/OpenGL SL.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/home/jimmy/projects/git/voxel-cone-tracing/Shaders/Voxelization/voxelization.frag",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2391,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								634,
-								634
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/OpenGL SL.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/home/jimmy/projects/cinder/Cinder/samples/_opengl/FboBasic/src/FboBasicApp.cpp",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 3177,
+						"buffer_size": 1937,
 						"regions":
 						{
 						},
@@ -348,11 +273,11 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/C++/C++.sublime-syntax",
+							"syntax": "Packages/Shader Syntax (GLSL HLSL Cg)/OpenGL SL.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 945.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -363,7 +288,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 25.2897787144
+		"height": 24.0
 	},
 	"input":
 	{
@@ -400,7 +325,7 @@
 	"project": "cinderLab.sublime-project",
 	"replace":
 	{
-		"height": 46.3645943098
+		"height": 44.0
 	},
 	"save_all_on_build": true,
 	"select_file":
