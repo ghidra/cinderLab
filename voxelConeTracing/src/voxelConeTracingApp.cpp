@@ -2,6 +2,8 @@
 #include "cinder/app/RendererGl.h"
 #include "cinder/gl/gl.h"
 
+//#include "cinder/GeomIO.h"//for the vbomeshref
+
 #include "Assets.h"
 #include "Compute.h"
 
@@ -68,6 +70,7 @@ class voxelConeTracingApp : public App {
 
 		//our first object
 		gl::BatchRef		mGeoCube;//this is the final rendered mesh
+		gl::VboMeshRef      mGeoCubeVboMesh;//this is to get the vbo for the compute shader
         gl::BatchRef		mGeoCubeVoxelize;//this is the batch that will render to the 3d texture after voxelization
         //Material mGeoCubeMaterial;
         //gl::UboRef mGeoCubeUbo;
@@ -84,7 +87,7 @@ void voxelConeTracingApp::prepareSettings( Settings *settings )
 	settings->disableFrameRate();
 	settings->setFullScreen( false );
 
-	
+
 }
 
 void voxelConeTracingApp::setup()
@@ -148,6 +151,17 @@ void voxelConeTracingApp::setup()
 
 	//make the first batch
 	mGeoCubeVoxelize = gl::Batch::create( geom::Cube() ,mVoxelizationProg);
+
+	vector<gl::VboMesh::Layout> vboattriblayout = {
+        gl::VboMesh::Layout().usage(GL_STATIC_DRAW).attrib(geom::Attrib::POSITION,3),
+        gl::VboMesh::Layout().usage(GL_STATIC_DRAW).attrib(geom::Attrib::TEX_COORD_0,2),
+        gl::VboMesh::Layout().usage(GL_STATIC_DRAW).attrib(geom::Attrib::COLOR,3),
+        gl::VboMesh::Layout().usage(GL_STATIC_DRAW).attrib(geom::Attrib::CUSTOM_0,1),
+        gl::VboMesh::Layout().usage(GL_STATIC_DRAW).attrib(geom::Attrib::CUSTOM_1,1),
+        gl::VboMesh::Layout().usage(GL_STATIC_DRAW).attrib(geom::Attrib::CUSTOM_2,1),
+        gl::VboMesh::Layout().usage(GL_STATIC_DRAW).attrib(geom::Attrib::CUSTOM_3,1)
+	};
+	mGeoCubeVboMesh = gl::VboMesh::create( geom::Cube(), vboattriblayout);
 	//mGeoCubeUbo = gl::Ubo::create(sizeof(mGeoCubeUbo),&mGeoCubeUbo,GL_DYNAMIC_COPY)
     //mGeoCubeUbo->bindBufferBase(0);
 	//make the simple visualization shader
@@ -203,7 +217,7 @@ void voxelConeTracingApp::update()
 
 void voxelConeTracingApp::draw()
 {
-    {
+    /*{
         gl::clear( Color( 0, 0, 0 ) );
 
         //---------------do the voxelization
@@ -216,6 +230,16 @@ void voxelConeTracingApp::draw()
         gl::ScopedTextureBind scoped3dTex(mVoxelTex,0);//bind the voxel texture
 
         mGeoCubeVoxelize->draw();//draw the cube
+    }*/
+    {
+        //compute version of voxilization
+        //bind the voxel buffer
+        gl::scopedBuffer scopedVoxelSsbo(mVoxelBuffer->getSsbo());
+        mVoxelBuffer->getSsbo()->bindBase(0);
+        //now bind the geo buffer that we want to voxelize
+        gl::scopedBuffer scopedGeoVbo(mGeoCubeVboMesh);
+        mVoxelBuffer->getSsbo()->bindBase(1);
+
     }
 	//gl::ScopedGlslProg scopedRenderProg(mVoxelizationProg);
 	//mVoxelizationProg->uniform("spriteSize", mSpriteSize);//set the uniforms in here
@@ -237,4 +261,4 @@ void voxelConeTracingApp::draw()
 	CI_CHECK_GL();
 }
 
-CINDER_APP( voxelConeTracingApp, RendererGl(RendererGl::Options().version(4,3)), &voxelConeTracingApp::prepareSettings )
+CINDER_APP( voxelConeTracingApp, RendererGl(RendererGl::Options().version(4,2)), &voxelConeTracingApp::prepareSettings )

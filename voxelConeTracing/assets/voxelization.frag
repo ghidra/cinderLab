@@ -1,7 +1,7 @@
 // Lit (diffuse) fragment voxelization shader.
 // Author:	Fredrik Präntare <prantare@gmail.com> 
 // Date:	11/26/2016
-#version 440 core
+#version 420 core
 
 struct Material {
 	vec3 diffuseColor;
@@ -47,7 +47,7 @@ void main()
 	color = (diff + spec) * color + clamp(material.emissivity, 0, 1) * material.diffuseColor;
 
 	vec3 voxel = scaleAndBias(vVertexIn.worldPositionFrag);
-	ivec3 dim = imageSize(texture3D);
+	ivec3 dim =  ivec3(64,64,64);//imageSize(texture3D);
 	float alpha = pow(1 - material.transparency, 4); // For soft shadows to work better with transparent materials.
 	vec4 res = alpha * vec4(vec3(color), 1);
 

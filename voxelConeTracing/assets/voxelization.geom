@@ -3,7 +3,7 @@
 // https://github.com/otaku690/SparseVoxelOctree/blob/master/WIN/SVO/shader/voxelize.geom.glsl.
 // Author:	Fredrik Präntare <prantare@gmail.com>
 // Date:	11/26/2016
-#version 440 core
+#version 420 core
 
 layout(triangles) in;
 layout(triangle_strip, max_vertices = 3) out;

@@ -304,6 +304,12 @@
 		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/CameraBasic.h">
 			<Option target="Cinder-"/>
 		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/CameraFollow.cpp">
+			<Option target="Cinder-"/>
+		</Unit>
+		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/CameraFollow.h">
+			<Option target="Cinder-"/>
+		</Unit>
 		<Unit filename="/home/jimmy/projects/cinder/Cinder/blocks/Cinder-/src/Compute.cpp">
 			<Option target="Cinder-"/>
 		</Unit>
