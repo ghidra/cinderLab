@@ -36,6 +36,7 @@ CMakeFiles/
 **/cmake/cmake_install.cmake
 **/cmake/*.a
 **/cmake/*.cbp
+**/cmake/lib_finder.script
 
 # Android cruft
 *.swp

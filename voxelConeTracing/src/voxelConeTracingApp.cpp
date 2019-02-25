@@ -71,6 +71,7 @@ class voxelConeTracingApp : public App {
 		//our first object
 		gl::BatchRef		mGeoCube;//this is the final rendered mesh
 		gl::VboMeshRef      mGeoCubeVboMesh;//this is to get the vbo for the compute shader
+		gl::VaoRef          mGeoCubeVao;
         gl::BatchRef		mGeoCubeVoxelize;//this is the batch that will render to the 3d texture after voxelization
         //Material mGeoCubeMaterial;
         //gl::UboRef mGeoCubeUbo;
@@ -128,6 +129,32 @@ void voxelConeTracingApp::setup()
     //mVoxelizationProg->uniform( "material.emissivity",0.0f);
     //mVoxelizationProg->uniform( "material.transparency",0.0f);
 
+    //////////////////////
+	/// MAKE THE COMPUTE SHADER
+	/////////////////////
+	mVoxelizationShader = ComputeShader::create(loadAsset("voxelization.comp"));
+	//////////////////////
+	/// VOXEL DATA
+	/////////////////////
+	vector<Voxel> voxels;
+	voxels.assign(mVoxelTexSize*mVoxelTexSize*mVoxelTexSize, Voxel());
+	for (unsigned int i = 0; i < voxels.size(); ++i)
+	{
+		auto &v = voxels.at(i);
+		v.P = vec3(0.0f, 0.0f, 0.0f);
+		v.Cd = vec3(0.0f, 0.0f, 0.0f);
+	}
+	//////////////////////
+	/// MAKE THE BUFFER
+	/////////////////////
+	ivec3 count = gl::getMaxComputeWorkGroupCount();
+	CI_ASSERT(count.x >= (mVoxelTexSize / mVoxelizationShader->getWorkGroupSize().x));
+
+	mVoxelBuffer = ComputeBuffer::create(voxels.data(), (int)voxels.size(), sizeof(Voxel));
+
+	////////////////////
+	///////////////////
+
 
 	mVoxelTexSize = 64;//128 //256;
 
@@ -162,6 +189,10 @@ void voxelConeTracingApp::setup()
         gl::VboMesh::Layout().usage(GL_STATIC_DRAW).attrib(geom::Attrib::CUSTOM_3,1)
 	};
 	mGeoCubeVboMesh = gl::VboMesh::create( geom::Cube(), vboattriblayout);
+	mGeoCubeVao = gl::Vao::create();
+	gl::ScopedVao vao( mGeoCubeVao );
+	mGeoCubeVboMesh->buildVao( mVoxelizationShader->getGlsl() );
+
 	//mGeoCubeUbo = gl::Ubo::create(sizeof(mGeoCubeUbo),&mGeoCubeUbo,GL_DYNAMIC_COPY)
     //mGeoCubeUbo->bindBufferBase(0);
 	//make the simple visualization shader
@@ -180,28 +211,7 @@ void voxelConeTracingApp::setup()
       mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize);*/
 
 
-	//////////////////////
-	/// MAKE THE COMPUTE SHADER
-	/////////////////////
-	mVoxelizationShader = ComputeShader::create(loadAsset("voxelization.comp"));
-	//////////////////////
-	/// VOXEL DATA
-	/////////////////////
-	vector<Voxel> voxels;
-	voxels.assign(mVoxelTexSize*mVoxelTexSize*mVoxelTexSize, Voxel());
-	for (unsigned int i = 0; i < voxels.size(); ++i)
-	{
-		auto &v = voxels.at(i);
-		v.P = vec3(0.0f, 0.0f, 0.0f);
-		v.Cd = vec3(0.0f, 0.0f, 0.0f);
-	}
-	//////////////////////
-	/// MAKE THE BUFFER
-	/////////////////////
-	ivec3 count = gl::getMaxComputeWorkGroupCount();
-	CI_ASSERT(count.x >= (mVoxelTexSize / mVoxelizationShader->getWorkGroupSize().x));
 
-	mVoxelBuffer = ComputeBuffer::create(voxels.data(), (int)voxels.size(), sizeof(Voxel));
 }
 
 void voxelConeTracingApp::mouseDown( MouseEvent event )
@@ -234,11 +244,14 @@ void voxelConeTracingApp::draw()
     {
         //compute version of voxilization
         //bind the voxel buffer
-        gl::scopedBuffer scopedVoxelSsbo(mVoxelBuffer->getSsbo());
+        gl::ScopedBuffer scopedVoxelSsbo(mVoxelBuffer->getSsbo());
         mVoxelBuffer->getSsbo()->bindBase(0);
         //now bind the geo buffer that we want to voxelize
-        gl::scopedBuffer scopedGeoVbo(mGeoCubeVboMesh);
-        mVoxelBuffer->getSsbo()->bindBase(1);
+
+        gl::ScopedVao vao( mGeoCubeVao );
+        auto tmp = mGeoCubeVboMesh->getVertexArrayVbos();
+       //gl::ScopedBuffer scopedGeoVbo();
+        //mGeoCubeVboMesh->getSsbo()->bindBase(1);
 
     }
 	//gl::ScopedGlslProg scopedRenderProg(mVoxelizationProg);
