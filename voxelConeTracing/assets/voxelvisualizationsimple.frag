@@ -1,8 +1,19 @@
 #version 420
-
-uniform sampler3D uVoxels;
+#extension GL_ARB_shader_storage_buffer_object : require
+//uniform sampler3D uVoxels;
 uniform float      uVoxelResolution;
 uniform vec2      uResolution;
+
+struct Voxel
+{
+  vec3 P;  //position
+  vec3 Cd; //color
+};
+
+layout( std140, binding = 0 ) buffer Vox
+{
+    Voxel voxels[];
+};
 
 in vec2 vertTexCoord0;
 
@@ -29,6 +40,9 @@ void main()
 	//fragColor = vec4( voxel.xyz+vec3(subuv,substeplayer), 1.0 );
 	//fragColor = vec4( vec3(subuv,substeplayer), 1.0 );
 
-	vec4 voxel = texture(uVoxels,vec3(subuv,substeplayer));
-	fragColor = vec4( voxel.rgb + (vec3(subuv,substeplayer)*0.1), 1.0 );;
+	//vec4 voxel = texture(uVoxels,vec3(subuv,substeplayer));
+	//fragColor = vec4( voxel.rgb + (vec3(subuv,substeplayer)*0.1), 1.0 );;
+	//fragColor = vec4(vec3(1,0,0),1.0);
+
+	fragColor = vec4(voxels[11].Cd,1.0f);
 }
