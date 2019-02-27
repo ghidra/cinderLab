@@ -1,5 +1,6 @@
 #version 420
-#extension GL_ARB_shader_storage_buffer_object : require
+#extension GL_ARB_shader_storage_buffer_object : enable
+//#extension GL_ARB_compute_variable_group_size : enable
 //uniform sampler3D uVoxels;
 uniform float      uVoxelResolution;
 uniform vec2      uResolution;
@@ -10,7 +11,7 @@ struct Voxel
   vec3 Cd; //color
 };
 
-layout( std140, binding = 0 ) buffer Vox
+layout( std430, binding = 0 ) buffer Vox
 {
     Voxel voxels[];
 };
@@ -38,11 +39,16 @@ void main()
 	float substeplayer = sublayer/(split);
 
 	//fragColor = vec4( voxel.xyz+vec3(subuv,substeplayer), 1.0 );
-	//fragColor = vec4( vec3(subuv,substeplayer), 1.0 );
+	fragColor = vec4( vec3(subuv,substeplayer), 1.0 );
+	//fragColor = vec4( vec3(0.0,0.0,substeplayer), 1.0 );
 
 	//vec4 voxel = texture(uVoxels,vec3(subuv,substeplayer));
 	//fragColor = vec4( voxel.rgb + (vec3(subuv,substeplayer)*0.1), 1.0 );;
 	//fragColor = vec4(vec3(1,0,0),1.0);
 
-	fragColor = vec4(voxels[11].Cd,1.0f);
+	vec3 vox = round( vec3(subuv,substeplayer)*(uVoxelResolution-1));
+	int ind = int( vox.x+(vox.y*uVoxelResolution)+(vox.z*uVoxelResolution*uVoxelResolution) );
+	fragColor = vec4(voxels[ind].Cd,1.0f);
+	///simple version
+	//fragColor = vec4(voxels[ int(id.x+(id.y*uResolution.x)) ].Cd,1.0f);
 }

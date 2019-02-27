@@ -4,6 +4,7 @@
 #extension GL_ARB_compute_variable_group_size : enable
 
 uniform uint uBufferSize;
+uniform float uVoxelResolution;
 uniform float uTime;
 
 struct Voxel
@@ -23,21 +24,71 @@ struct Geo{
     float t; //tranparency
 };
 
-layout( std140, binding = 0 ) buffer Voxels
+layout( std430, binding = 0 ) buffer Vo
 {
     Voxel voxels[];
 };
-layout( std140, binding = 1 ) buffer Mesh
+layout( std430, binding = 1 ) buffer Me
 {
     Geo mesh[];
 };
 
 layout( local_size_x = WG_SIZE_X, local_size_y = WG_SIZE_Y, local_size_z = WG_SIZE_Z ) in;
 
+////////////HASH
+//https://www.shadertoy.com/view/XlXcW4
+const uint k = 1103515245U;  // GLIB C
+//const uint k = 134775813U;   // Delphi and Turbo Pascal
+//const uint k = 20170906U;    // Today's date (use three days ago's dateif you want a prime)
+//const uint k = 1664525U;     // Numerical Recipes
+
+vec3 hash( uvec3 x )
+{
+    x = ((x>>8U)^x.yzx)*k;
+    x = ((x>>8U)^x.yzx)*k;
+    x = ((x>>8U)^x.yzx)*k;
+    
+    return vec3(x)*(1.0/float(0xffffffffU));
+}
+//////////////////////////
+//https://hbfs.wordpress.com/2010/10/05/random-points-in-a-triangle-generating-random-sequences-ii/
+vec3 pInTriangle(vec3 a, vec3 b, vec3 c, float s)
+{
+	vec3 unit = normalize(hash(uvec3(vec3(a+2.1+s*43.3))));
+	return unit.x*a + unit.y*b + unit.z*c;
+}
+
 void main(){
 	uint gid = gl_GlobalInvocationID.x;	// The .y and .z are both 1 in this case.
   	if( gid >= uBufferSize )
     	return;
 
-    voxels[gid].Cd = vec3(0,1,0);
+    Geo v0 = mesh[gid*3];
+    Geo v1 = mesh[(gid*3)+1];
+    Geo v2 = mesh[(gid*3)+2];
+
+    //vec3 voxOffset = vec3( round(uVoxelSize*0.5) );
+    float sceneScale = 4.1f;//scale the scene prior to fitting voxel grid
+    //vec3 vox0 = round((v0.P*sceneScale)+0.5f)*uVoxelResolution; ///add 0.5 to move from -0.5 through 0.5 to 0 through 1
+    //vec3 vox1 = round((v1.P*sceneScale)+0.5f)*uVoxelResolution; ///mult to get it into the voxel space for finding the flat 1d id
+    //vec3 vox2 = round((v2.P*sceneScale)+0.5f)*uVoxelResolution;
+
+    //int ind0 = int(vox0.x+(vox0.z*uVoxelResolution)+(vox0.y*uVoxelResolution*uVoxelResolution));//get the flat id
+    //int ind1 = int(vox1.x+(vox1.z*uVoxelResolution)+(vox1.y*uVoxelResolution*uVoxelResolution));
+    //int ind2 = int(vox2.x+(vox2.z*uVoxelResolution)+(vox2.y*uVoxelResolution*uVoxelResolution));
+
+    //voxels[ind0].Cd = vec3(1.0f);//v0.Cd;
+    //voxels[ind1].Cd = vec3(1.0f);//v1.Cd;
+    //voxels[ind2].Cd = vec3(1.0f);//v2.Cd;
+
+    ///lets make a hnd full of points per triangle
+    for (int i=0; i<32; i++)
+    {
+    	vec3 point = pInTriangle( v0.P,v1.P,v2.P,float(i) );
+    	vec3 vox = round((point*sceneScale)+0.5f)*uVoxelResolution;
+    	int ind = int(vox.x+(vox.z*uVoxelResolution)+(vox.y*uVoxelResolution*uVoxelResolution));
+    	voxels[ind].Cd = vec3(1.0f);//v2.Cd;
+    }
+
+    
 }

@@ -206,7 +206,13 @@ void voxelConeTracingApp::draw()
         mGeoCubeVoxelize->draw();//draw the cube
     }*/
     {
-       //auto computeGlsl = mVoxelizationShader->getGlsl();
+       int call_count = (int)tetrahedron.size()/3;
+       auto computeGlsl = mVoxelizationShader->getGlsl();
+       //computeGlsl->uniform("uBufferSize",(uint32_t)mNumVoxels);
+       computeGlsl->uniform("uBufferSize",(uint32_t)call_count);
+       computeGlsl->uniform("uVoxelResolution",(float)mVoxelTexSize);
+       //right now I want to only call this for the number of verts in the mesh
+
         //compute version of voxilization
         //bind the voxel buffer
         gl::ScopedBuffer scopedVoxelSsbo(mVoxelBuffer->getSsbo());
@@ -219,7 +225,8 @@ void voxelConeTracingApp::draw()
         //auto tmp = mGeoCubeVboMesh->getVertexArrayVbos();
        //gl::ScopedBuffer scopedGeoVbo();
         //mGeoCubeVboMesh->getSsbo()->bindBase(1);
-        mVoxelizationShader->dispatch( (int)glm::ceil( float( mNumVoxels ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
+        //mVoxelizationShader->dispatch( (int)glm::ceil( float( mNumVoxels ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
+        mVoxelizationShader->dispatch( (int)glm::ceil( float( call_count ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
 
     }
 	//gl::ScopedGlslProg scopedRenderProg(mVoxelizationProg);
