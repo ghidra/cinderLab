@@ -57,6 +57,7 @@ class voxelConeTracingApp : public App {
 		struct Voxel
 		{
 			alignas(16) vec3 P;
+			alignas(16) vec3 N;
 			alignas(16) vec3 Cd;
 		};
 
@@ -139,6 +140,7 @@ void voxelConeTracingApp::setup()
 	{
 		auto &v = voxels.at(i);
 		v.P = vec3(0.0f, 0.0f, 0.0f);
+		v.N = vec3(0.0f, 1.0f, 0.0f);
 		v.Cd = vec3(0.0f, 0.0f, 0.0f);
 	}
 	//////////////////////
@@ -156,7 +158,7 @@ void voxelConeTracingApp::setup()
 	// MAKE THE GEO BUFFER
 	//////////////////////
 	mGeoBuffer = ComputeBuffer::create( tetrahedron.data(), (int)tetrahedron.size(), sizeof( CustomGeo ) );
-	gl::ScopedBuffer scopedQuadSsbo( mGeoBuffer->getSsbo() );
+	//gl::ScopedBuffer scopedQuadSsbo( mGeoBuffer->getSsbo() );
 	//mGeoBuffer->getSsbo()->bindBase( 1 );
 
 	//make the simple visualization shader
@@ -206,6 +208,7 @@ void voxelConeTracingApp::draw()
         mGeoCubeVoxelize->draw();//draw the cube
     }*/
     {
+        // gl::clear( Color( 0, 0, 0 ) );
        int call_count = (int)tetrahedron.size()/3;
        auto computeGlsl = mVoxelizationShader->getGlsl();
        //computeGlsl->uniform("uBufferSize",(uint32_t)mNumVoxels);

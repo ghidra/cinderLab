@@ -3,6 +3,8 @@
 #extension GL_ARB_shader_storage_buffer_object : enable
 #extension GL_ARB_compute_variable_group_size : enable
 
+#include "noiselib.glsl"
+
 uniform uint uBufferSize;
 uniform float uVoxelResolution;
 uniform float uTime;
@@ -10,6 +12,7 @@ uniform float uTime;
 struct Voxel
 {
   vec3 P;  //position
+  vec3 N;//normal
   vec3 Cd; //color
 };
 struct Geo{
@@ -22,13 +25,14 @@ struct Geo{
     float Rs; //reflectivity specular
     float e; //emisivity
     float t; //tranparency
+    //vec4 lit;///lighting result
 };
 
-layout( std430, binding = 0 ) buffer Vo
+layout( std430, binding = 0 ) buffer VoxelBuffer
 {
     Voxel voxels[];
 };
-layout( std430, binding = 1 ) buffer Me
+layout( std430, binding = 1 )  buffer GeoBuffer
 {
     Geo mesh[];
 };
@@ -52,11 +56,38 @@ vec3 hash( uvec3 x )
 }
 //////////////////////////
 //https://hbfs.wordpress.com/2010/10/05/random-points-in-a-triangle-generating-random-sequences-ii/
-vec3 pInTriangle(vec3 a, vec3 b, vec3 c, float s)
+Geo pInTriangle(Geo a, Geo b, Geo c, float s)
 {
-	vec3 unit = normalize(hash(uvec3(vec3(a+2.1+s*43.3))));
-	return unit.x*a + unit.y*b + unit.z*c;
+	vec2 uv = abs(vec2( SimplexPerlin2D(vec2(s*2.464,s+44.56)), SimplexPerlin2D(vec2(s*9.664,s*-54.3+444.56)) ));
+	Geo v;
+	v.P = mix(mix(a.P,b.P,uv.x),c.P,uv.y);
+	v.N = normalize(mix(mix(a.N,b.N,uv.x),c.N,uv.y));
+	v.uv = normalize(mix(mix(a.uv,b.uv,uv.x),c.uv,uv.y));
+	v.Cd = normalize(mix(mix(a.Cd,b.Cd,uv.x),c.Cd,uv.y));
+	v.Cs = normalize(mix(mix(a.Cs,b.Cs,uv.x),c.Cs,uv.y));
+	v.Rd = normalize(mix(mix(a.Rd,b.Rd,uv.x),c.Rd,uv.y));
+	v.Rs = normalize(mix(mix(a.Rs,b.Rs,uv.x),c.Rs,uv.y));
+	v.e = normalize(mix(mix(a.e,b.e,uv.x),c.e,uv.y));
+	v.t = normalize(mix(mix(a.t,b.t,uv.x),c.t,uv.y));
+	return v; 
 }
+
+////////////////////////////////////
+
+float attenuate(float dist){ dist *= 1.1f; return 1.0f / (1.0  +  dist * dist); }
+
+vec3 calculatePointLight(vec3 lightposition, vec3 lightcolor, vec3 worldposiition, vec3 normal){
+	const vec3 direction = normalize(lightposition - worldposiition);
+	const float distanceToLight = distance(lightposition, worldposiition);
+	const float attenuation = attenuate(distanceToLight);
+	const float d = max(dot(normalize(normal), direction), 0.0f);
+	return d  * attenuation * lightcolor;
+};
+
+vec3 scaleAndBias(vec3 p) { return 0.5f * p + vec3(0.5f); }
+bool isInsideCube(const vec3 p) { return p.x < uVoxelResolution && p.y < uVoxelResolution && p.z< uVoxelResolution && p.x > 0 &&  p.y > 0 && p.z > 0 ; }
+
+/////////////////////////////////////
 
 void main(){
 	uint gid = gl_GlobalInvocationID.x;	// The .y and .z are both 1 in this case.
@@ -66,9 +97,12 @@ void main(){
     Geo v0 = mesh[gid*3];
     Geo v1 = mesh[(gid*3)+1];
     Geo v2 = mesh[(gid*3)+2];
+    // Geo v0 = mesh[0];
+    // Geo v1 = mesh[1];
+    // Geo v2 = mesh[2];
 
     //vec3 voxOffset = vec3( round(uVoxelSize*0.5) );
-    float sceneScale = 4.1f;//scale the scene prior to fitting voxel grid
+    float sceneScale = 0.2f;//scale the scene prior to fitting voxel grid
     //vec3 vox0 = round((v0.P*sceneScale)+0.5f)*uVoxelResolution; ///add 0.5 to move from -0.5 through 0.5 to 0 through 1
     //vec3 vox1 = round((v1.P*sceneScale)+0.5f)*uVoxelResolution; ///mult to get it into the voxel space for finding the flat 1d id
     //vec3 vox2 = round((v2.P*sceneScale)+0.5f)*uVoxelResolution;
@@ -81,14 +115,28 @@ void main(){
     //voxels[ind1].Cd = vec3(1.0f);//v1.Cd;
     //voxels[ind2].Cd = vec3(1.0f);//v2.Cd;
 
-    ///lets make a hnd full of points per triangle
+    ///lets make a hand full of points per triangle
     for (int i=0; i<32; i++)
     {
-    	vec3 point = pInTriangle( v0.P,v1.P,v2.P,float(i) );
-    	vec3 vox = round((point*sceneScale)+0.5f)*uVoxelResolution;
-    	int ind = int(vox.x+(vox.z*uVoxelResolution)+(vox.y*uVoxelResolution*uVoxelResolution));
-    	voxels[ind].Cd = vec3(1.0f);//v2.Cd;
-    }
+    	Geo v = pInTriangle( v0,v1,v2,float(i) );
+    	vec3 vox = round( ((v.P*sceneScale)+0.5f)*uVoxelResolution );//here we are in 0-voxel resolution space
 
+    	vec3 color = vec3(0.0f);
+		if(!isInsideCube(vox)) return;
+
+		// Calculate diffuse lighting fragment contribution.
+		color += calculatePointLight( vec3(0.3,0.4,0.2),vec3(1,1,1) ,v.P,v.N);
+		vec3 spec = v.Rs * v.Cs;
+		vec3 diff = v.Rd * v.Cd;
+		color = (diff + spec) * color + clamp(v.e, 0, 1) * v.Cd;
+
+		//float alpha = pow(1 - v.t, 4); 
+
+		///this is the look up into the 1d array
+    	int ind = int(vox.x+(vox.z*uVoxelResolution)+(vox.y*uVoxelResolution*uVoxelResolution));
+    	
+    	voxels[ind].Cd = color;// (v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
+    	voxels[ind].N = v.N;
+    }
     
 }

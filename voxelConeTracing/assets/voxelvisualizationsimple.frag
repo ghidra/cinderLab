@@ -8,6 +8,7 @@ uniform vec2      uResolution;
 struct Voxel
 {
   vec3 P;  //position
+  vec3 N;  //Normal
   vec3 Cd; //color
 };
 
