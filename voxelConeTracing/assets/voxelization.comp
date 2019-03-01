@@ -11,7 +11,7 @@ uniform float uTime;
 
 struct Voxel
 {
-  vec3 P;  //position
+  //ec3 P;  //position
   vec3 N;//normal
   vec3 Cd; //color
 };

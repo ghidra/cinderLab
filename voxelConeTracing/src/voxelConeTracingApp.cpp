@@ -28,52 +28,32 @@ class voxelConeTracingApp : public App {
 
 	private:
 
-		//------------------
-		// voxelization
-		//------------------
-		//gl::Texture3dRef mVoxelTex;
 		int mVoxelTexSize;
-		int mNumVoxels;//
-		//gl::GlslProgRef mVoxelizationProg;
-		//signals::ScopedConnection		mVoxelizationConnection;
-		//gl::GlslProgRef mTexture3dDebugProg;//a program to look at the texture3D flat on screen
+		int mNumVoxels;//voxelsize to power of 3
+		int mNumTris;//total number of triangles I want to store
 
-		//CameraOrtho mVoxelizationCamera;
-		//void initVoxelization();
-		//void voxelize(bool clearVoxelizationFirst=true);
-
-		// visualization of voxels
-		//gl::BatchRef		mVisualizeCubeFront;//this is the final rendered mesh
-		//gl::BatchRef		mVisualizeCubeBack;
-		//gl::GlslProgRef  mVisualizeVoxelWorldPosProg;
-		gl::GlslProgRef  mVisualizeVoxelSimpleProg;
-		signals::ScopedConnection		mVisualizeVoxelSimpleConnection;
-		//void initVoxelVisualization();
-		//void renderVoxelVisualization();
-
-		//LETS TRY GETTING EVERYTHING DONE IN THE COMPUTER SHADERS
 		ComputeShaderRef			mVoxelizationShader;
-		ComputeBufferRef			mVoxelBuffer;
+		//ComputeShaderRef			mClearVoxelizationShader;//i need a shader that clears out anything from that last frame
+
 		struct Voxel
 		{
-			alignas(16) vec3 P;
 			alignas(16) vec3 N;
 			alignas(16) vec3 Cd;
 		};
 
-		//------------------
-        ComputeBufferRef mGeoBuffer;//this is my heo buffer
-		//our first object
-		//gl::BatchRef		mGeoCube;//this is the final rendered mesh
-		//gl::VboMeshRef      mGeoCubeVboMesh;//this is to get the vbo for the compute shader
-		//gl::VaoRef          mGeoCubeVao;
-       // gl::BatchRef		mGeoCubeVoxelize;//this is the batch that will render to the 3d texture after voxelization
-        //Material mGeoCubeMaterial;
-        //gl::UboRef mGeoCubeUbo;
+		ComputeBufferRef        mVoxelBuffer;
+        ComputeBufferRef        mTriangleBuffer;//when we are voxelizing our geo... we can save the geo ssbo into a new ssbo, to render later.
+        gl::VboRef                    mTriangleInd;//this is a vbo that we use to draw the ssbo as triangles
 
+		//------------------
+        ComputeBufferRef        mGeoBuffer;//this is my geo buffer
 
         //This is the master shader, that will render the objects
-        gl::GlslProgRef		mVoxelConeTrace;
+        gl::GlslProgRef		        mVoxelConeTrace;
+
+        //vosualize the voxels
+		gl::GlslProgRef                         mVisualizeVoxelSimpleProg;
+		signals::ScopedConnection		mVisualizeVoxelSimpleConnection;
 
 		//std::shared_ptr<log::LoggerBreakpoint> mLog;
 };
@@ -83,53 +63,11 @@ void voxelConeTracingApp::prepareSettings( Settings *settings )
 	settings->setWindowSize( 1024, 768 );
 	settings->disableFrameRate();
 	settings->setFullScreen( false );
-
-
 }
 
 void voxelConeTracingApp::setup()
 {
-	//mLog = log::makeLogger<log::LoggerBreakpoint>();
-/*
-	auto loadGlslProg = [&](const gl::GlslProg::Format& format) -> gl::GlslProgRef
-	{
-		string names = format.getVertexPath().string() + " + " + format.getFragmentPath().string();
-		gl::GlslProgRef glslProg;
-		try {
-			glslProg = gl::GlslProg::create(format);
-		}
-		catch (const Exception& ex) {
-			CI_LOG_EXCEPTION(names, ex);
-			quit();
-		}
-		return glslProg;
-	};
-
-	mVoxelizationProg = loadGlslProg( gl::GlslProg::Format().version(440)
-		.vertex(loadAsset("voxelization.vert"))
-		.geometry(loadAsset("voxelization.geom"))
-		.fragment(loadAsset("voxelization.frag")));
-*/
-    //mVoxelizationProg->uniform( "texture3D",0);
-    //mGeoCubeUbo.diffuseColor = vec3(1,0,0);
-    //mGeoCubeUbo.specularColor = vec3(1,1,1);
-    //mGeoCubeUbo.diffuseReflectivity = 0.2f;
-    //mGeoCubeUbo.specularReflectivity = 0.2f;
-    //mGeoCubeUbo.emissivity = 0.0f;
-    //mGeoCubeUbo.transparency = 0.0f;
-
-    //mVoxelizationProg->uniform( "material.diffuseColor",vec3(1,0,0));
-    //mVoxelizationProg->uniform( "material.specularColor",vec3(1,1,1));
-    //mVoxelizationProg->uniform( "material.diffuseReflectivity",0.2f);
-   // mVoxelizationProg->uniform( "material.specularReflectivity",0.2f);
-    //mVoxelizationProg->uniform( "material.emissivity",0.0f);
-    //mVoxelizationProg->uniform( "material.transparency",0.0f);
-
-    //////////////////////
-	/// MAKE THE COMPUTE SHADER
-	/////////////////////
-	mVoxelizationShader = ComputeShader::create(loadAsset("voxelization.comp"));
-	//////////////////////
+	//////////////////////////////////////////////////////////////////////////////////
 	/// VOXEL DATA
 	/////////////////////
 	mVoxelTexSize=64;
@@ -139,28 +77,59 @@ void voxelConeTracingApp::setup()
 	for (unsigned int i = 0; i < voxels.size(); ++i)
 	{
 		auto &v = voxels.at(i);
-		v.P = vec3(0.0f, 0.0f, 0.0f);
+		//v.P = vec3(0.0f, 0.0f, 0.0f);
 		v.N = vec3(0.0f, 1.0f, 0.0f);
 		v.Cd = vec3(0.0f, 0.0f, 0.0f);
 	}
 	//////////////////////
 	/// MAKE THE VOXEL BUFFER
 	/////////////////////
+	mVoxelBuffer = ComputeBuffer::create(voxels.data(), (int)voxels.size(), sizeof(Voxel));
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// MAKE VBO FOR DRAWIN TRIANGLES FROM SSBO
+	///////////////////
+	mNumTris = 65536;//1048576;//2097152
+	vector<GLuint> tri_ids;(mNumTris*3);
+	GLuint currid = 0;
+	generate(tri_ids.begin(),tri_ids.end(),[&currid]()->GLuint{return currid++;});
+    ///////////////////
+	/// MAKE VBO IDS
+	///////////////////
+	mTriangleInd = gl::Vbo::create<GLuint>(GL_ARRAY_BUFFER, tri_ids);
+	///////////////////
+	/// MAKE TRIANGLE BUFFER DATA
+	///////////////////
+    vector<CustomGeo> tri_vert;
+	tri_vert.assign(mNumTris*3+1, CustomGeo());//add 1. element 0, is the number of triangles stored this round
+	for (unsigned int i = 0; i < tri_vert.size()-1; ++i)
+	{
+		auto &vt = tri_vert.at(i);
+		vt = CustomGeo(vec3(0.0f,0.0f,0.0f),vec3(0.0f,1.0f,0.0f),vec2(0.0f,0.0f));
+	}
+    ///////////////////
+	/// MAKE TRIANGLE BUFFER
+	///////////////////
+	mTriangleBuffer = ComputeBuffer::create(tri_vert.data(), (int)tri_vert.size(), sizeof(CustomGeo));
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/// MAKE THE COMPUTE SHADER
+	/////////////////////
+	mVoxelizationShader = ComputeShader::create(loadAsset("voxelization.comp"));
 	ivec3 count = gl::getMaxComputeWorkGroupCount();
 	CI_ASSERT(count.x >= (mNumVoxels / mVoxelizationShader->getWorkGroupSize().x));
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	mVoxelBuffer = ComputeBuffer::create(voxels.data(), (int)voxels.size(), sizeof(Voxel));
 
-	////////////////////
-	///////////////////
-
-    //////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	// MAKE THE GEO BUFFER
 	//////////////////////
 	mGeoBuffer = ComputeBuffer::create( tetrahedron.data(), (int)tetrahedron.size(), sizeof( CustomGeo ) );
-	//gl::ScopedBuffer scopedQuadSsbo( mGeoBuffer->getSsbo() );
-	//mGeoBuffer->getSsbo()->bindBase( 1 );
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
 	//make the simple visualization shader
 	mVisualizeVoxelSimpleConnection = assets()->getShader( "quadpassthrough.vert", "voxelvisualizationsimple.frag",
                                       [this]( gl::GlslProgRef glsl ) {
@@ -169,12 +138,7 @@ void voxelConeTracingApp::setup()
 										  mVisualizeVoxelSimpleProg->uniform( "uResolution", vec2((float)app::getWindowSize().x, (float)app::getWindowSize().y));
 										  mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize);
                                       } );
-    /*mVisualizeVoxelSimpleProg = loadGlslProg( gl::GlslProg::Format()
-		.vertex(loadAsset("quadpassthrough.vert"))
-		.fragment(loadAsset("voxelvisualizationsimple.frag")));
-    mVisualizeVoxelSimpleProg->uniform( "uVoxels",0);
-      mVisualizeVoxelSimpleProg->uniform( "uResolution", vec2((float)app::getWindowSize().x, (float)app::getWindowSize().y));
-      mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize);*/
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
