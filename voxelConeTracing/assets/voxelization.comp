@@ -32,7 +32,11 @@ layout( std430, binding = 0 ) buffer VoxelBuffer
 {
     Voxel voxels[];
 };
-layout( std430, binding = 1 )  buffer GeoBuffer
+layout( std430, binding = 1 )  buffer TriBuffer
+{
+    Geo Triangles[];
+};
+layout( std430, binding = 2 )  buffer GeoBuffer
 {
     Geo mesh[];
 };
@@ -135,7 +139,7 @@ void main(){
 		///this is the look up into the 1d array
     	int ind = int(vox.x+(vox.z*uVoxelResolution)+(vox.y*uVoxelResolution*uVoxelResolution));
     	
-    	voxels[ind].Cd = color;// (v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
+    	voxels[ind].Cd = (v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
     	voxels[ind].N = v.N;
     }
     

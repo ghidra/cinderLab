@@ -184,10 +184,17 @@ void voxelConeTracingApp::draw()
         //bind the voxel buffer
         gl::ScopedBuffer scopedVoxelSsbo(mVoxelBuffer->getSsbo());
         mVoxelBuffer->getSsbo()->bindBase(0);
+        //bind the triangle buffer
+        gl::ScopedBuffer scopedTriangleSsbo(mTriangleBuffer->getSsbo());
+        mTriangleBuffer->getSsbo()->bindBase(1);
         //now bind the geo buffer that we want to voxelize
 
         gl::ScopedBuffer scopedGeoSsbo(mGeoBuffer->getSsbo());
-        mGeoBuffer->getSsbo()->bindBase( 1 );
+        mGeoBuffer->getSsbo()->bindBase( 2 );
+
+        //clear my buffers
+        GLubyte val = 0;
+        glClearBufferData(mVoxelBuffer->getSsbo(), GL_R8UI, GL_RED_INTEGER, GL_UNSIGNED_BYTE, &val);
         //gl::ScopedVao vao( mGeoCubeVao );
         //auto tmp = mGeoCubeVboMesh->getVertexArrayVbos();
        //gl::ScopedBuffer scopedGeoVbo();
