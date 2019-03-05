@@ -5,6 +5,8 @@
 
 #include "noiselib.glsl"
 
+uniform mat4 uModelMatrix;//model matrix for incoming geo
+
 uniform uint uBufferSize;
 uniform float uVoxelResolution;
 uniform float uTime;
@@ -64,8 +66,8 @@ Geo pInTriangle(Geo a, Geo b, Geo c, float s)
 {
 	vec2 uv = abs(vec2( SimplexPerlin2D(vec2(s*2.464,s+44.56)), SimplexPerlin2D(vec2(s*9.664,s*-54.3+444.56)) ));
 	Geo v;
-	v.P = mix(mix(a.P,b.P,uv.x),c.P,uv.y);
-	v.N = normalize(mix(mix(a.N,b.N,uv.x),c.N,uv.y));
+	v.P = (uModelMatrix*vec4(mix(mix(a.P,b.P,uv.x),c.P,uv.y),1.0)).xyz;
+	v.N = normalize( (uModelMatrix*vec4(mix(mix(a.N,b.N,uv.x),c.N,uv.y),0.0)).xyz );
 	v.uv = normalize(mix(mix(a.uv,b.uv,uv.x),c.uv,uv.y));
 	v.Cd = normalize(mix(mix(a.Cd,b.Cd,uv.x),c.Cd,uv.y));
 	v.Cs = normalize(mix(mix(a.Cs,b.Cs,uv.x),c.Cs,uv.y));

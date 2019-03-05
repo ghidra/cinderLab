@@ -26,13 +26,19 @@ class voxelConeTracingApp : public App {
 		void update() override;
 		void draw() override;
 
+		float mDeltaTime;
+
 	private:
+        float mLastTime;//for calulating deltatime
+
 
 		int mVoxelTexSize;
 		int mNumVoxels;//voxelsize to power of 3
 		int mNumTris;//total number of triangles I want to store
 
+
 		ComputeShaderRef			mVoxelizationShader;
+		ComputeShaderRef			mClearVoxelizationShader;
 		//ComputeShaderRef			mClearVoxelizationShader;//i need a shader that clears out anything from that last frame
 
 		struct Voxel
@@ -72,11 +78,11 @@ void voxelConeTracingApp::setup()
 	/////////////////////
 	mVoxelTexSize=64;
 	mNumVoxels = mVoxelTexSize*mVoxelTexSize*mVoxelTexSize;
-	vector<Voxel> voxels;
-	voxels.assign(mNumVoxels, Voxel());
-	for (unsigned int i = 0; i < voxels.size(); ++i)
+	vector<Voxel> mEmptyVoxels;
+	mEmptyVoxels.assign(mNumVoxels, Voxel());
+	for (unsigned int i = 0; i < mEmptyVoxels.size(); ++i)
 	{
-		auto &v = voxels.at(i);
+		auto &v = mEmptyVoxels.at(i);
 		//v.P = vec3(0.0f, 0.0f, 0.0f);
 		v.N = vec3(0.0f, 1.0f, 0.0f);
 		v.Cd = vec3(0.0f, 0.0f, 0.0f);
@@ -84,7 +90,7 @@ void voxelConeTracingApp::setup()
 	//////////////////////
 	/// MAKE THE VOXEL BUFFER
 	/////////////////////
-	mVoxelBuffer = ComputeBuffer::create(voxels.data(), (int)voxels.size(), sizeof(Voxel));
+	mVoxelBuffer = ComputeBuffer::create(mEmptyVoxels.data(), (int)mEmptyVoxels.size(), sizeof(Voxel));
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -118,6 +124,7 @@ void voxelConeTracingApp::setup()
 	/// MAKE THE COMPUTE SHADER
 	/////////////////////
 	mVoxelizationShader = ComputeShader::create(loadAsset("voxelization.comp"));
+	mClearVoxelizationShader = ComputeShader::create(loadAsset("clear_voxelization.comp"));
 	ivec3 count = gl::getMaxComputeWorkGroupCount();
 	CI_ASSERT(count.x >= (mNumVoxels / mVoxelizationShader->getWorkGroupSize().x));
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -150,7 +157,23 @@ void voxelConeTracingApp::mouseDown( MouseEvent event )
 
 void voxelConeTracingApp::update()
 {
+    {
+        gl::ScopedBuffer scopedVoxelSsbo(mVoxelBuffer->getSsbo());
+        mVoxelBuffer->getSsbo()->bindBase(0);
+        //bind the triangle buffer
+        //gl::ScopedBuffer scopedTriangleSsbo(mTriangleBuffer->getSsbo());
+        //mTriangleBuffer->getSsbo()->bindBase(1);
+        //clear my buffers
+        //vec3 val = vec3(0.0f);
+        //glClearBufferData(mVoxelBuffer->getSsbo()->getTarget(), GL_RGB32F, GL_RGB, GL_FLOAT, &val);
+        //glClearBufferData(mTriangleBuffer->getSsbo()->getTarget(), GL_RGBA32F, GL_RGBA, GL_FLOAT, &val);
+        //mVoxelBuffer->clear(mEmptyVoxels.data(), (int)mEmptyVoxels.size(), sizeof(Voxel));
+        mClearVoxelizationShader->dispatch( (int)glm::ceil( float( mNumVoxels ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
+    }
 
+    float current = static_cast<float>(app::getElapsedSeconds());
+    mDeltaTime = current - mLastTime;
+    mLastTime = current;
 	//gl::ScopedTextureBind scoped3dTex(mVoxelTex);
 
 }
@@ -171,6 +194,7 @@ void voxelConeTracingApp::draw()
 
         mGeoCubeVoxelize->draw();//draw the cube
     }*/
+
     {
         // gl::clear( Color( 0, 0, 0 ) );
        int call_count = (int)tetrahedron.size()/3;
@@ -192,9 +216,15 @@ void voxelConeTracingApp::draw()
         gl::ScopedBuffer scopedGeoSsbo(mGeoBuffer->getSsbo());
         mGeoBuffer->getSsbo()->bindBase( 2 );
 
-        //clear my buffers
-        GLubyte val = 0;
-        glClearBufferData(mVoxelBuffer->getSsbo(), GL_R8UI, GL_RED_INTEGER, GL_UNSIGNED_BYTE, &val);
+        //model matrix
+        glm::mat4 modelMatrix = glm::mat4(1.0f);
+        glm::vec3 rotAxis(0.33f,0.33f,0.33f);
+        glm::mat4 rotMat = glm::rotate(static_cast<float>(app::getElapsedSeconds()),rotAxis);
+        //CI_LOG_I(to_string(mDeltaTime));
+
+        computeGlsl->uniform("uModelMatrix",modelMatrix*rotMat);
+
+
         //gl::ScopedVao vao( mGeoCubeVao );
         //auto tmp = mGeoCubeVboMesh->getVertexArrayVbos();
        //gl::ScopedBuffer scopedGeoVbo();
