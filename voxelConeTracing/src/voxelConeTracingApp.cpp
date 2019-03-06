@@ -6,6 +6,7 @@
 
 #include "Assets.h"
 #include "Compute.h"
+#include "CameraBasic.h"
 
 #include "Material.h"
 #include "CustomGeo.h"
@@ -31,15 +32,13 @@ class voxelConeTracingApp : public App {
 	private:
         float mLastTime;//for calulating deltatime
 
-
 		int mVoxelTexSize;
 		int mNumVoxels;//voxelsize to power of 3
 		int mNumTris;//total number of triangles I want to store
 
-
 		ComputeShaderRef			mVoxelizationShader;
-		ComputeShaderRef			mClearVoxelizationShader;
-		//ComputeShaderRef			mClearVoxelizationShader;//i need a shader that clears out anything from that last frame
+		ComputeShaderRef			mClearVoxelizationShader;//i need a shader that clears out anything from that last frame
+		ComputeShaderRef			mClearTrianglesShader;
 
 		struct Voxel
 		{
@@ -54,13 +53,19 @@ class voxelConeTracingApp : public App {
 		//------------------
         ComputeBufferRef        mGeoBuffer;//this is my geo buffer
 
-        //This is the master shader, that will render the objects
-        gl::GlslProgRef		        mVoxelConeTrace;
-
         //vosualize the voxels
 		gl::GlslProgRef                         mVisualizeVoxelSimpleProg;
 		signals::ScopedConnection		mVisualizeVoxelSimpleConnection;
 
+		//This is the tmp shader to see rendered triangles
+		gl::GlslProgRef                         mRenderTrisSimpleProg;
+		signals::ScopedConnection		mRenderTrisSimpleConnection;
+		//This is the master shader, that will render the objects
+        //gl::GlslProgRef		        mVoxelConeTrace;
+        //signals::ScopedConnection		mVoxelConeTraceConnection;
+
+
+            CameraBasicRef					mCamera;
 		//std::shared_ptr<log::LoggerBreakpoint> mLog;
 };
 
@@ -97,18 +102,18 @@ void voxelConeTracingApp::setup()
 	/// MAKE VBO FOR DRAWIN TRIANGLES FROM SSBO
 	///////////////////
 	mNumTris = 65536;//1048576;//2097152
-	vector<GLuint> tri_ids;(mNumTris*3);
-	GLuint currid = 0;
-	generate(tri_ids.begin(),tri_ids.end(),[&currid]()->GLuint{return currid++;});
+	vector<uint32_t> tri_ids(mNumTris*3);
+	uint32_t currid = 0;
+	generate(tri_ids.begin(),tri_ids.end(),[&currid]()->uint32_t{return currid++;});
     ///////////////////
 	/// MAKE VBO IDS
 	///////////////////
-	mTriangleInd = gl::Vbo::create<GLuint>(GL_ARRAY_BUFFER, tri_ids);
+	mTriangleInd = gl::Vbo::create<uint32_t>(GL_ELEMENT_ARRAY_BUFFER, tri_ids,GL_STATIC_DRAW);
 	///////////////////
 	/// MAKE TRIANGLE BUFFER DATA
 	///////////////////
     vector<CustomGeo> tri_vert;
-	tri_vert.assign(mNumTris*3+1, CustomGeo());//add 1. element 0, is the number of triangles stored this round
+	tri_vert.assign(mNumTris*3, CustomGeo());//the first triangle is a dummy... to hold data
 	for (unsigned int i = 0; i < tri_vert.size()-1; ++i)
 	{
 		auto &vt = tri_vert.at(i);
@@ -125,6 +130,7 @@ void voxelConeTracingApp::setup()
 	/////////////////////
 	mVoxelizationShader = ComputeShader::create(loadAsset("voxelization.comp"));
 	mClearVoxelizationShader = ComputeShader::create(loadAsset("clear_voxelization.comp"));
+	mClearTrianglesShader = ComputeShader::create(loadAsset("clear_triangles.comp"));
 	ivec3 count = gl::getMaxComputeWorkGroupCount();
 	CI_ASSERT(count.x >= (mNumVoxels / mVoxelizationShader->getWorkGroupSize().x));
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -147,7 +153,16 @@ void voxelConeTracingApp::setup()
                                       } );
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+	//make the temp triangle render shader
+	mRenderTrisSimpleConnection = assets()->getShader( "trianglesimple.vert", "trianglesimple.frag",
+                                      [this]( gl::GlslProgRef glsl ) {
+                                          mRenderTrisSimpleProg = glsl;
+                                          //mRenderTrisSimpleProg->uniform( "uVoxels",0);
+                                      } );
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    mCamera = CameraBasicRef(new CameraBasic());
 
 }
 
@@ -169,6 +184,7 @@ void voxelConeTracingApp::update()
         //glClearBufferData(mTriangleBuffer->getSsbo()->getTarget(), GL_RGBA32F, GL_RGBA, GL_FLOAT, &val);
         //mVoxelBuffer->clear(mEmptyVoxels.data(), (int)mEmptyVoxels.size(), sizeof(Voxel));
         mClearVoxelizationShader->dispatch( (int)glm::ceil( float( mNumVoxels ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
+        mClearTrianglesShader->dispatch( (int)glm::ceil( float( mNumTris ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
     }
 
     float current = static_cast<float>(app::getElapsedSeconds());
@@ -176,6 +192,7 @@ void voxelConeTracingApp::update()
     mLastTime = current;
 	//gl::ScopedTextureBind scoped3dTex(mVoxelTex);
 
+        mCamera->Update(mDeltaTime);
 }
 
 void voxelConeTracingApp::draw()
@@ -239,10 +256,24 @@ void voxelConeTracingApp::draw()
 	//now render the objects with these settings
 
 	//-------------done with the voxelization
-
-	//now visualize the voxelization somehow
+    //render my triangles
     {
         gl::clear();
+        gl::setMatricesWindow( getWindowSize() );
+        gl::viewport(getWindowSize());
+
+        gl::setMatrices(mCamera->GetPerspective());
+
+        gl::ScopedGlslProg glslTriScp( mRenderTrisSimpleProg );
+        gl::context()->setDefaultShaderVars();
+        //
+        gl::bindBufferBase(mTriangleBuffer->getSsbo()->getTarget(),1,mTriangleBuffer->getSsbo() );
+        gl::ScopedBuffer scopedIndices( mTriangleInd );
+        gl::drawElements(GL_TRIANGLES,mNumTris*3,GL_UNSIGNED_INT,0);
+    }
+	//now visualize the voxelization somehow
+    {
+        //gl::clear();
         gl::setMatricesWindow( getWindowSize() );
 
         gl::ScopedGlslProg glslScp( mVisualizeVoxelSimpleProg );

@@ -36,7 +36,7 @@ layout( std430, binding = 0 ) buffer VoxelBuffer
 };
 layout( std430, binding = 1 )  buffer TriBuffer
 {
-    Geo Triangles[];
+    Geo triangles[];
 };
 layout( std430, binding = 2 )  buffer GeoBuffer
 {
@@ -66,15 +66,15 @@ Geo pInTriangle(Geo a, Geo b, Geo c, float s)
 {
 	vec2 uv = abs(vec2( SimplexPerlin2D(vec2(s*2.464,s+44.56)), SimplexPerlin2D(vec2(s*9.664,s*-54.3+444.56)) ));
 	Geo v;
-	v.P = (uModelMatrix*vec4(mix(mix(a.P,b.P,uv.x),c.P,uv.y),1.0)).xyz;
-	v.N = normalize( (uModelMatrix*vec4(mix(mix(a.N,b.N,uv.x),c.N,uv.y),0.0)).xyz );
-	v.uv = normalize(mix(mix(a.uv,b.uv,uv.x),c.uv,uv.y));
-	v.Cd = normalize(mix(mix(a.Cd,b.Cd,uv.x),c.Cd,uv.y));
-	v.Cs = normalize(mix(mix(a.Cs,b.Cs,uv.x),c.Cs,uv.y));
-	v.Rd = normalize(mix(mix(a.Rd,b.Rd,uv.x),c.Rd,uv.y));
-	v.Rs = normalize(mix(mix(a.Rs,b.Rs,uv.x),c.Rs,uv.y));
-	v.e = normalize(mix(mix(a.e,b.e,uv.x),c.e,uv.y));
-	v.t = normalize(mix(mix(a.t,b.t,uv.x),c.t,uv.y));
+	v.P = mix(mix(a.P,b.P,uv.x),c.P,uv.y);
+	v.N = normalize(mix(mix(a.N,b.N,uv.x),c.N,uv.y));
+	v.uv = mix(mix(a.uv,b.uv,uv.x),c.uv,uv.y);
+	v.Cd =mix(mix(a.Cd,b.Cd,uv.x),c.Cd,uv.y);
+	v.Cs = mix(mix(a.Cs,b.Cs,uv.x),c.Cs,uv.y);
+	v.Rd = mix(mix(a.Rd,b.Rd,uv.x),c.Rd,uv.y);
+	v.Rs = mix(mix(a.Rs,b.Rs,uv.x),c.Rs,uv.y);
+	v.e = mix(mix(a.e,b.e,uv.x),c.e,uv.y);
+	v.t = mix(mix(a.t,b.t,uv.x),c.t,uv.y);
 	return v; 
 }
 
@@ -103,12 +103,29 @@ void main(){
     Geo v0 = mesh[gid*3];
     Geo v1 = mesh[(gid*3)+1];
     Geo v2 = mesh[(gid*3)+2];
-    // Geo v0 = mesh[0];
-    // Geo v1 = mesh[1];
-    // Geo v2 = mesh[2];
+
+    float sceneScale = 0.2f;//scale the scene prior to fitting voxel grid
+
+    //get the point in the right space
+    v0.P = (uModelMatrix*vec4(v0.P,1)).xyz*sceneScale;
+    v1.P = (uModelMatrix*vec4(v1.P,1)).xyz*sceneScale;
+    v2.P = (uModelMatrix*vec4(v2.P,1)).xyz*sceneScale;
+    v0.N = normalize((uModelMatrix*vec4(v0.N,0)).xyz);
+    v1.N = normalize((uModelMatrix*vec4(v1.N,0)).xyz);
+    v2.N = normalize((uModelMatrix*vec4(v2.N,0)).xyz);
+
+    //lets now add the triangle to the triangle buffer
+    //uint tri = uint(triangles[0].t);
+    //triangles[ (tri+1)*3 ] = v0;
+    //triangles[ ((tri+1)*3)+1 ] = v1;
+    //triangles[ ((tri+1)*3)+2 ] = v2;
+    //triangles[ 0 ].t+=1.0;//increment the triangle count
+    triangles[ gid*3 ] = v0;
+    triangles[ (gid*3)+1 ] = v1;
+    triangles[ (gid*3)+2 ] = v2;
 
     //vec3 voxOffset = vec3( round(uVoxelSize*0.5) );
-    float sceneScale = 0.2f;//scale the scene prior to fitting voxel grid
+   
     //vec3 vox0 = round((v0.P*sceneScale)+0.5f)*uVoxelResolution; ///add 0.5 to move from -0.5 through 0.5 to 0 through 1
     //vec3 vox1 = round((v1.P*sceneScale)+0.5f)*uVoxelResolution; ///mult to get it into the voxel space for finding the flat 1d id
     //vec3 vox2 = round((v2.P*sceneScale)+0.5f)*uVoxelResolution;
@@ -125,7 +142,7 @@ void main(){
     for (int i=0; i<32; i++)
     {
     	Geo v = pInTriangle( v0,v1,v2,float(i) );
-    	vec3 vox = round( ((v.P*sceneScale)+0.5f)*uVoxelResolution );//here we are in 0-voxel resolution space
+    	vec3 vox = round( ((v.P)+0.5f)*uVoxelResolution );//here we are in 0-voxel resolution space
 
     	vec3 color = vec3(0.0f);
 		if(!isInsideCube(vox)) return;
@@ -141,7 +158,7 @@ void main(){
 		///this is the look up into the 1d array
     	int ind = int(vox.x+(vox.z*uVoxelResolution)+(vox.y*uVoxelResolution*uVoxelResolution));
     	
-    	voxels[ind].Cd = (v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
+    	voxels[ind].Cd = color;//(v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
     	voxels[ind].N = v.N;
     }
     
