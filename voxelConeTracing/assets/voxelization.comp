@@ -7,7 +7,8 @@
 
 uniform mat4 uModelMatrix;//model matrix for incoming geo
 
-uniform uint uBufferSize;
+uniform uint uBufferSize;//this is the size of the geos vert buffer, so we make sure to stop
+uniform uint uTriangleVertOffset;//this comein with each geo... so we can offset the vertex copy to triangle buffer
 uniform float uVoxelResolution;
 uniform float uTime;
 
@@ -120,9 +121,9 @@ void main(){
     //triangles[ ((tri+1)*3)+1 ] = v1;
     //triangles[ ((tri+1)*3)+2 ] = v2;
     //triangles[ 0 ].t+=1.0;//increment the triangle count
-    triangles[ gid*3 ] = v0;
-    triangles[ (gid*3)+1 ] = v1;
-    triangles[ (gid*3)+2 ] = v2;
+    triangles[ (gid*3)+uTriangleVertOffset ] = v0;
+    triangles[ ((gid*3)+1)+uTriangleVertOffset ] = v1;
+    triangles[ ((gid*3)+2)+uTriangleVertOffset ] = v2;
 
     //vec3 voxOffset = vec3( round(uVoxelSize*0.5) );
    

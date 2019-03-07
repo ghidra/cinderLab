@@ -2,8 +2,9 @@
 #extension GL_ARB_shader_storage_buffer_object : require
 
 uniform mat4 ciProjectionMatrix;
-uniform mat4 ciModelView;
-uniform float spriteSize;
+uniform mat4 ciViewMatrix;
+//uniform mat4 ciModelView;
+//uniform float spriteSize;
 
 #include "dat.glsl"
 
@@ -40,5 +41,6 @@ void main()
 	Out.e = tri.e;
 	Out.t = tri.t;
 
-	gl_Position = ciProjectionMatrix * (ciModelView * vec4(tri.P,1));
+	//gl_Position = ciProjectionMatrix * (ciViewMatrix * vec4(tri.P,1));
+	gl_Position = ciProjectionMatrix * (ciViewMatrix * vec4(tri.P,1));
 }

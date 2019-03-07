@@ -24,6 +24,8 @@ class voxelConeTracingApp : public App {
 	    static void prepareSettings( Settings *settings );
 		void setup() override;
 		void mouseDown( MouseEvent event ) override;
+        void keyDown(KeyEvent event) override;
+        void keyUp(KeyEvent event) override;
 		void update() override;
 		void draw() override;
 
@@ -50,9 +52,6 @@ class voxelConeTracingApp : public App {
         ComputeBufferRef        mTriangleBuffer;//when we are voxelizing our geo... we can save the geo ssbo into a new ssbo, to render later.
         gl::VboRef                    mTriangleInd;//this is a vbo that we use to draw the ssbo as triangles
 
-		//------------------
-        ComputeBufferRef        mGeoBuffer;//this is my geo buffer
-
         //vosualize the voxels
 		gl::GlslProgRef                         mVisualizeVoxelSimpleProg;
 		signals::ScopedConnection		mVisualizeVoxelSimpleConnection;
@@ -65,7 +64,11 @@ class voxelConeTracingApp : public App {
         //signals::ScopedConnection		mVoxelConeTraceConnection;
 
 
-            CameraBasicRef					mCamera;
+        CameraBasicRef					mCamera;
+
+        //------------------
+        ComputeBufferRef        mGeoBuffer;//this is my geo buffer
+        ComputeBufferRef        mCornellBuffer;//this is my geo buffer
 		//std::shared_ptr<log::LoggerBreakpoint> mLog;
 };
 
@@ -135,13 +138,6 @@ void voxelConeTracingApp::setup()
 	CI_ASSERT(count.x >= (mNumVoxels / mVoxelizationShader->getWorkGroupSize().x));
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	// MAKE THE GEO BUFFER
-	//////////////////////
-	mGeoBuffer = ComputeBuffer::create( tetrahedron.data(), (int)tetrahedron.size(), sizeof( CustomGeo ) );
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 	//make the simple visualization shader
 	mVisualizeVoxelSimpleConnection = assets()->getShader( "quadpassthrough.vert", "voxelvisualizationsimple.frag",
@@ -161,14 +157,35 @@ void voxelConeTracingApp::setup()
                                           //mRenderTrisSimpleProg->uniform( "uVoxels",0);
                                       } );
     ////////////////////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    //CAMERA
+    mCamera = CameraBasicRef(new CameraBasic(10.0f));
 
-    mCamera = CameraBasicRef(new CameraBasic());
+    gl::enableDepthWrite();
+    gl::enableDepthRead();
+
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // MAKE THE GEO BUFFER
+    //////////////////////
+    mGeoBuffer = ComputeBuffer::create( tetrahedron.data(), (int)tetrahedron.size(), sizeof( CustomGeo ) );
+    mCornellBuffer = ComputeBuffer::create( cornell.data(), (int)cornell.size(), sizeof( CustomGeo ) );
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }
 
 void voxelConeTracingApp::mouseDown( MouseEvent event )
 {
 }
+void voxelConeTracingApp::keyDown( KeyEvent event )
+{
+    mCamera->keyDown(event);
+}
+
+void voxelConeTracingApp::keyUp( KeyEvent event )
+{
+    mCamera->keyUp(event);
+}
+
 
 void voxelConeTracingApp::update()
 {
@@ -191,7 +208,7 @@ void voxelConeTracingApp::update()
     mDeltaTime = current - mLastTime;
     mLastTime = current;
 	//gl::ScopedTextureBind scoped3dTex(mVoxelTex);
-
+//CI_LOG_I(mDeltaTime);
         mCamera->Update(mDeltaTime);
 }
 
@@ -214,10 +231,10 @@ void voxelConeTracingApp::draw()
 
     {
         // gl::clear( Color( 0, 0, 0 ) );
-       int call_count = (int)tetrahedron.size()/3;
+       int call_count;// = (int)tetrahedron.size()/3;
        auto computeGlsl = mVoxelizationShader->getGlsl();
        //computeGlsl->uniform("uBufferSize",(uint32_t)mNumVoxels);
-       computeGlsl->uniform("uBufferSize",(uint32_t)call_count);
+       
        computeGlsl->uniform("uVoxelResolution",(float)mVoxelTexSize);
        //right now I want to only call this for the number of verts in the mesh
 
@@ -229,25 +246,37 @@ void voxelConeTracingApp::draw()
         gl::ScopedBuffer scopedTriangleSsbo(mTriangleBuffer->getSsbo());
         mTriangleBuffer->getSsbo()->bindBase(1);
         //now bind the geo buffer that we want to voxelize
+        {
+            call_count = (int)tetrahedron.size()/3;
+            computeGlsl->uniform("uBufferSize",(uint32_t)call_count);
+            computeGlsl->uniform("uTriangleVertOffset",(uint32_t)0);
 
-        gl::ScopedBuffer scopedGeoSsbo(mGeoBuffer->getSsbo());
-        mGeoBuffer->getSsbo()->bindBase( 2 );
+            gl::ScopedBuffer scopedGeoSsbo(mGeoBuffer->getSsbo());
+            mGeoBuffer->getSsbo()->bindBase( 2 );
 
-        //model matrix
-        glm::mat4 modelMatrix = glm::mat4(1.0f);
-        glm::vec3 rotAxis(0.33f,0.33f,0.33f);
-        glm::mat4 rotMat = glm::rotate(static_cast<float>(app::getElapsedSeconds()),rotAxis);
-        //CI_LOG_I(to_string(mDeltaTime));
+            //model matrix
+            glm::mat4 modelMatrix = glm::mat4(1.0f);
+            glm::vec3 rotAxis(0.33f,0.33f,0.33f);
+            glm::mat4 rotMat = glm::rotate(static_cast<float>(app::getElapsedSeconds()),rotAxis);
 
-        computeGlsl->uniform("uModelMatrix",modelMatrix*rotMat);
+            computeGlsl->uniform("uModelMatrix",modelMatrix*rotMat);
 
+            mVoxelizationShader->dispatch( (int)glm::ceil( float( call_count ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
+        }
+        {
+            call_count = (int)cornell.size()/3;
+            computeGlsl->uniform("uBufferSize",(uint32_t)call_count);
+            computeGlsl->uniform("uTriangleVertOffset",(uint32_t)tetrahedron.size());
 
-        //gl::ScopedVao vao( mGeoCubeVao );
-        //auto tmp = mGeoCubeVboMesh->getVertexArrayVbos();
-       //gl::ScopedBuffer scopedGeoVbo();
-        //mGeoCubeVboMesh->getSsbo()->bindBase(1);
-        //mVoxelizationShader->dispatch( (int)glm::ceil( float( mNumVoxels ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
-        mVoxelizationShader->dispatch( (int)glm::ceil( float( call_count ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
+            gl::ScopedBuffer scopedGeoSsbo(mCornellBuffer->getSsbo());
+            mCornellBuffer->getSsbo()->bindBase( 2 );
+
+            //model matrix
+            glm::mat4 modelMatrix = glm::mat4(1.0f);
+            computeGlsl->uniform("uModelMatrix",modelMatrix);
+
+            mVoxelizationShader->dispatch( (int)glm::ceil( float( call_count ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
+        }
 
     }
 	//gl::ScopedGlslProg scopedRenderProg(mVoxelizationProg);
