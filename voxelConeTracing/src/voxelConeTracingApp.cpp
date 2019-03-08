@@ -51,6 +51,7 @@ class voxelConeTracingApp : public App {
 		ComputeBufferRef        mVoxelBuffer;
         ComputeBufferRef        mTriangleBuffer;//when we are voxelizing our geo... we can save the geo ssbo into a new ssbo, to render later.
         gl::VboRef                    mTriangleInd;//this is a vbo that we use to draw the ssbo as triangles
+        GLuint                          mTriangleAtomicBuffer;
 
         //vosualize the voxels
 		gl::GlslProgRef                         mVisualizeVoxelSimpleProg;
@@ -101,6 +102,16 @@ void voxelConeTracingApp::setup()
 	mVoxelBuffer = ComputeBuffer::create(mEmptyVoxels.data(), (int)mEmptyVoxels.size(), sizeof(Voxel));
     /////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// MAKE ATOMIC COUNTER BUFFER... THIS WILL MAKE IT SO I CAN ADD SEQUENTIALLY TO MY TRIANGLE BUFFER, MAYBE
+    /////////////////// http://www.lighthouse3d.com/tutorials/opengl-atomic-counters/
+    // declare and generate a buffer object name
+    glGenBuffers(1, &mTriangleAtomicBuffer);
+    // bind the buffer and define its initial storage capacity
+    glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, mTriangleAtomicBuffer);
+    glBufferData(GL_ATOMIC_COUNTER_BUFFER, sizeof(GLuint), NULL, GL_DYNAMIC_DRAW);
+    // unbind the buffer 
+    glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, 0);
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 	/// MAKE VBO FOR DRAWIN TRIANGLES FROM SSBO
 	///////////////////
@@ -129,7 +140,7 @@ void voxelConeTracingApp::setup()
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/// MAKE THE COMPUTE SHADER
+	/// MAKE THE COMPUTE SHADERS
 	/////////////////////
 	mVoxelizationShader = ComputeShader::create(loadAsset("voxelization.comp"));
 	mClearVoxelizationShader = ComputeShader::create(loadAsset("clear_voxelization.comp"));
@@ -202,6 +213,23 @@ void voxelConeTracingApp::update()
         //mVoxelBuffer->clear(mEmptyVoxels.data(), (int)mEmptyVoxels.size(), sizeof(Voxel));
         mClearVoxelizationShader->dispatch( (int)glm::ceil( float( mNumVoxels ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
         mClearTrianglesShader->dispatch( (int)glm::ceil( float( mNumTris ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
+
+        //////////////////CLEAR THE ATOMIC COUNTER
+        // declare a pointer to hold the values in the buffer
+        /*GLuint *userCounters;
+        glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, mTriangleAtomicBuffer);
+        // map the buffer, userCounters will point to the buffers data
+        userCounters = (GLuint*)glMapBufferRange(GL_ATOMIC_COUNTER_BUFFER, 0 , sizeof(GLuint), GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT | GL_MAP_UNSYNCHRONIZED_BIT);
+        // set the memory to zeros, resetting the values in the buffer
+        memset(userCounters, 0, sizeof(GLuint) );
+        // unmap the buffer
+        glUnmapBuffer(GL_ATOMIC_COUNTER_BUFFER);*/
+
+        //////////////METHOD B
+        glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, mTriangleAtomicBuffer);
+        GLuint a[1] = {0};
+        glBufferSubData(GL_ATOMIC_COUNTER_BUFFER, 0 , sizeof(GLuint) , a);
+        glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, 0);
     }
 
     float current = static_cast<float>(app::getElapsedSeconds());
@@ -246,10 +274,14 @@ void voxelConeTracingApp::draw()
         gl::ScopedBuffer scopedTriangleSsbo(mTriangleBuffer->getSsbo());
         mTriangleBuffer->getSsbo()->bindBase(1);
         //now bind the geo buffer that we want to voxelize
+        ///bind the atomic counter
+        //glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, mTriangleAtomicBuffer);
+        glBindBufferBase(GL_ATOMIC_COUNTER_BUFFER, 0, mTriangleAtomicBuffer);
+        GLuint userCounters[1];//tmp for reading 
         {
             call_count = (int)tetrahedron.size()/3;
             computeGlsl->uniform("uBufferSize",(uint32_t)call_count);
-            computeGlsl->uniform("uTriangleVertOffset",(uint32_t)0);
+            //computeGlsl->uniform("uTriangleVertOffset",(uint32_t)0);
 
             gl::ScopedBuffer scopedGeoSsbo(mGeoBuffer->getSsbo());
             mGeoBuffer->getSsbo()->bindBase( 2 );
@@ -260,13 +292,40 @@ void voxelConeTracingApp::draw()
             glm::mat4 rotMat = glm::rotate(static_cast<float>(app::getElapsedSeconds()),rotAxis);
 
             computeGlsl->uniform("uModelMatrix",modelMatrix*rotMat);
+            
+            //glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, mTriangleAtomicBuffer);
 
             mVoxelizationShader->dispatch( (int)glm::ceil( float( call_count ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
+
+             ////TEMP READ BACK ATAOMIC BUFFER
+            //glGetBufferSubData(GL_ATOMIC_COUNTER_BUFFER, 0, sizeof(GLuint), userCounters);
+            //CI_LOG_I(userCounters[0]);
         }
+        {
+            call_count = (int)tetrahedron.size()/3;
+            computeGlsl->uniform("uBufferSize",(uint32_t)call_count);
+            //computeGlsl->uniform("uTriangleVertOffset",(uint32_t)0);
+
+            gl::ScopedBuffer scopedGeoSsbo(mGeoBuffer->getSsbo());
+            mGeoBuffer->getSsbo()->bindBase( 2 );
+
+            //model matrix
+            glm::mat4 modelMatrix = glm::translate( glm::mat4(1.0f),glm::vec3(1.5,1.5,1.5) );
+            computeGlsl->uniform("uModelMatrix",modelMatrix);
+            
+            //glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, mTriangleAtomicBuffer);
+
+            mVoxelizationShader->dispatch( (int)glm::ceil( float( call_count ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
+
+             ////TEMP READ BACK ATAOMIC BUFFER
+            //glGetBufferSubData(GL_ATOMIC_COUNTER_BUFFER, 0, sizeof(GLuint), userCounters);
+            //CI_LOG_I(userCounters[0]);
+        }
+       
         {
             call_count = (int)cornell.size()/3;
             computeGlsl->uniform("uBufferSize",(uint32_t)call_count);
-            computeGlsl->uniform("uTriangleVertOffset",(uint32_t)tetrahedron.size());
+            //computeGlsl->uniform("uTriangleVertOffset",(uint32_t)tetrahedron.size());
 
             gl::ScopedBuffer scopedGeoSsbo(mCornellBuffer->getSsbo());
             mCornellBuffer->getSsbo()->bindBase( 2 );
@@ -277,7 +336,8 @@ void voxelConeTracingApp::draw()
 
             mVoxelizationShader->dispatch( (int)glm::ceil( float( call_count ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
         }
-
+        //unbind the atomic counter
+         glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, 0);
     }
 	//gl::ScopedGlslProg scopedRenderProg(mVoxelizationProg);
 	//mVoxelizationProg->uniform("spriteSize", mSpriteSize);//set the uniforms in here
