@@ -48,29 +48,35 @@ class voxelConeTracingApp : public App {
 			alignas(16) vec3 Cd;
 		};
 
-		ComputeBufferRef        mVoxelBuffer;
-        ComputeBufferRef        mTriangleBuffer;//when we are voxelizing our geo... we can save the geo ssbo into a new ssbo, to render later.
-        gl::VboRef                    mTriangleInd;//this is a vbo that we use to draw the ssbo as triangles
+		ComputeBufferRef                mVoxelBuffer;
+        ComputeBufferRef                mTriangleBuffer;//when we are voxelizing our geo... we can save the geo ssbo into a new ssbo, to render later.
+        gl::VboRef                      mTriangleInd;//this is a vbo that we use to draw the ssbo as triangles
         GLuint                          mTriangleAtomicBuffer;
 
         //vosualize the voxels
-		gl::GlslProgRef                         mVisualizeVoxelSimpleProg;
+		gl::GlslProgRef                 mVisualizeVoxelSimpleProg;
 		signals::ScopedConnection		mVisualizeVoxelSimpleConnection;
 
 		//This is the tmp shader to see rendered triangles
-		gl::GlslProgRef                         mRenderTrisSimpleProg;
+		gl::GlslProgRef                 mRenderTrisSimpleProg;
 		signals::ScopedConnection		mRenderTrisSimpleConnection;
+        
+        gl::GlslProgRef                 mRenderTrisVoxelConeTracing;
+        signals::ScopedConnection       mRenderTrisVoxelConeTracingConnection;
 		//This is the master shader, that will render the objects
-        //gl::GlslProgRef		        mVoxelConeTrace;
+        //gl::GlslProgRef		           mVoxelConeTrace;
         //signals::ScopedConnection		mVoxelConeTraceConnection;
 
 
-        CameraBasicRef					mCamera;
+        CameraBasicRef					 mCamera;
 
         //------------------
-        ComputeBufferRef        mGeoBuffer;//this is my geo buffer
-        ComputeBufferRef        mCornellBuffer;//this is my geo buffer
+        ComputeBufferRef                 mGeoBuffer;//this is my geo buffer
+        ComputeBufferRef                 mCornellBuffer;//this is my geo buffer
 		//std::shared_ptr<log::LoggerBreakpoint> mLog;
+
+        //--------------------
+        float                            mSceneRenderScale;///this is passed to the shader to scale to the voxel volume
 };
 
 void voxelConeTracingApp::prepareSettings( Settings *settings )
@@ -82,6 +88,7 @@ void voxelConeTracingApp::prepareSettings( Settings *settings )
 
 void voxelConeTracingApp::setup()
 {
+    mSceneRenderScale = 1.0f/10.5f;// this makes it so that -5 to 5 fit in the voxel volume //0.5f;
 	//////////////////////////////////////////////////////////////////////////////////
 	/// VOXEL DATA
 	/////////////////////
@@ -167,6 +174,10 @@ void voxelConeTracingApp::setup()
                                           mRenderTrisSimpleProg = glsl;
                                           //mRenderTrisSimpleProg->uniform( "uVoxels",0);
                                       } );
+    mRenderTrisVoxelConeTracingConnection = assets()->getShader( "trianglesimple.vert", "voxelconetracing.frag",
+                                      [this]( gl::GlslProgRef glsl ) {
+                                          mRenderTrisVoxelConeTracing = glsl;
+                                      } );
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     //CAMERA
@@ -201,6 +212,8 @@ void voxelConeTracingApp::keyUp( KeyEvent event )
 void voxelConeTracingApp::update()
 {
     {
+        //CLEAR THE BUFFERS
+        //THE DUMB WAY, BUT IT WORKS, SO FUCK IT
         gl::ScopedBuffer scopedVoxelSsbo(mVoxelBuffer->getSsbo());
         mVoxelBuffer->getSsbo()->bindBase(0);
         //bind the triangle buffer
@@ -215,6 +228,7 @@ void voxelConeTracingApp::update()
         mClearTrianglesShader->dispatch( (int)glm::ceil( float( mNumTris ) / mVoxelizationShader->getWorkGroupSize().x ), 1, 1);
 
         //////////////////CLEAR THE ATOMIC COUNTER
+        ///////////////METHOD A
         // declare a pointer to hold the values in the buffer
         /*GLuint *userCounters;
         glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, mTriangleAtomicBuffer);
@@ -264,6 +278,9 @@ void voxelConeTracingApp::draw()
        //computeGlsl->uniform("uBufferSize",(uint32_t)mNumVoxels);
        
        computeGlsl->uniform("uVoxelResolution",(float)mVoxelTexSize);
+       computeGlsl->uniform("uSceneScale",(float)mSceneRenderScale);
+       //I should pass in the cameras direction.. at leas the camera point position
+       //computeGlsl->uniform("uCameraPosition",(float)mSceneRenderScale);
        //right now I want to only call this for the number of verts in the mesh
 
         //compute version of voxilization
@@ -353,7 +370,7 @@ void voxelConeTracingApp::draw()
 
         gl::setMatrices(mCamera->GetPerspective());
 
-        gl::ScopedGlslProg glslTriScp( mRenderTrisSimpleProg );
+        gl::ScopedGlslProg glslTriScp( mRenderTrisVoxelConeTracing );
         gl::context()->setDefaultShaderVars();
         //
         gl::bindBufferBase(mTriangleBuffer->getSsbo()->getTarget(),1,mTriangleBuffer->getSsbo() );

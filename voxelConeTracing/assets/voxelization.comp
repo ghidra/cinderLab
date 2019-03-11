@@ -12,6 +12,10 @@ uniform uint uBufferSize;//this is the size of the geos vert buffer, so we make 
 //uniform uint uTriangleVertOffset;//this comein with each geo... so we can offset the vertex copy to triangle buffer
 uniform float uVoxelResolution;
 uniform float uTime;
+uniform float uSceneScale;
+//take in the camera position for culling
+//uniform vec3 uCameraPosition
+//uniform vec3 uCameraDirection
 
 struct Voxel
 {
@@ -70,7 +74,7 @@ Geo pInTriangle(Geo a, Geo b, Geo c, float s)
 {
 	vec2 uv = abs(vec2( SimplexPerlin2D(vec2(s*2.464,s+44.56)), SimplexPerlin2D(vec2(s*9.664,s*-54.3+444.56)) ));
 	Geo v;
-	v.P = mix(mix(a.P,b.P,uv.x),c.P,uv.y);
+	v.P = mix(mix(a.P,b.P,uv.x),c.P,uv.y)*uSceneScale;
 	v.N = normalize(mix(mix(a.N,b.N,uv.x),c.N,uv.y));
 	v.uv = mix(mix(a.uv,b.uv,uv.x),c.uv,uv.y);
 	v.Cd =mix(mix(a.Cd,b.Cd,uv.x),c.Cd,uv.y);
@@ -108,12 +112,12 @@ void main(){
     Geo v1 = mesh[(gid*3)+1];
     Geo v2 = mesh[(gid*3)+2];
 
-    float sceneScale = 0.2f;//scale the scene prior to fitting voxel grid
+    //float sceneScale = 0.2f;//scale the scene prior to fitting voxel grid
 
     //get the point in the right space
-    v0.P = (uModelMatrix*vec4(v0.P,1)).xyz*sceneScale;
-    v1.P = (uModelMatrix*vec4(v1.P,1)).xyz*sceneScale;
-    v2.P = (uModelMatrix*vec4(v2.P,1)).xyz*sceneScale;
+    v0.P = (uModelMatrix*vec4(v0.P,1)).xyz;//*uSceneScale;
+    v1.P = (uModelMatrix*vec4(v1.P,1)).xyz;//*uSceneScale;
+    v2.P = (uModelMatrix*vec4(v2.P,1)).xyz;//*uSceneScale;
     v0.N = normalize((uModelMatrix*vec4(v0.N,0)).xyz);
     v1.N = normalize((uModelMatrix*vec4(v1.N,0)).xyz);
     v2.N = normalize((uModelMatrix*vec4(v2.N,0)).xyz);
@@ -167,7 +171,7 @@ void main(){
 		///this is the look up into the 1d array
     	int ind = int(vox.x+(vox.z*uVoxelResolution)+(vox.y*uVoxelResolution*uVoxelResolution));
     	
-    	voxels[ind].Cd = color;//(v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
+    	voxels[ind].Cd = vec3(1.0f);//color;//(v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
     	voxels[ind].N = v.N;
     }
     
