@@ -39,6 +39,7 @@ class voxelConeTracingApp : public App {
 		int mNumTris;//total number of triangles I want to store
 
 		ComputeShaderRef			mVoxelizationShader;
+        ComputeShaderRef            mVoxelizationResizeShader;
 		ComputeShaderRef			mClearVoxelizationShader;//i need a shader that clears out anything from that last frame
 		ComputeShaderRef			mClearTrianglesShader;
 
@@ -49,6 +50,7 @@ class voxelConeTracingApp : public App {
 		};
 
 		ComputeBufferRef                mVoxelBuffer;
+        ComputeBufferRef                mVoxelResizeBuffer;
         ComputeBufferRef                mTriangleBuffer;//when we are voxelizing our geo... we can save the geo ssbo into a new ssbo, to render later.
         gl::VboRef                      mTriangleInd;//this is a vbo that we use to draw the ssbo as triangles
         GLuint                          mTriangleAtomicBuffer;
@@ -94,20 +96,42 @@ void voxelConeTracingApp::setup()
 	/////////////////////
 	mVoxelTexSize=64;
 	mNumVoxels = mVoxelTexSize*mVoxelTexSize*mVoxelTexSize;
-	vector<Voxel> mEmptyVoxels;
-	mEmptyVoxels.assign(mNumVoxels, Voxel());
-	for (unsigned int i = 0; i < mEmptyVoxels.size(); ++i)
+	vector<Voxel> emptyVoxels;
+    vector<Voxel> emptyResizeVoxels;
+
+    emptyVoxels.assign(mNumVoxels, Voxel());
+	for (unsigned int i = 0; i < emptyVoxels.size(); ++i)
 	{
-		auto &v = mEmptyVoxels.at(i);
+		auto &v = emptyVoxels.at(i);
 		//v.P = vec3(0.0f, 0.0f, 0.0f);
 		v.N = vec3(0.0f, 1.0f, 0.0f);
 		v.Cd = vec3(0.0f, 0.0f, 0.0f);
 	}
+    
+    //data for the resize buffer
+    uint vts1 = (uint)mVoxelTexSize/2;//32,16,8
+    uint vts2 = vts1/2;
+    uint vts3 = vts2/2;
+    uint numResizeVoxels = (vts1*vts1*vts1)+(vts2*vts2*vts2)+(vts3*vts3*vts3);//32768+4096+512=37376
+    
+    emptyResizeVoxels.assign(numResizeVoxels, Voxel());
+    for (unsigned int i = 0; i < emptyResizeVoxels.size(); ++i)
+    {
+        auto &v = emptyResizeVoxels.at(i);
+        v.N = vec3(0.0f, 1.0f, 0.0f);
+        v.Cd = vec3(0.0f, 0.0f, 0.0f);
+    }
 	//////////////////////
 	/// MAKE THE VOXEL BUFFER
 	/////////////////////
-	mVoxelBuffer = ComputeBuffer::create(mEmptyVoxels.data(), (int)mEmptyVoxels.size(), sizeof(Voxel));
+	mVoxelBuffer = ComputeBuffer::create(emptyVoxels.data(), (int)emptyVoxels.size(), sizeof(Voxel));
     /////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////
+    /// MAKE THE VOXEL RESIZE BUFFER
+    /////////////////////
+    mVoxelResizeBuffer = ComputeBuffer::create(emptyResizeVoxels.data(), (int)emptyResizeVoxels.size(), sizeof(Voxel));
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////
     /// MAKE ATOMIC COUNTER BUFFER... THIS WILL MAKE IT SO I CAN ADD SEQUENTIALLY TO MY TRIANGLE BUFFER, MAYBE
@@ -150,6 +174,7 @@ void voxelConeTracingApp::setup()
 	/// MAKE THE COMPUTE SHADERS
 	/////////////////////
 	mVoxelizationShader = ComputeShader::create(loadAsset("voxelization.comp"));
+    mVoxelizationResizeShader = ComputeShader::create(loadAsset("voxelizationresize.comp"));
 	mClearVoxelizationShader = ComputeShader::create(loadAsset("clear_voxelization.comp"));
 	mClearTrianglesShader = ComputeShader::create(loadAsset("clear_triangles.comp"));
 	ivec3 count = gl::getMaxComputeWorkGroupCount();
@@ -275,10 +300,12 @@ void voxelConeTracingApp::draw()
         // gl::clear( Color( 0, 0, 0 ) );
        int call_count;// = (int)tetrahedron.size()/3;
        auto computeGlsl = mVoxelizationShader->getGlsl();
+       
        //computeGlsl->uniform("uBufferSize",(uint32_t)mNumVoxels);
        
        computeGlsl->uniform("uVoxelResolution",(float)mVoxelTexSize);
        computeGlsl->uniform("uSceneScale",(float)mSceneRenderScale);
+
        //I should pass in the cameras direction.. at leas the camera point position
        //computeGlsl->uniform("uCameraPosition",(float)mSceneRenderScale);
        //right now I want to only call this for the number of verts in the mesh
@@ -355,6 +382,26 @@ void voxelConeTracingApp::draw()
         }
         //unbind the atomic counter
          glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, 0);
+    }
+
+    //resize voxel buffer.. like mipmaps
+    {
+        auto computeResizeGlsl = mVoxelizationResizeShader->getGlsl();
+        
+        gl::ScopedBuffer scopedVoxelSsbo(mVoxelBuffer->getSsbo());
+        mVoxelBuffer->getSsbo()->bindBase(0);
+        gl::ScopedBuffer scopedVoxelResizeSsbo(mVoxelResizeBuffer->getSsbo());
+        mVoxelResizeBuffer->getSsbo()->bindBase(1);
+        //do the first resuze
+        int re_call_count = (float)((mVoxelTexSize/2)*(mVoxelTexSize/2)*(mVoxelTexSize/2));
+        computeResizeGlsl->uniform("uVoxelResolution",(float)mVoxelTexSize);
+        computeResizeGlsl->uniform("uBufferSize",(float)(mVoxelTexSize/2));
+        mVoxelizationResizeShader->dispatch( (int)glm::ceil( float( re_call_count ) / mVoxelizationResizeShader->getWorkGroupSize().x ), 1, 1);
+        //then do second resize
+        //computeResizeGlsl->uniform("uVoxelResolution",(float)mVoxelTexSize);
+        //int re_call_count = (float)((mVoxelTexSize/2)*(mVoxelTexSize/2)*(mVoxelTexSize/2));
+        //mVoxelizationResizeShader->dispatch( (int)glm::ceil( float( re_call_count ) / mVoxelizationResizeShader->getWorkGroupSize().x ), 1, 1);
+
     }
 	//gl::ScopedGlslProg scopedRenderProg(mVoxelizationProg);
 	//mVoxelizationProg->uniform("spriteSize", mSpriteSize);//set the uniforms in here
