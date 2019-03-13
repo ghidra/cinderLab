@@ -5,6 +5,7 @@
 
 uniform float uVoxelResolution;
 uniform float uBufferSize;
+uniform uint uStep;//the resize step... forst step uses main buffer, second step uses resized buffer
 
 struct Voxel
 {
@@ -24,6 +25,47 @@ layout( std430, binding = 1 )  buffer VoxelResizedBuffer
 layout( local_size_x = WG_SIZE_X, local_size_y = WG_SIZE_Y, local_size_z = WG_SIZE_Z ) in;
 
 ////////////
+voxelDownSample(uint i)
+{
+  uint ha = (uint)uVoxelResolution/2;//halfres
+  uint sq = (uint)(uVoxelResolution*uVoxelResolution);//squared
+  uint saa = i + ( (i/ha)*(ha+(uint)uVoxelResolution) ) + ( mod(i,ha) ) + ( (i/(ha*ha))*sq );//first sample id
+  uint sab = saa + (uint)uVoxelResolution;
+  uint sac = saa + sq;
+  uint sad = sac + (uint)uVoxelResolution;
+
+  if(uStep<1)
+  {
+    Voxel v0 = VoxelBuffer[saa];
+    Voxel v1 = VoxelBuffer[saa+1];
+    Voxel v2 = VoxelBuffer[sab];
+    Voxel v3 = VoxelBuffer[sab+1];
+    Voxel v4 = VoxelBuffer[sac];
+    Voxel v5 = VoxelBuffer[sac+1];
+    Voxel v6 = VoxelBuffer[sad];
+    Voxel v7 = VoxelBuffer[sad+1]
+
+    vec3 pa = (v0.P+v1.P+v2.P+v3.P+v4.P+v5.P+v6.P+v7.P)/8.0f;
+    vec3 na = (v0.N+v1.N+v2.N+v3.N+v4.N+v5.N+v6.N+v7.N)/8.0f;
+  }
+  else
+  {
+    uint ioffr = uVoxelResolution/(2*uStep);//id offset resolution
+    uint ioffset = ioffr*ioffr*ioffr;
+    //OFFSET NEEDS TO LOOK BACKWARDS?????
+    Voxel v0 = VoxelResizedBuffer[saa+ioffset];
+    Voxel v1 = VoxelResizedBuffer[saa+1+ioffset];
+    Voxel v2 = VoxelResizedBuffer[sab+ioffset];
+    Voxel v3 = VoxelResizedBuffer[sab+1+ioffset];
+    Voxel v4 = VoxelResizedBuffer[sac+ioffset];
+    Voxel v5 = VoxelResizedBuffer[sac+1+ioffset];
+    Voxel v6 = VoxelResizedBuffer[sad+ioffset];
+    Voxel v7 = VoxelResizedBuffer[sad+1+ioffset]
+
+    vec3 pa = (v0.P+v1.P+v2.P+v3.P+v4.P+v5.P+v6.P+v7.P)/8.0f;
+    vec3 na = (v0.N+v1.N+v2.N+v3.N+v4.N+v5.N+v6.N+v7.N)/8.0f;
+  }
+}
 //////////////////////////
 //
 ////////////////////////////////////
