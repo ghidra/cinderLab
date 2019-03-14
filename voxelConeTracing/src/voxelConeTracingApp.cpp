@@ -392,10 +392,11 @@ void voxelConeTracingApp::draw()
         mVoxelBuffer->getSsbo()->bindBase(0);
         gl::ScopedBuffer scopedVoxelResizeSsbo(mVoxelResizeBuffer->getSsbo());
         mVoxelResizeBuffer->getSsbo()->bindBase(1);
+        computeResizeGlsl->uniform("uVoxelResolution",(float)mVoxelTexSize);
         //do the first resuze
         int re_call_count = (float)((mVoxelTexSize/2)*(mVoxelTexSize/2)*(mVoxelTexSize/2));
-        computeResizeGlsl->uniform("uVoxelResolution",(float)mVoxelTexSize);
-        computeResizeGlsl->uniform("uBufferSize",(float)(mVoxelTexSize/2));
+        computeResizeGlsl->uniform("uBufferSize",(float)re_call_count);
+        computeResizeGlsl->uniform("uStep",(uint32_t)0);//(uint32_t)
         mVoxelizationResizeShader->dispatch( (int)glm::ceil( float( re_call_count ) / mVoxelizationResizeShader->getWorkGroupSize().x ), 1, 1);
         //then do second resize
         //computeResizeGlsl->uniform("uVoxelResolution",(float)mVoxelTexSize);
