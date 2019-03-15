@@ -5,7 +5,7 @@
 
 uniform float uVoxelResolution;
 uniform float uBufferSize;
-uniform uint uStep;//the resize step... forst step uses main buffer, second step uses resized buffer
+uniform uint uStep;//starts at 0, never more than 3..the resize step... forst step uses main buffer, second step uses resized buffer
 
 struct Voxel
 {
@@ -13,7 +13,7 @@ struct Voxel
   vec3 Cd; //color
 };
 
-layout( std430, binding = 0 ) buffer VoxelBuffer
+layout( std430, binding = 0 ) readonly buffer VoxelBuffer
 {
     Voxel voxels[];
 };
@@ -25,18 +25,21 @@ layout( std430, binding = 1 )  buffer VoxelResizedBuffer
 layout( local_size_x = WG_SIZE_X, local_size_y = WG_SIZE_Y, local_size_z = WG_SIZE_Z ) in;
 
 ////////////
-void voxelDownSample(uint i)
+Voxel voxelDownSample(uint i)
 {
-  uint ha = uint(uVoxelResolution)/((uStep+1)*2);//halfres
-  uint fr = uint(uVoxelResolution)/min(uStep*2,1);//divisor for fullres... (1,2,4,8)
+  Voxel v;
+
+  uint fr = uint(uVoxelResolution)/uint(pow(2,uStep));//pow to 0 is 1//divisor for fullres... (1,2,4,8)
+  uint hr = fr/2;//halfres
   uint sq = fr*fr;//squared
-  uint saa = i + ( (i/ha)*(ha+fr) ) + ( uint(mod(i,ha)) ) + ( (i/(ha*ha))*sq );//first sample id
+  uint saa = i + ( (i/hr)*(hr+fr) ) + ( uint(mod(i,hr)) ) + ( (i/(hr*hr))*sq );//first sample id
   uint sab = saa + fr;
   uint sac = saa + sq;
   uint sad = sac + fr;
 
   if(uStep<1)
   {
+    //first time through
     Voxel v0 = voxels[saa];
     Voxel v1 = voxels[saa+1];
     Voxel v2 = voxels[sab];
@@ -46,26 +49,31 @@ void voxelDownSample(uint i)
     Voxel v6 = voxels[sad];
     Voxel v7 = voxels[sad+1];
 
-    vec3 pa = vec3(v0.Cd+v1.Cd+v2.Cd+v3.Cd+v4.Cd+v5.Cd+v6.Cd+v7.Cd)/8.0f;
-    vec3 na = vec3(v0.N+v1.N+v2.N+v3.N+v4.N+v5.N+v6.N+v7.N)/8.0f;
+    v.Cd = vec3(v0.Cd+v1.Cd+v2.Cd+v3.Cd+v4.Cd+v5.Cd+v6.Cd+v7.Cd)/8.0f;
+    v.N = vec3(v0.N+v1.N+v2.N+v3.N+v4.N+v5.N+v6.N+v7.N)/8.0f;
   }
   else
   {
-    uint ioffr = uint(uVoxelResolution)/(min(uStep,1)*2);//id offset resolution
-    uint ioffset = ioffr*ioffr*ioffr;
-    //OFFSET NEEDS TO LOOK BACKWARDS?????
-    Voxel v0 = voxelsresized[saa+ioffset];
-    Voxel v1 = voxelsresized[saa+1+ioffset];
-    Voxel v2 = voxelsresized[sab+ioffset];
-    Voxel v3 = voxelsresized[sab+1+ioffset];
-    Voxel v4 = voxelsresized[sac+ioffset];
-    Voxel v5 = voxelsresized[sac+1+ioffset];
-    Voxel v6 = voxelsresized[sad+ioffset];
-    Voxel v7 = voxelsresized[sad+1+ioffset];
+    //every other time
+    uint r1 = uint( pow( uVoxelResolution/2, 3 ) );
+    uint r2 = uint( pow( r1/2, 3 ) ) * uint( max(uStep-1, 0 ) );
+    uint r3 = uint( pow( r2/2, 3 ) ) * uint( max(uStep-2, 0 ) );
+    uint offset = r1+r2+r3;
+    
+    Voxel v0 = voxelsresized[saa+offset];
+    Voxel v1 = voxelsresized[saa+1+offset];
+    Voxel v2 = voxelsresized[sab+offset];
+    Voxel v3 = voxelsresized[sab+1+offset];
+    Voxel v4 = voxelsresized[sac+offset];
+    Voxel v5 = voxelsresized[sac+1+offset];
+    Voxel v6 = voxelsresized[sad+offset];
+    Voxel v7 = voxelsresized[sad+1+offset];
 
-    vec3 pa = vec3(v0.Cd+v1.Cd+v2.Cd+v3.Cd+v4.Cd+v5.Cd+v6.Cd+v7.Cd)/8.0f;
-    vec3 na = vec3(v0.N+v1.N+v2.N+v3.N+v4.N+v5.N+v6.N+v7.N)/8.0f;
+    v.Cd = vec3(v0.Cd+v1.Cd+v2.Cd+v3.Cd+v4.Cd+v5.Cd+v6.Cd+v7.Cd)/8.0f;
+    v.N = vec3(v0.N+v1.N+v2.N+v3.N+v4.N+v5.N+v6.N+v7.N)/8.0f;
   }
+
+  return v;
 
 }
 //////////////////////////
@@ -78,9 +86,6 @@ void main(){
   	if( gid >= uBufferSize )
     	return;
 
-    //uVoxelResolution/2
-    voxelsresized[gid].Cd = vec3(1.0f);//v0.Cd;
-    //voxels[ind1].Cd = vec3(1.0f);//v1.Cd;
-
-    
+    voxelsresized[gid] = voxelDownSample(gid);
+  
 }

@@ -188,7 +188,7 @@ void voxelConeTracingApp::setup()
                                           mVisualizeVoxelSimpleProg = glsl;
                                           //mVisualizeVoxelSimpleProg->uniform( "uVoxels",0);
 										  mVisualizeVoxelSimpleProg->uniform( "uResolution", vec2((float)app::getWindowSize().x, (float)app::getWindowSize().y));
-										  mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize);
+										  //mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize);
                                       } );
     ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -399,9 +399,15 @@ void voxelConeTracingApp::draw()
         computeResizeGlsl->uniform("uStep",(uint32_t)0);//(uint32_t)
         mVoxelizationResizeShader->dispatch( (int)glm::ceil( float( re_call_count ) / mVoxelizationResizeShader->getWorkGroupSize().x ), 1, 1);
         //then do second resize
-        //computeResizeGlsl->uniform("uVoxelResolution",(float)mVoxelTexSize);
-        //int re_call_count = (float)((mVoxelTexSize/2)*(mVoxelTexSize/2)*(mVoxelTexSize/2));
-        //mVoxelizationResizeShader->dispatch( (int)glm::ceil( float( re_call_count ) / mVoxelizationResizeShader->getWorkGroupSize().x ), 1, 1);
+        re_call_count = (float)((mVoxelTexSize/4)*(mVoxelTexSize/4)*(mVoxelTexSize/4));
+        computeResizeGlsl->uniform("uBufferSize",(float)re_call_count);
+        computeResizeGlsl->uniform("uStep",(uint32_t)1);//(uint32_t)
+        mVoxelizationResizeShader->dispatch( (int)glm::ceil( float( re_call_count ) / mVoxelizationResizeShader->getWorkGroupSize().x ), 1, 1);
+        //then do second resize
+        re_call_count = (float)((mVoxelTexSize/8)*(mVoxelTexSize/8)*(mVoxelTexSize/8));
+        computeResizeGlsl->uniform("uBufferSize",(float)re_call_count);
+        computeResizeGlsl->uniform("uStep",(uint32_t)2);//(uint32_t)
+        mVoxelizationResizeShader->dispatch( (int)glm::ceil( float( re_call_count ) / mVoxelizationResizeShader->getWorkGroupSize().x ), 1, 1);
 
     }
 	//gl::ScopedGlslProg scopedRenderProg(mVoxelizationProg);
@@ -432,10 +438,21 @@ void voxelConeTracingApp::draw()
 
         gl::ScopedGlslProg glslScp( mVisualizeVoxelSimpleProg );
 
-            ///this should be binding the voxel buffer shader
-        gl::ScopedBuffer scopedVoxelRenderSsbo(mVoxelBuffer->getSsbo());
+        ///this should be binding the voxel buffer shader
+        /*gl::ScopedBuffer scopedVoxelRenderSsbo(mVoxelBuffer->getSsbo());
         mVoxelBuffer->getSsbo()->bindBase(0);
+        mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize);
+        */
+        //if we want to look at my resized ones
+        ///this should be binding the voxel buffer shader
+        /**/gl::ScopedBuffer scopedVoxelRenderSsbo(mVoxelResizeBuffer->getSsbo());
+        mVoxelResizeBuffer->getSsbo()->bindBase(0);
+        mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize/2);
+        mVisualizeVoxelSimpleProg->uniform( "uOffset", (uint32_t)0);
 
+        //mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize/4);
+        //mVisualizeVoxelSimpleProg->uniform( "uOffset", (uint32_t)pow(mVoxelTexSize/2,3));//higer resizes values are smaller resizes
+        /**/
         //gl::ScopedTextureBind scoped3dTexb(mVoxelTex,0);//bind the voxel texture AGAIN JUST IN CASE
         gl::drawSolidRect( getWindowBounds() );
 

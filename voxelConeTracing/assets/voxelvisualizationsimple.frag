@@ -3,6 +3,7 @@
 //#extension GL_ARB_compute_variable_group_size : enable
 //uniform sampler3D uVoxels;
 uniform float      uVoxelResolution;
+uniform uint uOffset;
 uniform vec2      uResolution;
 
 struct Voxel
@@ -49,8 +50,8 @@ void main()
 
 	vec3 vox = round( vec3(subuv,substeplayer)*(uVoxelResolution-1));
 	int ind = int( vox.x+(vox.y*uVoxelResolution)+(vox.z*uVoxelResolution*uVoxelResolution) );
-	if( length(voxels[ind].N)<=0.001) discard;
-	fragColor = vec4(voxels[ind].Cd,1.0f);
+	if( length(voxels[ind+uOffset].N)<=0.001) discard;
+	fragColor = vec4(voxels[ind+uOffset].Cd,1.0f);
 	///simple version
 	//fragColor = vec4(voxels[ int(id.x+(id.y*uResolution.x)) ].Cd,1.0f);
 }
