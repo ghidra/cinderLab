@@ -36,6 +36,8 @@ void main()
 
 	///get the big blocks
 	vec2 layer = floor(id/vec2(uVoxelResolution));
+	if(layer.x>=split || layer.y>=split)
+		discard;
 	vec2 layer_z = mod(layer,vec2(split))/vec2(split);
 	float sublayer = layer_z.x+(layer_z.y*split);
 	float substeplayer = sublayer/(split);

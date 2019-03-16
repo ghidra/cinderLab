@@ -14,6 +14,7 @@
 // Course project in TSBK03 (Techniques for Advanced Game Programming) at Linköping University. //
 // ---------------------------------------------------------------------------------------------//
 #version 420
+#extension GL_ARB_shader_storage_buffer_object : require
 
 #include "dat.glsl"
 
@@ -45,6 +46,18 @@
 // Other settings.
 #define GAMMA_CORRECTION 1 /* Whether to use gamma correction or not. */
 
+// Basic point light.
+struct PointLight {
+    vec3 position;
+    vec3 color;
+};
+
+uniform PointLight pointLights[MAX_LIGHTS];
+uniform int numberOfLights; // Number of lights currently uploaded.
+
+uniform vec3 cameraPosition; // World campera position.
+//uniform sampler3D texture3D; // Voxelization texture.
+
 in block {
     vec3 N; //normal
     vec2 uv; //2 uv channels
@@ -56,6 +69,15 @@ in block {
     float t; //tranparency
 } In;
 
+layout( std430, binding = 0 ) buffer VoxelBufferFull
+{
+    Voxel voxels[];
+};
+layout( std430, binding = 1 )  buffer VoxelBufferResized
+{
+    Voxel voxelsresized[];
+};
+
 layout( location = 0 ) out vec4 fragColor;
 
 void main()
@@ -66,5 +88,5 @@ void main()
 		discard;
 	}
 
-    fragColor = vec4( In.N.rgb, 1.0 );
+    fragColor = vec4( In.Cd.rgb, 1.0 );
 }

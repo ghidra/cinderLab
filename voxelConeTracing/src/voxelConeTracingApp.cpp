@@ -393,18 +393,18 @@ void voxelConeTracingApp::draw()
         gl::ScopedBuffer scopedVoxelResizeSsbo(mVoxelResizeBuffer->getSsbo());
         mVoxelResizeBuffer->getSsbo()->bindBase(1);
         computeResizeGlsl->uniform("uVoxelResolution",(float)mVoxelTexSize);
-        //do the first resuze
-        int re_call_count = (float)((mVoxelTexSize/2)*(mVoxelTexSize/2)*(mVoxelTexSize/2));
+        //do the first resize
+        int re_call_count = (float)pow(mVoxelTexSize/2,3);
         computeResizeGlsl->uniform("uBufferSize",(float)re_call_count);
         computeResizeGlsl->uniform("uStep",(uint32_t)0);//(uint32_t)
         mVoxelizationResizeShader->dispatch( (int)glm::ceil( float( re_call_count ) / mVoxelizationResizeShader->getWorkGroupSize().x ), 1, 1);
         //then do second resize
-        re_call_count = (float)((mVoxelTexSize/4)*(mVoxelTexSize/4)*(mVoxelTexSize/4));
+        re_call_count = (float)pow(mVoxelTexSize/4,3);
         computeResizeGlsl->uniform("uBufferSize",(float)re_call_count);
         computeResizeGlsl->uniform("uStep",(uint32_t)1);//(uint32_t)
         mVoxelizationResizeShader->dispatch( (int)glm::ceil( float( re_call_count ) / mVoxelizationResizeShader->getWorkGroupSize().x ), 1, 1);
         //then do second resize
-        re_call_count = (float)((mVoxelTexSize/8)*(mVoxelTexSize/8)*(mVoxelTexSize/8));
+        re_call_count = (float)pow(mVoxelTexSize/8,3);
         computeResizeGlsl->uniform("uBufferSize",(float)re_call_count);
         computeResizeGlsl->uniform("uStep",(uint32_t)2);//(uint32_t)
         mVoxelizationResizeShader->dispatch( (int)glm::ceil( float( re_call_count ) / mVoxelizationResizeShader->getWorkGroupSize().x ), 1, 1);
@@ -426,6 +426,8 @@ void voxelConeTracingApp::draw()
 
         gl::ScopedGlslProg glslTriScp( mRenderTrisVoxelConeTracing );
         gl::context()->setDefaultShaderVars();
+        mRenderTrisVoxelConeTracing->uniform( "cameraPosition",mCamera->GetPerspective().getEyePoint() );
+        
         //
         gl::bindBufferBase(mTriangleBuffer->getSsbo()->getTarget(),1,mTriangleBuffer->getSsbo() );
         gl::ScopedBuffer scopedIndices( mTriangleInd );
@@ -450,9 +452,9 @@ void voxelConeTracingApp::draw()
         mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize/2);
         mVisualizeVoxelSimpleProg->uniform( "uOffset", (uint32_t)0);
 
-        //mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize/4);
-        //mVisualizeVoxelSimpleProg->uniform( "uOffset", (uint32_t)pow(mVoxelTexSize/2,3));//higer resizes values are smaller resizes
-        /**/
+        /*mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize/4);
+        mVisualizeVoxelSimpleProg->uniform( "uOffset", (uint32_t)pow(mVoxelTexSize/2,3));//higer resizes values are smaller resizes
+        */
         //gl::ScopedTextureBind scoped3dTexb(mVoxelTex,0);//bind the voxel texture AGAIN JUST IN CASE
         gl::drawSolidRect( getWindowBounds() );
 

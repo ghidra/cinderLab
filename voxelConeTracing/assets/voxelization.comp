@@ -4,6 +4,7 @@
 #extension GL_ARB_compute_variable_group_size : enable
 #extension GL_ARB_shader_atomic_counters : enable
 
+#include "dat.glsl"
 #include "noiselib.glsl"
 
 uniform mat4 uModelMatrix;//model matrix for incoming geo
@@ -16,25 +17,6 @@ uniform float uSceneScale;
 //take in the camera position for culling
 //uniform vec3 uCameraPosition
 //uniform vec3 uCameraDirection
-
-struct Voxel
-{
-  //ec3 P;  //position
-  vec3 N;//normal
-  vec3 Cd; //color
-};
-struct Geo{
-	vec3 P; //position
-    vec3 N; //normal
-    vec4 uv; //2 uv channels
-    vec3 Cd; //color diffuse
-    vec3 Cs; //color spec
-    float Rd; //Reflectivity diffuse
-    float Rs; //reflectivity specular
-    float e; //emisivity
-    float t; //tranparency
-    //vec4 lit;///lighting result
-};
 
 layout (binding = 0, offset = 0) uniform atomic_uint TriCounter;
 
@@ -171,7 +153,7 @@ void main(){
 		///this is the look up into the 1d array
     	int ind = int(vox.x+(vox.z*uVoxelResolution)+(vox.y*uVoxelResolution*uVoxelResolution));
     	
-    	voxels[ind].Cd = vec3(1.0f);//color;//(v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
+    	voxels[ind].Cd = color;//(v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
     	voxels[ind].N = v.N;
     }
     

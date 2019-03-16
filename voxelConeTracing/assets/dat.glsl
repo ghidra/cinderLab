@@ -1,3 +1,9 @@
+struct Voxel
+{
+  //ec3 P;  //position
+  vec3 N;//normal
+  vec3 Cd; //color
+};
 struct Geo{
 	vec3 P; //position
     vec3 N; //normal

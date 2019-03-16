@@ -3,15 +3,17 @@
 #extension GL_ARB_shader_storage_buffer_object : enable
 #extension GL_ARB_compute_variable_group_size : enable
 
+#include "dat.glsl"
+
 uniform float uVoxelResolution;
 uniform float uBufferSize;
 uniform uint uStep;//starts at 0, never more than 3..the resize step... forst step uses main buffer, second step uses resized buffer
 
-struct Voxel
+/*struct Voxel
 {
   vec3 N;//normal
   vec3 Cd; //color
-};
+};*/
 
 layout( std430, binding = 0 ) readonly buffer VoxelBuffer
 {
@@ -25,6 +27,14 @@ layout( std430, binding = 1 )  buffer VoxelResizedBuffer
 layout( local_size_x = WG_SIZE_X, local_size_y = WG_SIZE_Y, local_size_z = WG_SIZE_Z ) in;
 
 ////////////
+//this gives us the offset we want for the rez we are reading or writing
+uint getIdOffset(uint step)
+{
+  uint r1 = uint( pow( uVoxelResolution/2, 3 ) ) * uint(min(max(step,0),1));
+  uint r2 = uint( pow( r1/2, 3 ) ) * uint( min(max(step-1, 0 ),1) );
+  uint r3 = uint( pow( r2/2, 3 ) ) * uint( min(max(step-2, 0 ),1) );
+  return r1+r2+r3;
+}
 Voxel voxelDownSample(uint i)
 {
   Voxel v;
@@ -54,11 +64,12 @@ Voxel voxelDownSample(uint i)
   }
   else
   {
+
     //every other time
-    uint r1 = uint( pow( uVoxelResolution/2, 3 ) );
-    uint r2 = uint( pow( r1/2, 3 ) ) * uint( max(uStep-1, 0 ) );
-    uint r3 = uint( pow( r2/2, 3 ) ) * uint( max(uStep-2, 0 ) );
-    uint offset = r1+r2+r3;
+    //uint r1 = uint( pow( uVoxelResolution/2, 3 ) );
+    //uint r2 = uint( pow( r1/2, 3 ) ) * uint( max(uStep-1, 0 ) );
+    //uint r3 = uint( pow( r2/2, 3 ) ) * uint( max(uStep-2, 0 ) );
+    uint offset = getIdOffset(uStep-1);//r1+r2+r3;
     
     Voxel v0 = voxelsresized[saa+offset];
     Voxel v1 = voxelsresized[saa+1+offset];
@@ -86,6 +97,6 @@ void main(){
   	if( gid >= uBufferSize )
     	return;
 
-    voxelsresized[gid] = voxelDownSample(gid);
+    voxelsresized[ gid+getIdOffset(uStep) ] = voxelDownSample(gid);
   
 }
