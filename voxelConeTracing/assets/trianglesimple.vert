@@ -3,6 +3,8 @@
 
 uniform mat4 ciProjectionMatrix;
 uniform mat4 ciViewMatrix;
+uniform float uSceneScale;//for voxel scalling
+uniform float uVoxelResolution;
 //uniform mat4 ciModelView;
 //uniform float spriteSize;
 
@@ -18,6 +20,7 @@ out gl_PerVertex {
 };
 
 out block {
+	vec3 Vp; //VoxelizedPosition
     vec3 N; //normal
     vec2 uv; //2 uv channels
     vec3 Cd; //color diffuse
@@ -32,6 +35,7 @@ void main()
 {
 	Geo tri = triangles[gl_VertexID];
 
+	Out.Vp = (((tri.P*uSceneScale)+0.5f) * uVoxelResolution)-0.5f;//the voxel position
 	Out.N = tri.N;
 	Out.uv = tri.uv.xy;
 	Out.Cd = tri.Cd;

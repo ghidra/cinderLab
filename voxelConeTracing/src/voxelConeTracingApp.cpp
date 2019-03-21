@@ -45,8 +45,9 @@ class voxelConeTracingApp : public App {
 
 		struct Voxel
 		{
-			alignas(16) vec3 N;
+			//alignas(16) vec3 N;
 			alignas(16) vec3 Cd;
+            alignas(16) float Alpha;
 		};
 
 		ComputeBufferRef                mVoxelBuffer;
@@ -104,8 +105,9 @@ void voxelConeTracingApp::setup()
 	{
 		auto &v = emptyVoxels.at(i);
 		//v.P = vec3(0.0f, 0.0f, 0.0f);
-		v.N = vec3(0.0f, 1.0f, 0.0f);
+		//v.N = vec3(0.0f, 1.0f, 0.0f);
 		v.Cd = vec3(0.0f, 0.0f, 0.0f);
+        v.Alpha = 0.0f;
 	}
     
     //data for the resize buffer
@@ -118,8 +120,9 @@ void voxelConeTracingApp::setup()
     for (unsigned int i = 0; i < emptyResizeVoxels.size(); ++i)
     {
         auto &v = emptyResizeVoxels.at(i);
-        v.N = vec3(0.0f, 1.0f, 0.0f);
+        //v.N = vec3(0.0f, 1.0f, 0.0f);
         v.Cd = vec3(0.0f, 0.0f, 0.0f);
+        v.Alpha = 0.0f;
     }
 	//////////////////////
 	/// MAKE THE VOXEL BUFFER
@@ -426,7 +429,9 @@ void voxelConeTracingApp::draw()
 
         gl::ScopedGlslProg glslTriScp( mRenderTrisVoxelConeTracing );
         gl::context()->setDefaultShaderVars();
-        mRenderTrisVoxelConeTracing->uniform( "cameraPosition",mCamera->GetPerspective().getEyePoint() );
+        mRenderTrisVoxelConeTracing->uniform( "uVoxelResolution", (float)mVoxelTexSize);
+        mRenderTrisVoxelConeTracing->uniform( "uSceneScale", (float)mSceneRenderScale);
+        mRenderTrisVoxelConeTracing->uniform( "uCameraPosition",mCamera->GetPerspective().getEyePoint() );
         
         //
         gl::bindBufferBase(mTriangleBuffer->getSsbo()->getTarget(),1,mTriangleBuffer->getSsbo() );

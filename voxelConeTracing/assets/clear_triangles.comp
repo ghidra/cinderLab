@@ -3,7 +3,9 @@
 #extension GL_ARB_shader_storage_buffer_object : enable
 #extension GL_ARB_compute_variable_group_size : enable
 
-struct Geo{
+#include "dat.glsl"
+
+/*struct Geo{
 	vec3 P; //position
     vec3 N; //normal
     vec4 uv; //2 uv channels
@@ -14,7 +16,7 @@ struct Geo{
     float e; //emisivity
     float t; //tranparency
     //vec4 lit;///lighting result
-};
+};*/
 
 layout( std430, binding = 1 )  buffer TriBuffer
 {

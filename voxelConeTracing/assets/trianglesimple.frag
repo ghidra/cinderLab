@@ -3,6 +3,7 @@
 #include "dat.glsl"
 
 in block {
+    vec3 Vp; //VoxelizedPosition
     vec3 N; //normal
     vec2 uv; //2 uv channels
     vec3 Cd; //color diffuse

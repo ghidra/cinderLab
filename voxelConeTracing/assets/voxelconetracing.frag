@@ -55,10 +55,12 @@ struct PointLight {
 uniform PointLight pointLights[MAX_LIGHTS];
 uniform int numberOfLights; // Number of lights currently uploaded.
 
-uniform vec3 cameraPosition; // World campera position.
+uniform vec3 uCameraPosition; // World campera position.
+uniform float uVoxelResolution;
 //uniform sampler3D texture3D; // Voxelization texture.
 
 in block {
+    vec3 Vp; //VoxelizedPosition
     vec3 N; //normal
     vec2 uv; //2 uv channels
     vec3 Cd; //color diffuse
@@ -80,10 +82,73 @@ layout( std430, binding = 1 )  buffer VoxelBufferResized
 
 layout( location = 0 ) out vec4 fragColor;
 
+float fit(float v, float l1, float h1, float l2, float h2){return l2 + (v - l1) * (h2 - l2) / (h1 - l1);}
+
+Voxel voxelMip(vec3 p, float lod)
+{
+    //this is a fake mipmap style look up of my voxel data in the ssbo
+    //i get the weight per axis, then use that to linear blend the color of each axis
+    
+    Voxel mip;
+
+    //get the lod blend value
+    uint lod1 = uint(floor(lod));
+    uint lod2 = uint(ceil(lod));
+    float lodblend = lod-float(lod1);
+
+    //scale the voxel position.
+    float voxelDivisor = float(pow(2,lod1));//1,2,4,8
+    vec3 scaledPosition = p/voxelDivisor;//divisor of the scalled to voxel space.
+
+    //get my 3 axis weights
+    float xblend = fit( scaledPosition.x, floor(scaledPosition.x), floor(scaledPosition.x)+voxelDivisor, 0.0f, 1.0f );
+    float yblend = fit( scaledPosition.y, floor(scaledPosition.y), floor(scaledPosition.y)+voxelDivisor, 0.0f, 1.0f );
+    float zblend = fit( scaledPosition.z, floor(scaledPosition.z), floor(scaledPosition.z)+voxelDivisor , 0.0f, 1.0f );
+ 
+    //id offset
+    uint voxelRes = uint(uVoxelResolution)/uint(voxelDivisor);//this gives us the width that we are sitting in... ie, normal res is 128, lod1 is 64
+    
+    uint p0 = uint(floor(scaledPosition.x));
+    uint p1 = uint(ceil(scaledPosition.x));
+    uint p2 = uint(floor(scaledPosition.x))+(uint(uVoxelResolution)*uint(scaledPosition.z));
+    uint p3 = uint(ceil(scaledPosition.x))+(uint(uVoxelResolution)*uint(scaledPosition.z));
+
+    uint yoff = voxelRes*voxelRes*uint(floor(scaledPosition.y));
+
+    uint p4 = p0+yoff;
+    uint p5 = p1+yoff;
+    uint p6 = p2+yoff;
+    uint p7 = p3+yoff;
+
+    //weights based on axis blend
+    float m0 = (1-xblend)*(1-yblend)*(1-zblend);
+    float m1 = xblend*(1-yblend)*(1-zblend);
+    float m2 = (1-xblend)*(1-yblend)*zblend;
+    float m3 = xblend*(1-yblend)*zblend;
+    float m4 = (1-xblend)*yblend*(1-zblend);
+    float m5 = xblend*yblend*(1-zblend);
+    float m6 = (1-xblend)*yblend*zblend;
+    float m7 = xblend*yblend*zblend;
+
+    //first set look up
+    if(lod1>0)
+    {
+        uint r1 = uint( pow(uVoxelResolution/2,3)) * uint(min(max(lod1-1,0),1));
+        uint r2 = uint( pow( r1/2, 3 ) ) * uint( min(max(lod1-1, 0 ),1) );
+        uint r3 = uint( pow( r2/2, 3 ) ) * uint( min(max(lod1-2, 0 ),1) );
+        uint offset = r1+r2+r3;
+
+        mip.Cd = voxelsresized[offset+p0].Cd * m0 + voxelsresized[offset+p1].Cd * m1 + voxelsresized[offset+p2].Cd * m2 + voxelsresized[offset+p3].Cd * m3 + voxelsresized[offset+p4].Cd * m4 + voxelsresized[offset+p5].Cd * m5 + voxelsresized[offset+p6].Cd * m6 + voxelsresized[offset+p7].Cd * m7;
+        mip.Alpha = voxelsresized[offset+p0].Alpha * m0 + voxelsresized[offset+p1].Alpha * m1 + voxelsresized[offset+p2].Alpha * m2 + voxelsresized[offset+p3].Alpha * m3 + voxelsresized[offset+p4].Alpha * m4 + voxelsresized[offset+p5].Alpha * m5 + voxelsresized[offset+p6].Alpha * m6 + voxelsresized[offset+p7].Alpha * m7;
+    }
+    
+    return mip;
+}
+
 void main()
 {
 	//if the point has no normal... then we are likely not a triangle worth rendering
-	if(length(In.N)<=0.001 )
+	if(length(In.Vp)<=0.001 )
 	{
 		discard;
 	}

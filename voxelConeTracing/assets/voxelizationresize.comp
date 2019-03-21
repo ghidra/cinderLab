@@ -60,7 +60,8 @@ Voxel voxelDownSample(uint i)
     Voxel v7 = voxels[sad+1];
 
     v.Cd = vec3(v0.Cd+v1.Cd+v2.Cd+v3.Cd+v4.Cd+v5.Cd+v6.Cd+v7.Cd)/8.0f;
-    v.N = vec3(v0.N+v1.N+v2.N+v3.N+v4.N+v5.N+v6.N+v7.N)/8.0f;
+    //v.N = vec3(v0.N+v1.N+v2.N+v3.N+v4.N+v5.N+v6.N+v7.N)/8.0f;
+    v.Alpha = (v0.Alpha+v1.Alpha+v2.Alpha+v3.Alpha+v4.Alpha+v5.Alpha+v6.Alpha+v7.Alpha)/8.0f;
   }
   else
   {
@@ -81,7 +82,9 @@ Voxel voxelDownSample(uint i)
     Voxel v7 = voxelsresized[sad+1+offset];
 
     v.Cd = vec3(v0.Cd+v1.Cd+v2.Cd+v3.Cd+v4.Cd+v5.Cd+v6.Cd+v7.Cd)/8.0f;
-    v.N = vec3(v0.N+v1.N+v2.N+v3.N+v4.N+v5.N+v6.N+v7.N)/8.0f;
+    //v.N = vec3(v0.N+v1.N+v2.N+v3.N+v4.N+v5.N+v6.N+v7.N)/8.0f;
+    v.Alpha = (v0.Alpha+v1.Alpha+v2.Alpha+v3.Alpha+v4.Alpha+v5.Alpha+v6.Alpha+v7.Alpha)/8.0f;
+
   }
 
   return v;
