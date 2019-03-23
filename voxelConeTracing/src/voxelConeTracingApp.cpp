@@ -421,6 +421,14 @@ void voxelConeTracingApp::draw()
 	//-------------done with the voxelization
     //render my triangles
     {
+        gl::enable(GL_DEPTH_TEST);
+        gl::enable(GL_CULL_FACE);
+
+        //gl::ScopedBuffer scopedVoxelSsboVb(mVoxelBuffer->getSsbo());
+        //mVoxelBuffer->getSsbo()->bindBase(0);
+        gl::ScopedBuffer scopedVoxelResizeSsboVrb(mVoxelResizeBuffer->getSsbo());
+        mVoxelResizeBuffer->getSsbo()->bindBase(2);
+
         gl::clear();
         gl::setMatricesWindow( getWindowSize() );
         gl::viewport(getWindowSize());
@@ -440,6 +448,8 @@ void voxelConeTracingApp::draw()
     }
 	//now visualize the voxelization somehow
     {
+        gl::disable(GL_DEPTH_TEST);
+        gl::disable(GL_CULL_FACE);
         //gl::clear();
         gl::setMatricesWindow( getWindowSize() );
 

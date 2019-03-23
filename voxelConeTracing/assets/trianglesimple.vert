@@ -35,7 +35,7 @@ void main()
 {
 	Geo tri = triangles[gl_VertexID];
 
-	Out.Vp = (((tri.P*uSceneScale)+0.5f) * uVoxelResolution)-0.5f;//the voxel position
+	Out.Vp = (tri.P*uSceneScale)+0.5f;// * uVoxelResolution);//-0.5f;//the voxel position
 	Out.N = tri.N;
 	Out.uv = tri.uv.xy;
 	Out.Cd = tri.Cd;

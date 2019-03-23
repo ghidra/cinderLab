@@ -75,7 +75,7 @@ layout( std430, binding = 0 ) buffer VoxelBufferFull
 {
     Voxel voxels[];
 };
-layout( std430, binding = 1 )  buffer VoxelBufferResized
+layout( std430, binding = 2 )  buffer VoxelBufferResized
 {
     Voxel voxelsresized[];
 };
@@ -98,22 +98,24 @@ Voxel voxelMip(vec3 p, float lod)
 
     //scale the voxel position.
     float voxelDivisor = float(pow(2,lod1));//1,2,4,8
-    vec3 scaledPosition = p/voxelDivisor;//divisor of the scalled to voxel space.
-
-    //get my 3 axis weights
-    float xblend = fit( scaledPosition.x, floor(scaledPosition.x), floor(scaledPosition.x)+voxelDivisor, 0.0f, 1.0f );
-    float yblend = fit( scaledPosition.y, floor(scaledPosition.y), floor(scaledPosition.y)+voxelDivisor, 0.0f, 1.0f );
-    float zblend = fit( scaledPosition.z, floor(scaledPosition.z), floor(scaledPosition.z)+voxelDivisor , 0.0f, 1.0f );
+    //divisor of the scalled to voxel space.
+    uint voxelRes = uint(uVoxelResolution)/uint(voxelDivisor);//this gives us the width that we are sitting in... ie, normal res is 128, lod1 is 64
+    vec3 scaledPosition = p*float(voxelRes);
+    //get my 3 axiscaledPositions weight
+    
+    //float xblend = fit( scaledPosition.x, floor(scaledPosition.x), floor(scaledPosition.x)+voxelDivisor, 0.0f, 1.0f );
+    float xblend = fit( scaledPosition.x, floor(scaledPosition.x), ceil(scaledPosition.x), 0.0f, 1.0f );
+    float yblend = fit( scaledPosition.y, floor(scaledPosition.y), ceil(scaledPosition.y), 0.0f, 1.0f );
+    float zblend = fit( scaledPosition.z, floor(scaledPosition.z), ceil(scaledPosition.z) , 0.0f, 1.0f );
  
     //id offset
-    uint voxelRes = uint(uVoxelResolution)/uint(voxelDivisor);//this gives us the width that we are sitting in... ie, normal res is 128, lod1 is 64
     
-    uint p0 = uint(floor(scaledPosition.x));
-    uint p1 = uint(ceil(scaledPosition.x));
-    uint p2 = uint(floor(scaledPosition.x))+(uint(uVoxelResolution)*uint(scaledPosition.z));
-    uint p3 = uint(ceil(scaledPosition.x))+(uint(uVoxelResolution)*uint(scaledPosition.z));
+    uint p0 = uint(floor(scaledPosition.x)) + (voxelRes*uint(floor(scaledPosition.z)));//+uint(floor(scaledPosition.z));
+    uint p1 = uint(ceil(scaledPosition.x)) + (voxelRes*uint(floor(scaledPosition.z)));//+uint(floor(scaledPosition.z));
+    uint p2 = uint(floor(scaledPosition.x)) + (voxelRes*uint(ceil(scaledPosition.z)));
+    uint p3 = uint(ceil(scaledPosition.x)) + (voxelRes*uint(ceil(scaledPosition.z)));
 
-    uint yoff = voxelRes*voxelRes*uint(floor(scaledPosition.y));
+    uint yoff = voxelRes*voxelRes*uint(floor(scaledPosition.y)+1.0f);
 
     uint p4 = p0+yoff;
     uint p5 = p1+yoff;
@@ -133,13 +135,21 @@ Voxel voxelMip(vec3 p, float lod)
     //first set look up
     if(lod1>0)
     {
-        uint r1 = uint( pow(uVoxelResolution/2,3)) * uint(min(max(lod1-1,0),1));
-        uint r2 = uint( pow( r1/2, 3 ) ) * uint( min(max(lod1-1, 0 ),1) );
-        uint r3 = uint( pow( r2/2, 3 ) ) * uint( min(max(lod1-2, 0 ),1) );
+        uint r1 = uint( pow(uVoxelResolution/2,3)) * uint(min(max(lod1-1,0),1));//i1 == *0
+        uint r2 = uint( pow( r1/2, 3 ) ) * uint( min(max(lod1-2, 0 ),1) );
+        uint r3 = uint( pow( r2/2, 3 ) ) * uint( min(max(lod1-3, 0 ),1) );
         uint offset = r1+r2+r3;
 
         mip.Cd = voxelsresized[offset+p0].Cd * m0 + voxelsresized[offset+p1].Cd * m1 + voxelsresized[offset+p2].Cd * m2 + voxelsresized[offset+p3].Cd * m3 + voxelsresized[offset+p4].Cd * m4 + voxelsresized[offset+p5].Cd * m5 + voxelsresized[offset+p6].Cd * m6 + voxelsresized[offset+p7].Cd * m7;
         mip.Alpha = voxelsresized[offset+p0].Alpha * m0 + voxelsresized[offset+p1].Alpha * m1 + voxelsresized[offset+p2].Alpha * m2 + voxelsresized[offset+p3].Alpha * m3 + voxelsresized[offset+p4].Alpha * m4 + voxelsresized[offset+p5].Alpha * m5 + voxelsresized[offset+p6].Alpha * m6 + voxelsresized[offset+p7].Alpha * m7;
+        
+        //mip.Cd = voxelsresized[p0].Cd;
+        //mip.Alpha = 1.0f;
+    }
+    else
+    {
+        mip.Cd = voxels[p0].Cd * m0 + voxels[p1].Cd * m1 + voxels[p2].Cd * m2 + voxels[p3].Cd * m3 + voxels[p4].Cd * m4 + voxels[p5].Cd * m5 + voxels[p6].Cd * m6 + voxels[p7].Cd * m7;
+        mip.Alpha = voxels[p0].Alpha * m0 + voxels[p1].Alpha * m1 + voxels[p2].Alpha * m2 + voxels[p3].Alpha * m3 + voxels[p4].Alpha * m4 + voxels[p5].Alpha * m5 + voxels[p6].Alpha * m6 + voxels[p7].Alpha * m7;
     }
     
     return mip;
@@ -152,6 +162,8 @@ void main()
 	{
 		discard;
 	}
-
-    fragColor = vec4( In.Cd.rgb, 1.0 );
+    Voxel v = voxelMip(In.Vp,0.0f);
+    //fragColor = vec4( In.Cd.rgb, 1.0 );
+    //fragColor = vec4( v.Cd+In.Cd.rgb*0.1f, 1.0 );
+    fragColor = vec4( v.Cd, 1.0 );
 }

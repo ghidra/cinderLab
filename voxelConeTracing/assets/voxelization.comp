@@ -137,7 +137,7 @@ void main(){
     for (int i=0; i<32; i++)
     {
     	Geo v = pInTriangle( v0,v1,v2,float(i) );//this actually scales the scene with scene scale
-    	vec3 vox = round( ((v.P)+0.5f)*uVoxelResolution )-0.5f;//here we are in 0-voxel resolution space// add 0.5 to put it in in the center of the voxel
+    	vec3 vox = round( ((v.P)+0.5f)*uVoxelResolution );//-0.5f;//here we are in 0-voxel resolution space// add 0.5 to put it in in the center of the voxel
 
     	vec3 color = vec3(0.0f);
 		if(!isInsideCube(vox)) return;
@@ -153,8 +153,9 @@ void main(){
 		///this is the look up into the 1d array
     	int ind = int(vox.x+(vox.z*uVoxelResolution)+(vox.y*uVoxelResolution*uVoxelResolution));
     	
-    	voxels[ind].Cd = color;//(v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
-    	//voxels[ind].N = v.N;
+    	//voxels[ind].Cd = color;//(v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
+    	voxels[ind].Cd = (v.N+1.0)*0.5;//vec3(1.0f);//
+        //voxels[ind].N = v.N;
         voxels[ind].Alpha = 1.0f-v.t;
     }
     
