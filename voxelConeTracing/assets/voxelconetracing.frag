@@ -100,7 +100,7 @@ Voxel voxelMip(vec3 p, float lod)
     float voxelDivisor = float(pow(2,lod1));//1,2,4,8
     //divisor of the scalled to voxel space.
     uint voxelRes = uint(uVoxelResolution)/uint(voxelDivisor);//this gives us the width that we are sitting in... ie, normal res is 128, lod1 is 64
-    vec3 scaledPosition = p*float(voxelRes);
+    vec3 scaledPosition = (p*float(voxelRes))+((1.0f/voxelRes)*0.5f);
     //get my 3 axiscaledPositions weight
     
     //float xblend = fit( scaledPosition.x, floor(scaledPosition.x), floor(scaledPosition.x)+voxelDivisor, 0.0f, 1.0f );
@@ -109,18 +109,19 @@ Voxel voxelMip(vec3 p, float lod)
     float zblend = fit( scaledPosition.z, floor(scaledPosition.z), ceil(scaledPosition.z) , 0.0f, 1.0f );
  
     //id offset
+    uint ylowoff = voxelRes*voxelRes*uint(floor(scaledPosition.y));
     
-    uint p0 = uint(floor(scaledPosition.x)) + (voxelRes*uint(floor(scaledPosition.z)));//+uint(floor(scaledPosition.z));
-    uint p1 = uint(ceil(scaledPosition.x)) + (voxelRes*uint(floor(scaledPosition.z)));//+uint(floor(scaledPosition.z));
-    uint p2 = uint(floor(scaledPosition.x)) + (voxelRes*uint(ceil(scaledPosition.z)));
-    uint p3 = uint(ceil(scaledPosition.x)) + (voxelRes*uint(ceil(scaledPosition.z)));
+    uint p0 = uint(floor(scaledPosition.x)) + (voxelRes*uint(floor(scaledPosition.z))) + ylowoff;//+uint(floor(scaledPosition.z));
+    uint p1 = uint(ceil(scaledPosition.x)) + (voxelRes*uint(floor(scaledPosition.z))) + ylowoff;//+uint(floor(scaledPosition.z));
+    uint p2 = uint(floor(scaledPosition.x)) + (voxelRes*uint(ceil(scaledPosition.z))) + ylowoff;
+    uint p3 = uint(ceil(scaledPosition.x)) + (voxelRes*uint(ceil(scaledPosition.z))) + ylowoff;
 
-    uint yoff = voxelRes*voxelRes*uint(floor(scaledPosition.y)+1.0f);
+    uint yhighoff = voxelRes*voxelRes*uint(ceil(scaledPosition.y));
 
-    uint p4 = p0+yoff;
-    uint p5 = p1+yoff;
-    uint p6 = p2+yoff;
-    uint p7 = p3+yoff;
+    uint p4 = p0+yhighoff;
+    uint p5 = p1+yhighoff;
+    uint p6 = p2+yhighoff;
+    uint p7 = p3+yhighoff;
 
     //weights based on axis blend
     float m0 = (1-xblend)*(1-yblend)*(1-zblend);
@@ -148,6 +149,7 @@ Voxel voxelMip(vec3 p, float lod)
     }
     else
     {
+        //mip.Cd = voxelsresized[p7].Cd;
         mip.Cd = voxels[p0].Cd * m0 + voxels[p1].Cd * m1 + voxels[p2].Cd * m2 + voxels[p3].Cd * m3 + voxels[p4].Cd * m4 + voxels[p5].Cd * m5 + voxels[p6].Cd * m6 + voxels[p7].Cd * m7;
         mip.Alpha = voxels[p0].Alpha * m0 + voxels[p1].Alpha * m1 + voxels[p2].Alpha * m2 + voxels[p3].Alpha * m3 + voxels[p4].Alpha * m4 + voxels[p5].Alpha * m5 + voxels[p6].Alpha * m6 + voxels[p7].Alpha * m7;
     }
