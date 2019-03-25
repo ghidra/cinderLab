@@ -84,6 +84,13 @@ vec3 scaleAndBias(vec3 p) { return 0.5f * p + vec3(0.5f); }
 bool isInsideCube(const vec3 p) { return p.x < uVoxelResolution && p.y < uVoxelResolution && p.z< uVoxelResolution && p.x > 0 &&  p.y > 0 && p.z > 0 ; }
 
 /////////////////////////////////////
+//get the area of a triangle
+float triArea(in vec3 a,in vec3 b,in vec3 c) 
+{ 
+    vec3 n = cross(b-a,c-a); //now do the normnalize, without the making it unit
+    return sqrt(n.x*n.x+n.y*n.y+n.z*n.z)*0.5f;
+}
+/////////////////////////////////////
 
 void main(){
 	uint gid = gl_GlobalInvocationID.x;	// The .y and .z are both 1 in this case.
@@ -134,7 +141,9 @@ void main(){
     //voxels[ind2].Cd = vec3(1.0f);//v2.Cd;
 
     ///lets make a hand full of points per triangle
-    for (int i=0; i<32; i++)
+    //based on the area
+    uint area = uint(min(ceil(triArea(v0.P*uSceneScale,v1.P*uSceneScale,v2.P*uSceneScale)*5000.0),256));
+    for (int i=0; i<area; i++)
     {
     	Geo v = pInTriangle( v0,v1,v2,float(i) );//this actually scales the scene with scene scale
     	vec3 vox = round( ((v.P)+0.5f)*uVoxelResolution );//-0.5f;//here we are in 0-voxel resolution space// add 0.5 to put it in in the center of the voxel
@@ -153,8 +162,8 @@ void main(){
 		///this is the look up into the 1d array
     	int ind = int(vox.x+(vox.z*uVoxelResolution)+(vox.y*uVoxelResolution*uVoxelResolution));
     	
-    	//voxels[ind].Cd = color;//(v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
-    	voxels[ind].Cd = (v.N+1.0)*0.5;//vec3(1.0f);//
+    	voxels[ind].Cd = color;//(v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
+    	//voxels[ind].Cd = (v.N+1.0)*0.5;//vec3(1.0f);//
         //voxels[ind].N = v.N;
         voxels[ind].Alpha = 1.0f-v.t;
     }

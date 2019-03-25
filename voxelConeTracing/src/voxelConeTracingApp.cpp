@@ -324,7 +324,7 @@ void voxelConeTracingApp::draw()
         ///bind the atomic counter
         //glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, mTriangleAtomicBuffer);
         glBindBufferBase(GL_ATOMIC_COUNTER_BUFFER, 0, mTriangleAtomicBuffer);
-        GLuint userCounters[1];//tmp for reading 
+        //GLuint userCounters[1];//tmp for reading 
         {
             call_count = (int)tetrahedron.size()/3;
             computeGlsl->uniform("uBufferSize",(uint32_t)call_count);
@@ -474,6 +474,11 @@ void voxelConeTracingApp::draw()
         gl::drawSolidRect( getWindowBounds() );
 
 	}
+    {
+        gl::setMatricesWindow( getWindowSize() );
+        gl::drawString( to_string( static_cast<int>( getAverageFps() ) ) + " fps", vec2( 32.0f, 52.0f ) );
+        
+    }
 	CI_CHECK_GL();
 }
 
