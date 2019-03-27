@@ -8,10 +8,12 @@ in block {
     vec2 uv; //2 uv channels
     vec3 Cd; //color diffuse
     vec3 Cs; //color spec
+    float Ds;
     float Rd; //Reflectivity diffuse
     float Rs; //reflectivity specular
     float e; //emisivity
     float t; //tranparency
+    float ri; //refraction index
 } In;
 
 layout( location = 0 ) out vec4 fragColor;

@@ -25,10 +25,12 @@ out block {
     vec2 uv; //2 uv channels
     vec3 Cd; //color diffuse
     vec3 Cs; //color spec
+    float Ds;
     float Rd; //Reflectivity diffuse
     float Rs; //reflectivity specular
     float e; //emisivity
     float t; //tranparency
+    float ri; //refraction index
 } Out;
 
 void main()
@@ -40,10 +42,12 @@ void main()
 	Out.uv = tri.uv.xy;
 	Out.Cd = tri.Cd;
 	Out.Cs = tri.Cs;
+	Out.Ds = tri.Ds;
 	Out.Rd = tri.Rd;
 	Out.Rs = tri.Rs;
 	Out.e = tri.e;
 	Out.t = tri.t;
+	Out.ri = tri.ri;
 
 	//gl_Position = ciProjectionMatrix * (ciViewMatrix * vec4(tri.P,1));
 	gl_Position = ciProjectionMatrix * (ciViewMatrix * vec4(tri.P,1));

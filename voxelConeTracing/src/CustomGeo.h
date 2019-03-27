@@ -4,30 +4,34 @@ namespace vct
     struct CustomGeo
     {
         CustomGeo() = default;
-        CustomGeo( vec3 P_, vec3 N_, vec4 uv_, vec3 Cd_=vec3(0.5f), vec3 Cs_=vec3(1.0f), float Rd_=1.0f, float Rs_=1.0f, float e_=0.0f, float t_=0.0f )
+        CustomGeo( vec3 P_, vec3 N_, vec4 uv_, vec3 Cd_=vec3(0.5f), vec3 Cs_=vec3(1.0f), float Ds_ = 1.0f, float Rd_=1.0f, float Rs_=1.0f, float e_=0.0f, float t_=0.0f, float ri_=1.0f )
         {
             P = P_;
             N = N_;
             uv = uv_;
             Cd = Cd_;
             Cs = Cs_;
+            Ds = Ds_;
             Rd = Rd_;
             Rs = Rs_;
             e = e_;
             t = t_;
+            ri = ri_;
             //lit=vec4(0.0f);
         }
-        CustomGeo( vec3 P_, vec3 N_, vec2 uv_, vec3 Cd_=vec3(0.5f), vec3 Cs_=vec3(1.0f), float Rd_=1.0f, float Rs_=1.0f, float e_=0.0f, float t_=0.0f )
+        CustomGeo( vec3 P_, vec3 N_, vec2 uv_, vec3 Cd_=vec3(0.5f), vec3 Cs_=vec3(1.0f), float Ds_ = 1.0f, float Rd_=1.0f, float Rs_=1.0f, float e_=0.0f, float t_=0.0f, float ri_=1.0f )
         {
             P = P_;
             N = N_;
             uv = vec4(uv_,0.0f,0.0f);
             Cd = Cd_;
             Cs = Cs_;
+            Ds = Ds_;
             Rd = Rd_;
             Rs = Rs_;
             e = e_;
             t = t_;
+            ri = ri_;
            //lit=vec4(0.0f);
         }
         alignas(16) vec3 P;//position
@@ -35,10 +39,14 @@ namespace vct
         alignas(16) vec4 uv;//2 uv channels
         alignas(16) vec3 Cd;//color diffuse
         alignas(16) vec3 Cs;//color spec
+        float Ds;//Specular Diffusion
         float Rd;//Reflectivity diffuse
         float Rs;//reflectivity specular
         float e;//emisivity
         float t;//tranparency
+        float ri;//tranparency
+        float custom0;//tranparency
+        float custom1;//tranparency
         //alignas(16) vec4 lit;//color spec
     };
     static const std::vector<CustomGeo> quadInstance
