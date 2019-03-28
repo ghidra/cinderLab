@@ -49,12 +49,15 @@ class voxelConeTracingApp : public App {
 			alignas(16) vec3 Cd;
             alignas(16) float Alpha;
 		};
-
-		ComputeBufferRef                mVoxelBuffer;
+		
+        ComputeBufferRef                mVoxelBuffer;
         ComputeBufferRef                mVoxelResizeBuffer;
         ComputeBufferRef                mTriangleBuffer;//when we are voxelizing our geo... we can save the geo ssbo into a new ssbo, to render later.
         gl::VboRef                      mTriangleInd;//this is a vbo that we use to draw the ssbo as triangles
         GLuint                          mTriangleAtomicBuffer;
+
+        gl::Texture3dRef                mVoxelTex;
+        ComputeShaderRef                mBakeVoxelsShader;//bake voxels to texture
 
         //vosualize the voxels
 		gl::GlslProgRef                 mVisualizeVoxelSimpleProg;
@@ -64,6 +67,7 @@ class voxelConeTracingApp : public App {
 		gl::GlslProgRef                 mRenderTrisSimpleProg;
 		signals::ScopedConnection		mRenderTrisSimpleConnection;
         
+        //this is the main shader that gives us color
         gl::GlslProgRef                 mRenderTrisVoxelConeTracing;
         signals::ScopedConnection       mRenderTrisVoxelConeTracingConnection;
 		//This is the master shader, that will render the objects
@@ -129,6 +133,23 @@ void voxelConeTracingApp::setup()
 	/////////////////////
 	mVoxelBuffer = ComputeBuffer::create(emptyVoxels.data(), (int)emptyVoxels.size(), sizeof(Voxel));
     /////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////
+    /// MAKE THE VOXEL 3D TEXTURE
+    ///////////////////////
+    gl::Texture3d::Format tex3dFmt;
+    tex3dFmt.setWrapR(GL_REPEAT);
+    tex3dFmt.setWrapS(GL_REPEAT);
+    tex3dFmt.setWrapT(GL_REPEAT);
+    tex3dFmt.setMagFilter(GL_LINEAR);
+    tex3dFmt.setMinFilter(GL_LINEAR);
+    tex3dFmt.setDataType(GL_FLOAT);
+    tex3dFmt.setInternalFormat(GL_RGBA8_SNORM);
+    //tex3dFmt.setInternalFormat(GL_IMAGE_3D);
+
+    mVoxelTex = gl::Texture3d::create(mVoxelTexSize, mVoxelTexSize, mVoxelTexSize, tex3dFmt);
+
+
+
     //////////////////////
     /// MAKE THE VOXEL RESIZE BUFFER
     /////////////////////
@@ -177,6 +198,7 @@ void voxelConeTracingApp::setup()
 	/// MAKE THE COMPUTE SHADERS
 	/////////////////////
 	mVoxelizationShader = ComputeShader::create(loadAsset("voxelization.comp"));
+    mBakeVoxelsShader = ComputeShader::create(loadAsset("voxelbake.comp"));
     mVoxelizationResizeShader = ComputeShader::create(loadAsset("voxelizationresize.comp"));
 	mClearVoxelizationShader = ComputeShader::create(loadAsset("clear_voxelization.comp"));
 	mClearTrianglesShader = ComputeShader::create(loadAsset("clear_triangles.comp"));
@@ -385,6 +407,18 @@ void voxelConeTracingApp::draw()
         }
         //unbind the atomic counter
          glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, 0);
+    }
+    //// draaw into the 3d texture from the buffer
+    {
+        auto bakeVoxelsGlsl = mBakeVoxelsShader->getGlsl();
+        gl::ScopedBuffer scopedVoxelSsbo(mVoxelBuffer->getSsbo());
+        mVoxelBuffer->getSsbo()->bindBase(0);
+
+        gl::ScopedTextureBind scoped3dTex(mVoxelTex,1);
+
+        bakeVoxelsGlsl->uniform("uVoxelResolution",(float)mVoxelTexSize);
+
+        mBakeVoxelsShader->dispatch( (int)glm::ceil( float( mVoxelTexSize*mVoxelTexSize*mVoxelTexSize ) / mBakeVoxelsShader->getWorkGroupSize().x ), 1, 1);
     }
 
     //resize voxel buffer.. like mipmaps

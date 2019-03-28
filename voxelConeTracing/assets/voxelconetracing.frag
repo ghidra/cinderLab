@@ -483,12 +483,12 @@ void main()
     const vec3 viewDirection = normalize(In.Vp - ((uCameraPosition*uSceneScale)+0.5f) );
 
     // Indirect diffuse light.
-    if(In.Rd * (1.0f - In.t) > 0.01f) 
-        color.rgb += indirectDiffuseLight();
+    //if(In.Rd * (1.0f - In.t) > 0.01f) 
+    //    color.rgb += indirectDiffuseLight();
 
     // Indirect specular light (glossy reflections).
-    if(In.Rs * (1.0f - In.t) > 0.01f) 
-        color.rgb += indirectSpecularLight(viewDirection);
+    //if(In.Rs * (1.0f - In.t) > 0.01f) 
+    //    color.rgb += indirectSpecularLight(viewDirection);
 
     // Emissivity.
     //color.rgb += In.e * In.Cd;
