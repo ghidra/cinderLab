@@ -46,6 +46,7 @@
 // Other settings.
 #define GAMMA_CORRECTION 1 /* Whether to use gamma correction or not. */
 
+//#define FILTER
 // Basic point light.
 struct PointLight {
     vec3 position;
@@ -119,17 +120,24 @@ vec4 voxelMip(vec3 p, float lod)
     
     Voxel mip;
 
+
     //get the lod blend value
     uint lod1 = uint(floor(lod));
     uint lod2 = uint(ceil(lod));
     float lodblend = lod-float(lod1);
 
-    //scale the voxel position.
     float voxelDivisor1 = float(pow(2,lod1));//1,2,4,8
     //divisor of the scalled to voxel space.
     uint voxelRes1 = uint(uVoxelResolution/voxelDivisor1);//this gives us the width that we are sitting in... ie, normal res is 128, lod1 is 64
-    vec3 scaledPosition1 = (p*float(voxelRes1))+((1.0f/voxelRes1)*0.5f);
-    //get my 3 axiscaledPositions weight
+    
+
+#if defined FILTER
+    
+
+    //scale the voxel position.
+    //vec3 scaledPosition1 = (p*float(voxelRes1))+((1.0f/voxelRes1)*0.5f);
+    vec3 scaledPosition1 = p*float(voxelRes1);
+//get my 3 axiscaledPositions weight
     
     //float xblend = fit( scaledPosition.x, floor(scaledPosition.x), floor(scaledPosition.x)+voxelDivisor, 0.0f, 1.0f );
     float xblend1 = fit( scaledPosition1.x, floor(scaledPosition1.x), ceil(scaledPosition1.x), 0.0f, 1.0f );
@@ -161,35 +169,51 @@ vec4 voxelMip(vec3 p, float lod)
     float m16 = (1-xblend1)*yblend1*zblend1;
     float m17 = xblend1*yblend1*zblend1;
 
-    vec3 rounded = round(p*float(voxelRes1));
-    uint pr = uint(rounded.x) + (voxelRes1*uint(rounded.z)) + (voxelRes1*voxelRes1*uint(rounded.y));//+uint(floor(scaledPosition.z));
+    //vec3 rounded = round(p*float(voxelRes1));
+    //uint pr = uint(rounded.x) + (voxelRes1*uint(rounded.z)) + (voxelRes1*voxelRes1*uint(rounded.y));//+uint(floor(scaledPosition.z));
 
     //first set look up
     if(lod1>0)
     {
-        //uint r1 = uint( pow(uVoxelResolution/2,3)) * uint(min(max(lod1-1,0),1));//i1 == *0
-        //uint r2 = uint( pow( r1/2, 3 ) ) * uint( min(max(lod1-2, 0 ),1) );
-        //uint r3 = uint( pow( r2/2, 3 ) ) * uint( min(max(lod1-3, 0 ),1) );
-        //uint offset = r1+r2+r3;
+        uint r1 = uint( pow(uVoxelResolution/2,3)) * uint(min(max(lod1-1,0),1));//i1 == *0
+        uint r2 = uint( pow( r1/2, 3 ) ) * uint( min(max(lod1-2, 0 ),1) );
+        uint r3 = uint( pow( r2/2, 3 ) ) * uint( min(max(lod1-3, 0 ),1) );
+        uint offset = r1+r2+r3;
 
-        //mip.Cd = voxelsresized[offset+p0].Cd * m0 + voxelsresized[offset+p1].Cd * m1 + voxelsresized[offset+p2].Cd * m2 + voxelsresized[offset+p3].Cd * m3 + voxelsresized[offset+p4].Cd * m4 + voxelsresized[offset+p5].Cd * m5 + voxelsresized[offset+p6].Cd * m6 + voxelsresized[offset+p7].Cd * m7;
-        //mip.Alpha = voxelsresized[offset+p0].Alpha * m0 + voxelsresized[offset+p1].Alpha * m1 + voxelsresized[offset+p2].Alpha * m2 + voxelsresized[offset+p3].Alpha * m3 + voxelsresized[offset+p4].Alpha * m4 + voxelsresized[offset+p5].Alpha * m5 + voxelsresized[offset+p6].Alpha * m6 + voxelsresized[offset+p7].Alpha * m7;
+        mip.Cd = voxelsresized[offset+p10].Cd * m10 + voxelsresized[offset+p11].Cd * m11 + voxelsresized[offset+p12].Cd * m12 + voxelsresized[offset+p13].Cd * m13 + voxelsresized[offset+p14].Cd * m14 + voxelsresized[offset+p15].Cd * m15 + voxelsresized[offset+p16].Cd * m16 + voxelsresized[offset+p17].Cd * m17;
+        mip.Alpha = voxelsresized[offset+p10].Alpha * m10 + voxelsresized[offset+p11].Alpha * m11 + voxelsresized[offset+p12].Alpha * m12 + voxelsresized[offset+p13].Alpha * m13 + voxelsresized[offset+p14].Alpha * m14 + voxelsresized[offset+p15].Alpha * m15 + voxelsresized[offset+p16].Alpha * m16 + voxelsresized[offset+p17].Alpha * m17;
 
-        mip.Cd = voxelsresized[pr].Cd;
-        mip.Alpha = 1.0f;
+        //mip.Cd = voxelsresized[pr].Cd;
+        //mip.Alpha = 1.0f;
     }
     else
     {
         //vec3 rounded = round(p*float(voxelRes));
         //uint pr = uint(rounded.x) + (voxelRes*uint(rounded.z)) + (voxelRes*voxelRes*uint(rounded.y));//+uint(floor(scaledPosition.z));
 
-        mip.Cd = voxels[pr].Cd;//vec3(float(pr)/float(voxelRes*voxelRes*voxelRes));
-        mip.Alpha = 1.0;
-        //mip.Cd = voxels[p0].Cd * m0 + voxels[p1].Cd * m1 + voxels[p2].Cd * m2 + voxels[p3].Cd * m3 + voxels[p4].Cd * m4 + voxels[p5].Cd * m5 + voxels[p6].Cd * m6 + voxels[p7].Cd * m7;
-        //mip.Alpha = voxels[p0].Alpha * m0 + voxels[p1].Alpha * m1 + voxels[p2].Alpha * m2 + voxels[p3].Alpha * m3 + voxels[p4].Alpha * m4 + voxels[p5].Alpha * m5 + voxels[p6].Alpha * m6 + voxels[p7].Alpha * m7;
+        //mip.Cd = voxels[pr].Cd;//vec3(float(pr)/float(voxelRes*voxelRes*voxelRes));
+        //mip.Alpha = 1.0;
+        mip.Cd = voxels[p10].Cd * m10 + voxels[p11].Cd * m11 + voxels[p12].Cd * m12 + voxels[p13].Cd * m13 + voxels[p14].Cd * m14 + voxels[p15].Cd * m15 + voxels[p16].Cd * m16 + voxels[p17].Cd * m17;
+        mip.Alpha = voxels[p10].Alpha * m10 + voxels[p11].Alpha * m11 + voxels[p12].Alpha * m12 + voxels[p13].Alpha * m13 + voxels[p14].Alpha * m14 + voxels[p15].Alpha * m15 + voxels[p16].Alpha * m16 + voxels[p17].Alpha * m17;
     }
 
     ///////////////////
+
+#else
+    vec3 rounded = round(p*float(voxelRes1));
+    uint pr = uint(rounded.x) + (voxelRes1*uint(rounded.z)) + (voxelRes1*voxelRes1*uint(rounded.y));//+uint(floor(scaledPosition.z));
+
+    //first set look up
+    if(lod1>0)
+    {
+        mip.Cd = voxelsresized[pr].Cd;
+        mip.Alpha = 1.0f;
+    }
+    else
+    {
+        mip.Cd = voxels[pr].Cd;//vec3(float(pr)/float(voxelRes*voxelRes*voxelRes));
+        mip.Alpha = 1.0;
+    }
 
     float voxelDivisor2 = float(pow(2,lod2));//1,2,4,8
     uint voxelRes2 = uint(uVoxelResolution/voxelDivisor2);//this gives us the width that we are sitting in... ie, normal res is 128, lod1 is 64
@@ -202,7 +226,8 @@ vec4 voxelMip(vec3 p, float lod)
     {
         mip.Cd = mix(mip.Cd,voxelsresized[pr2].Cd,lodblend);
     }
-    
+
+#endif
     //return mip;
     return vec4(mip.Cd,mip.Alpha);
 }
@@ -259,7 +284,8 @@ vec3 traceDiffuseVoxelCone(const vec3 from, vec3 direction){
         float level = log2(l);
         float ll = (level + 1) * (level + 1);
         
-        vec4 voxel = voxelMip(c, min(MIPMAP_HARDCAP, level));
+        vec4 voxel = voxelMip(c, 0.4);
+        //vec4 voxel = voxelMip(c, min(MIPMAP_HARDCAP, level));
         //vec4 voxel = textureLod(texture3D, c, min(MIPMAP_HARDCAP, level));
         
         acc += 0.075 * ll * voxel * pow(1 - voxel.a, 2);
@@ -373,7 +399,7 @@ vec3 indirectRefractiveLight(vec3 viewDirection){
 //vec3 calculateDirectLight(const PointLight light, const vec3 viewDirection){
 //    vec3 lightDirection = light.position - worldPositionFrag;
 vec3 calculateDirectLight(vec3 lightposition, vec3 lightcolor, const vec3 viewDirection){
-    vec3 lightDirection = ((lightposition*uSceneScale)+vec3(0.5)) - In.Vp;
+    vec3 lightDirection = ((lightposition)+vec3(0.5)) - In.Vp;
     const float distanceToLight = length(lightDirection);
     lightDirection = lightDirection / distanceToLight;
     const float lightAngle = dot(normal, lightDirection);
@@ -428,11 +454,11 @@ vec3 calculateDirectLight(vec3 lightposition, vec3 lightcolor, const vec3 viewDi
 // Sums up all direct light from point lights (both diffuse and specular).
 vec3 directLight(vec3 viewDirection){
     vec3 direct = vec3(0.0f);
-    const uint maxLights = min(numberOfLights, MAX_LIGHTS);
+    //const uint maxLights = min(numberOfLights, MAX_LIGHTS);
     //for(uint i = 0; i < maxLights; ++i) direct += calculateDirectLight(pointLights[i], viewDirection);
-    for(uint i = 0; i < maxLights; ++i) direct += calculateDirectLight(vec3(0.3,0.4,0.2),vec3(1,1,1), viewDirection);
+    direct += calculateDirectLight(vec3(0.3,0.4,0.2),vec3(1,1,1), viewDirection);
 
-    direct *= DIRECT_LIGHT_INTENSITY;
+    //direct *= DIRECT_LIGHT_INTENSITY;
     return direct;
 }
 
@@ -454,7 +480,7 @@ void main()
     //////////////////////////
 
     vec4 color = vec4(0, 0, 0, 1);
-    const vec3 viewDirection = normalize(In.Vp - ((uCameraPosition*uSceneScale)+vec3(0.5)) );
+    const vec3 viewDirection = normalize(In.Vp - ((uCameraPosition*uSceneScale)+0.5f) );
 
     // Indirect diffuse light.
     if(In.Rd * (1.0f - In.t) > 0.01f) 
@@ -465,15 +491,21 @@ void main()
         color.rgb += indirectSpecularLight(viewDirection);
 
     // Emissivity.
-    color.rgb += In.e * In.Cd;
+    //color.rgb += In.e * In.Cd;
 
     // Transparency
-    if(In.t > 0.01f)
-        color.rgb = mix(color.rgb, indirectRefractiveLight(viewDirection), In.t);
+    //if(In.t > 0.01f)
+    //    color.rgb = mix(color.rgb, indirectRefractiveLight(viewDirection), In.t);
 
     // Direct light.
     //if(settings.directLight)
     color.rgb += directLight(viewDirection);
 
-    fragColor = color;
+    fragColor = clamp(color,vec4(0.0),vec4(1.0));
+
+    /////////////////////////
+    //vec3 toLight = normalize((vec3(0.3,0.4,0.2)+0.5)-In.Vp);
+    //float dot = max(dot(In.N,toLight),0.0);
+    //fragColor = vec4(In.Cd*dot,1.0);
+
 }
