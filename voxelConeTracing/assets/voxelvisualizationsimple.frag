@@ -9,17 +9,14 @@ uniform float      uVoxelResolution;
 uniform uint uOffset;
 uniform vec2      uResolution;
 
-/*struct Voxel
-{
-  //vec3 P;  //position
-  vec3 N;  //Normal
-  vec3 Cd; //color
-};*/
+#define TEXTURE
 
 layout( std430, binding = 0 ) buffer Vox
 {
     Voxel voxels[];
 };
+
+uniform sampler3D tex3D;
 
 in vec2 vertTexCoord0;
 
@@ -53,11 +50,18 @@ void main()
 	//fragColor = vec4( voxel.rgb + (vec3(subuv,substeplayer)*0.1), 1.0 );;
 	//fragColor = vec4(vec3(1,0,0),1.0);
 
-	vec3 vox = round( vec3(subuv,substeplayer)*(uVoxelResolution-1));
-	int ind = int( vox.x+(vox.y*uVoxelResolution)+(vox.z*uVoxelResolution*uVoxelResolution) );
+	//vec3 vox = round( vec3(subuv,substeplayer)*(uVoxelResolution-1));
+
+	#if defined (TEXTURE)
+		vec3 vox = vec3(subuv,substeplayer);
+		fragColor = vec4(texture(tex3D,vox).rgb,1.0f);//vec4(subuv,substeplayer,1.0);//
+	#else
+		vec3 vox = round( vec3(subuv,substeplayer)*(uVoxelResolution-1));
+		int ind = int( vox.x+(vox.y*uVoxelResolution)+(vox.z*uVoxelResolution*uVoxelResolution) );
 	//if( length(voxels[ind+uOffset].N)<=0.001) discard;
 	//if( length(voxels[ind+uOffset].Alpha)<=0.001) discard;
-	fragColor = vec4(voxels[ind+uOffset].Cd,1.0f);
+		fragColor = vec4(voxels[ind+uOffset].Cd,1.0f);
 	///simple version
 	//fragColor = vec4(voxels[ int(id.x+(id.y*uResolution.x)) ].Cd,1.0f);
+	#endif
 }

@@ -141,9 +141,11 @@ void voxelConeTracingApp::setup()
     tex3dFmt.setWrapS(GL_REPEAT);
     tex3dFmt.setWrapT(GL_REPEAT);
     tex3dFmt.setMagFilter(GL_LINEAR);
-    tex3dFmt.setMinFilter(GL_LINEAR);
+    tex3dFmt.setMinFilter(GL_LINEAR_MIPMAP_LINEAR);
     tex3dFmt.setDataType(GL_FLOAT);
-    tex3dFmt.setInternalFormat(GL_RGBA8_SNORM);
+    tex3dFmt.setInternalFormat(GL_RGBA8);
+    tex3dFmt.target( GL_TEXTURE_3D );
+    tex3dFmt.mipmap();
     //tex3dFmt.setInternalFormat(GL_IMAGE_3D);
 
     mVoxelTex = gl::Texture3d::create(mVoxelTexSize, mVoxelTexSize, mVoxelTexSize, tex3dFmt);
@@ -211,7 +213,7 @@ void voxelConeTracingApp::setup()
 	mVisualizeVoxelSimpleConnection = assets()->getShader( "quadpassthrough.vert", "voxelvisualizationsimple.frag",
                                       [this]( gl::GlslProgRef glsl ) {
                                           mVisualizeVoxelSimpleProg = glsl;
-                                          //mVisualizeVoxelSimpleProg->uniform( "uVoxels",0);
+                                          mVisualizeVoxelSimpleProg->uniform( "tex3D",0);
 										  mVisualizeVoxelSimpleProg->uniform( "uResolution", vec2((float)app::getWindowSize().x, (float)app::getWindowSize().y));
 										  //mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize);
                                       } );
@@ -409,17 +411,30 @@ void voxelConeTracingApp::draw()
          glBindBuffer(GL_ATOMIC_COUNTER_BUFFER, 0);
     }
     //// draaw into the 3d texture from the buffer
-    {
+   /* {
         auto bakeVoxelsGlsl = mBakeVoxelsShader->getGlsl();
+        
+        gl::ScopedGlslProg prog( bakeVoxelsGlsl );
+
         gl::ScopedBuffer scopedVoxelSsbo(mVoxelBuffer->getSsbo());
         mVoxelBuffer->getSsbo()->bindBase(0);
 
-        gl::ScopedTextureBind scoped3dTex(mVoxelTex,1);
+        //bakeVoxelsGlsl->uniform("tex3D",0);
+        //gl::ScopedTextureBind scoped3dTex(mVoxelTex);
+        //int uniformPosition;
+        //bakeVoxelsGlsl->findUniform("tex3D", &uniformPosition);
+        //glUniform1i(uniformPosition,0);
+        glActiveTexture(GL_TEXTURE0);
+        glUniform1i( glGetUniformLocation(bakeVoxelsGlsl->getHandle(), "tex3D"), 0);
+        glBindImageTexture(0,mVoxelTex->getId(),0,GL_TRUE, 0, GL_WRITE_ONLY, GL_RGBA8);
 
+        bakeVoxelsGlsl->uniform("uBufferSize",(float)(mVoxelTexSize*mVoxelTexSize*mVoxelTexSize));
         bakeVoxelsGlsl->uniform("uVoxelResolution",(float)mVoxelTexSize);
 
-        mBakeVoxelsShader->dispatch( (int)glm::ceil( float( mVoxelTexSize*mVoxelTexSize*mVoxelTexSize ) / mBakeVoxelsShader->getWorkGroupSize().x ), 1, 1);
-    }
+        //mBakeVoxelsShader->dispatch( (int)glm::ceil( float( mVoxelTexSize*mVoxelTexSize*mVoxelTexSize ) / mBakeVoxelsShader->getWorkGroupSize().x ), 1, 1);
+        gl::dispatchCompute( (int)glm::ceil( float( mVoxelTexSize*mVoxelTexSize*mVoxelTexSize ) / mBakeVoxelsShader->getWorkGroupSize().x ), 1, 1 );
+        gl::memoryBarrier( GL_SHADER_STORAGE_BARRIER_BIT );
+    }*/
 
     //resize voxel buffer.. like mipmaps
     {
@@ -498,7 +513,11 @@ void voxelConeTracingApp::draw()
         ///this should be binding the voxel buffer shader
         /**/gl::ScopedBuffer scopedVoxelRenderSsbo(mVoxelResizeBuffer->getSsbo());
         mVoxelResizeBuffer->getSsbo()->bindBase(0);
-        mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize/2);
+        
+        gl::ScopedTextureBind scoped3dTexPre(mVoxelTex);
+
+        //mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize/2);
+        mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize);
         mVisualizeVoxelSimpleProg->uniform( "uOffset", (uint32_t)0);
 
         /*mVisualizeVoxelSimpleProg->uniform( "uVoxelResolution", (float)mVoxelTexSize/4);

@@ -2,10 +2,12 @@
 #extension GL_ARB_compute_shader : enable
 #extension GL_ARB_shader_storage_buffer_object : enable
 #extension GL_ARB_compute_variable_group_size : enable
+//#extension GL_ARB_shader_image_load_store : enable
+//#extension GL_EXT_shader_image_load_store : require
 
 #include "dat.glsl"
 
-uniform uint uBufferSize;//this is the size of the geos vert buffer, so we make sure to stop
+uniform float uBufferSize;//this is the size of the geos vert buffer, so we make sure to stop
 uniform float uVoxelResolution;
 
 layout( std430, binding = 0 ) buffer VoxelBuffer
@@ -13,7 +15,8 @@ layout( std430, binding = 0 ) buffer VoxelBuffer
     Voxel voxels[];
 };
 
-layout (binding=1, RGBA8) writeonly uniform image3D tex3D;
+layout (binding=0, RGBA8) writeonly uniform image3D tex3D;
+//writeonly uniform image3D tex3D;
 
 layout( local_size_x = WG_SIZE_X, local_size_y = WG_SIZE_Y, local_size_z = WG_SIZE_Z ) in;
 
@@ -24,10 +27,11 @@ void main(){
     	return;
 
     //get the positional id to write in
-    float x = mod(gid,uVoxelResolution);//x
-    float y = mod(floor(gid/uVoxelResolution),uVoxelResolution);//y
-    float z = floor(floor(gid/uVoxelResolution)/uVoxelResolution);
+    float x = 1.0;//mod(gid,uVoxelResolution);//x
+    float y = 1.0;//mod(floor(gid/uVoxelResolution),uVoxelResolution);//y
+    float z = 1.0;//floor(floor(gid/uVoxelResolution)/uVoxelResolution);
 
-    imageStore(tex3D, ivec3(x,y,z), vec4(voxels[gid].Cd,voxels[gid].Alpha));//;//(v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
-    
+    //imageStore(tex3D, ivec3(x,y,z), vec4(voxels[gid].Cd,voxels[gid].Alpha));//;//(v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
+    imageStore(tex3D, ivec3(x,y,z), vec4(1.0,0.0,0.0,1.0));//;//(v.N+1.0)*0.5;//vec3(1.0f);//v2.Cd;
+
 }
