@@ -51,3 +51,6 @@ jniLibs/
 #codeblocks
 *.layout
 *.cbp
+
+#keep
+!*FreeImage.*
