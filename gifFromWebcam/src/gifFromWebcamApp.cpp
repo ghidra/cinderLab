@@ -34,7 +34,7 @@ void gifFromWebcamApp::setup()
 	printDevices();
 
 	try {
-		mCapture = Capture::create(640, 480);
+		mCapture = Capture::create(640, 480, Capture::findDeviceByName("HD Pro Webcam C920") );
 		mCapture->start();
 	}
 	catch (ci::Exception &exc) {
