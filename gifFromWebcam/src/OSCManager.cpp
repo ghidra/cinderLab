@@ -155,7 +155,7 @@ void OSCManager::callback(std::string message)
     if( ! mIsConnected )
         return;
     
-    osc::Message msg( "/callbaclk/1" );
+    osc::Message msg( "/capture/received" );
     msg.append( message );
     //msg.append( mCurrentMousePositon.y );
     // Send the msg and also provide an error handler. If the message is important you
