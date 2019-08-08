@@ -5,6 +5,7 @@
 #include "cinder/Log.h"
 
 #include "GifEncoder.h"
+#include "OSCManager.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -12,12 +13,15 @@ using namespace std;
 
 class gifFromWebcamApp : public App {
 public:
+    //gifFromWebcamApp();
 	void setup() override;
 	void mouseDown(MouseEvent event) override;
 	void update() override;
 	void draw() override;
 
 private:
+    mlx::OSCManagerRef  mOSCManager;
+    
 	void printDevices();
 
 	CaptureRef			mCapture;
@@ -29,8 +33,23 @@ private:
 	bool				mSaved;
 };
 
+/*gifFromWebcamApp::gifFromWebcamApp()
+{
+}*/
+
 void gifFromWebcamApp::setup()
 {
+    ///set up the OSCManager
+    mOSCManager = mlx::OSCManagerRef(new mlx::OSCManager());
+    //mOSCManager->setup();
+    mOSCManager->mReceiver.setListener( "/game/player_count",
+                          [&]( const osc::Message &msg ){
+                              //mCurrentCirclePos.x = msg[0].int32();
+                              //mCurrentCirclePos.y = msg[1].int32();
+                              mOSCManager->callback("YOOOOOOOOOO");
+
+                          });
+    ///////GIF STUFF
 	printDevices();
 
 	try {

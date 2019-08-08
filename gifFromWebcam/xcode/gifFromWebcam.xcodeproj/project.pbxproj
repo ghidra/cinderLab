@@ -21,6 +21,7 @@
 		5323E6B20EAFCA74003A9687 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5323E6B10EAFCA74003A9687 /* CoreVideo.framework */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A60F3D8FEA1A49B9BDDAABC2 /* cinder_app_icon.ico in Resources */ = {isa = PBXBuildFile; fileRef = F3E1A86325504520BB8D27DA /* cinder_app_icon.ico */; };
+		B36542A222FB9002001130A7 /* OSCManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B36542A122FB9002001130A7 /* OSCManager.cpp */; };
 		BAF6DE83F65A49C4A9121AA2 /* GifEncoder.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49615BFCD1FD428F80588B32 /* GifEncoder.cpp */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,8 @@
 		8D1107320486CEB800E47090 /* gifFromWebcam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = gifFromWebcam.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		943AB3A5758646E7ACF68FD7 /* Resources.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Resources.h; path = ../include/Resources.h; sourceTree = "<group>"; };
 		B0758D071D1E4C7F9C3C7B27 /* Osc.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.cpp; name = Osc.cpp; path = ../../../Cinder/blocks/OSC/src/cinder/osc/Osc.cpp; sourceTree = "<group>"; };
+		B36542A122FB9002001130A7 /* OSCManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = OSCManager.cpp; path = ../src/OSCManager.cpp; sourceTree = "<group>"; };
+		B36542A722FBAEBE001130A7 /* OSCManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSCManager.h; path = ../src/OSCManager.h; sourceTree = "<group>"; };
 		CED08EA7C9F5439D99BA7114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3E1A86325504520BB8D27DA /* cinder_app_icon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; name = cinder_app_icon.ico; path = ../resources/cinder_app_icon.ico; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +88,8 @@
 		080E96DDFE201D6D7F000001 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				B36542A722FBAEBE001130A7 /* OSCManager.h */,
+				B36542A122FB9002001130A7 /* OSCManager.cpp */,
 				135707434383497782694F08 /* gifFromWebcamApp.cpp */,
 			);
 			name = Source;
@@ -282,6 +287,7 @@
 				059C1BBFB4F543DAAFF30307 /* gifFromWebcamApp.cpp in Sources */,
 				BAF6DE83F65A49C4A9121AA2 /* GifEncoder.cpp in Sources */,
 				4ABDD9B074DE4C1C8B2C9A6E /* Osc.cpp in Sources */,
+				B36542A222FB9002001130A7 /* OSCManager.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +312,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"\"$(CINDER_PATH)/lib/macosx/$(CONFIGURATION)/libcinder.a\"",
 					../../../../../../../usr/local/Cellar/freeimage/3.18.0/lib/libfreeimage.a,
@@ -313,6 +320,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = gifFromWebcam;
 				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../Cinder/blocks/GifEncoder/src ../../../../../../../usr/local/Cellar/freeimage/3.18.0/include ../../../Cinder/blocks/OSC/src";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -336,6 +344,7 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"\"$(CINDER_PATH)/lib/macosx/$(CONFIGURATION)/libcinder.a\"",
 					../../../../../../../usr/local/Cellar/freeimage/3.18.0/lib/libfreeimage.a,
@@ -344,6 +353,7 @@
 				PRODUCT_NAME = gifFromWebcam;
 				STRIP_INSTALLED_PRODUCT = YES;
 				SYMROOT = ./build;
+				USER_HEADER_SEARCH_PATHS = "\"$(CINDER_PATH)/include\" ../include ../../../Cinder/blocks/GifEncoder/src ../../../../../../../usr/local/Cellar/freeimage/3.18.0/include ../../../Cinder/blocks/OSC/src";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
