@@ -54,3 +54,6 @@ jniLibs/
 
 #keep
 !*FreeImage.*
+
+#dont save
+*/test.gif
