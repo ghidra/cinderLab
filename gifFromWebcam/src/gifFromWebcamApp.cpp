@@ -36,7 +36,7 @@ void gifFromWebcamApp::setup()
                               //mCurrentCirclePos.x = msg[0].int32();
                               //mCurrentCirclePos.y = msg[1].int32();
                               mOSCManager->callback("YOOOOOOOOOO");
-
+							  //CI_LOG_W("-------------------WHAT");
                           });
     //cameras
     for (const auto &device : Capture::getDevices()) {

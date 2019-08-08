@@ -88,10 +88,12 @@ void OSCManager::connectSender()
 {
     if(!mIsConnected)
     {
+		//CI_LOG_W("---------------------LET US CONNECT");
         try {
             // Bind the sender to the endpoint. This function may throw. The exception will
             // contain asio::error_code information.
             mSender.bind();
+			//CI_LOG_W("---------------------CONNECTED");
         }
         catch ( const osc::Exception &ex ) {
             CI_LOG_E( "Error binding: " << ex.what() << " val: " << ex.value() );
@@ -157,6 +159,7 @@ void OSCManager::callback(std::string message)
     
     osc::Message msg( "/capture/received" );
     msg.append( message );
+	//CI_LOG_W("-------------I WANT TO SEND");
     //msg.append( mCurrentMousePositon.y );
     // Send the msg and also provide an error handler. If the message is important you
     // could store it in the error callback to dispatch it again if there was a problem.
