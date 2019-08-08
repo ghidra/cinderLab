@@ -13,13 +13,25 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="Blocks">
-      <UniqueIdentifier>{4023EA73-59D3-41C3-A6AC-DEA1A69217F5}</UniqueIdentifier>
+      <UniqueIdentifier>{7C96AAE0-7486-4EEC-A9E7-9CA9026B7B15}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-GifEncoder">
-      <UniqueIdentifier>{FADAED79-E849-4B18-96F1-4B92A05FF1DF}</UniqueIdentifier>
+      <UniqueIdentifier>{DF6F55A5-39E0-41FB-8A97-E3B35D481404}</UniqueIdentifier>
     </Filter>
     <Filter Include="Blocks\Cinder-GifEncoder\src">
-      <UniqueIdentifier>{272284B6-E0A1-4B8A-BFD3-3EA8E5A89177}</UniqueIdentifier>
+      <UniqueIdentifier>{00413FF2-0E00-44FE-BA1E-25598DD21D6D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\OSC">
+      <UniqueIdentifier>{D6972B11-FDC0-4D58-99BC-507A2C125100}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\OSC\src">
+      <UniqueIdentifier>{3D45EBA4-FAFB-4B0E-999E-BA1B77082E07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\OSC\src\cinder">
+      <UniqueIdentifier>{8D54C4FB-5DED-4442-9B91-600AECECEC9C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Blocks\OSC\src\cinder\osc">
+      <UniqueIdentifier>{22F2C59B-735D-42A2-938C-655A27955D36}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -29,14 +41,6 @@
     <ClCompile Include="..\src\gifFromWebcamApp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClInclude Include="..\include\Resources.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClCompile Include="..\..\..\Cinder\blocks\GifEncoder\src\GifEncoder.cpp">
-      <Filter>Blocks\Cinder-GifEncoder\src</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\include\Resources.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -45,6 +49,38 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Cinder\blocks\GifEncoder\src\GifEncoder.h">
       <Filter>Blocks\Cinder-GifEncoder\src</Filter>
+    </ClInclude>
+    <ClCompile Include="..\..\..\Cinder\blocks\GifEncoder\src\GifEncoder.cpp">
+      <Filter>Blocks\Cinder-GifEncoder\src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Cinder\blocks\OSC\src\cinder\osc\Osc.cpp">
+      <Filter>Blocks\OSC\src\cinder\osc</Filter>
+    </ClCompile>
+    <ClInclude Include="..\..\..\Cinder\blocks\OSC\src\cinder\osc\Osc.h">
+      <Filter>Blocks\OSC\src\cinder\osc</Filter>
+    </ClInclude>
+    <ClCompile Include="..\src\CameraManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Gif.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\OSCManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\Resources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\OSCManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\CameraManager.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Gif.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
