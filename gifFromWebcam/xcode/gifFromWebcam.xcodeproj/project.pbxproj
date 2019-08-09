@@ -327,7 +327,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"\"$(CINDER_PATH)/lib/macosx/$(CONFIGURATION)/libcinder.a\"",
-					../../../../../../../usr/local/Cellar/freeimage/3.18.0/lib/libfreeimage.a,
+					/usr/local/Cellar/freeimage/3.18.0/lib/libfreeimage.a,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = gifFromWebcam;
@@ -359,7 +359,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = (
 					"\"$(CINDER_PATH)/lib/macosx/$(CONFIGURATION)/libcinder.a\"",
-					../../../../../../../usr/local/Cellar/freeimage/3.18.0/lib/libfreeimage.a,
+					/usr/local/Cellar/freeimage/3.18.0/lib/libfreeimage.a,
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.libcinder.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = gifFromWebcam;
