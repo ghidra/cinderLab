@@ -19,12 +19,15 @@ namespace mlx
 			~Gif(){}
 
 			void AddFrame(gl::TextureRef frame);
+            void Save();
 
 			GifEncoder	mGifEncoder;
 
 			int			mFrameCounter;
 			int			mMaxFrames;
-			bool		mSaved;
+            std::string mFileName;
+            std::string mCurrentGameID;
+
 
     };
 }

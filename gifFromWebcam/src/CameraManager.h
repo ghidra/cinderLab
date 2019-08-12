@@ -18,16 +18,24 @@ namespace mlx
 	typedef std::shared_ptr<class CameraManager> CameraManagerRef;
 	class CameraManager {
 		public:
-			CameraManager(Capture::DeviceRef device);
+        CameraManager(){
+            mGif = GifRef(new Gif(-1));
+        };
 			~CameraManager(){}
         
-            bool Update();
-            void NewGif();
+        bool Update();
+        
+        bool Update(int cameraIndex);
+        void StartCapture(int cameraIndex, std::string& gameID);
+        void AddCamera(Capture::DeviceRef device);
+        void EndGame(std::string& gameID);
 
-			CaptureRef			mCapture;
-			gl::TextureRef		mTexture;
+            vector<CaptureRef>			mCapture;
+            map<int, gl::TextureRef>    mPreviews;
+
         private:
-            vector<GifRef>      mGifs;
-
+            gl::TextureRef        mTexture;
+            GifRef      mGif;
+            int mCurrentCamera;
     };
 }

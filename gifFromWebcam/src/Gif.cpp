@@ -11,26 +11,26 @@ using namespace mlx;
 Gif::Gif(int maxFrames)
 : mMaxFrames( maxFrames )
 , mFrameCounter(0)
-, mSaved(false)
 {
 	mGifEncoder.setup(640,480,0.02f);
+    mCurrentGameID = "THIS-IS-NOT-A-GAME";
 }
 
 void Gif::AddFrame(gl::TextureRef frame)
 {
-    if (mFrameCounter< mMaxFrames)
+    if (mFrameCounter >=0 && mFrameCounter< mMaxFrames)
     {
-        //CI_LOG_I(mFrameCounter);
-        //mGifEncoder.addFrame(mTexture);
         mGifEncoder.addFrame( frame );
         mFrameCounter++;
     }
-    if (mFrameCounter >= mMaxFrames && !mSaved)
-    {
-        CI_LOG_I("saving");
-        CI_LOG_I(getHomeDirectory());
-        CI_LOG_I(getAssetPath(""));
-        mGifEncoder.save("test.gif");
-        mSaved = true;
+    else{
+        mFrameCounter = -1;
     }
+}
+
+void Gif::Save(){
+    CI_LOG_D("saving gif");
+    CI_LOG_D(mFileName);
+    mGifEncoder.save(mFileName);
+    mGifEncoder.clearFrames();      
 }
