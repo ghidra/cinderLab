@@ -58,6 +58,7 @@
 		B36542AD22FBE042001130A7 /* Gif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Gif.h; path = ../src/Gif.h; sourceTree = "<group>"; };
 		CED08EA7C9F5439D99BA7114 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F3E1A86325504520BB8D27DA /* cinder_app_icon.ico */ = {isa = PBXFileReference; lastKnownFileType = image.ico; name = cinder_app_icon.ico; path = ../resources/cinder_app_icon.ico; sourceTree = "<group>"; };
+		FBDFD9C023030C5F00DC254F /* CommandManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CommandManager.h; path = ../src/CommandManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +98,7 @@
 				B36542AC22FBE042001130A7 /* Gif.cpp */,
 				B36542AD22FBE042001130A7 /* Gif.h */,
 				B36542AA22FBD748001130A7 /* CameraManager.cpp */,
+				FBDFD9C023030C5F00DC254F /* CommandManager.h */,
 				B36542A922FBD748001130A7 /* CameraManager.h */,
 				B36542A722FBAEBE001130A7 /* OSCManager.h */,
 				B36542A122FB9002001130A7 /* OSCManager.cpp */,

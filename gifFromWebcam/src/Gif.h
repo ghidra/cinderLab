@@ -19,7 +19,7 @@ namespace mlx
 			~Gif(){}
 
 			void AddFrame(gl::TextureRef frame);
-            void Save();
+            const string Save();
 
 			GifEncoder	mGifEncoder;
 

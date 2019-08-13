@@ -20,13 +20,13 @@ if __name__ == "__main__":
 game_id = "randoma83a9uvubirv"
 
 
-for i in range(3):
+for i in range(1):
 	client_data = json.dumps({
 		'camera': i,
 		'game_id': game_id
 	})
 	client.send_message("/game/start", client_data)
-	time.sleep(5)
+	time.sleep(1)
 
 
 
