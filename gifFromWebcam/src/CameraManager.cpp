@@ -47,27 +47,29 @@ void CameraManager::EndGame(std::string& gameID){
     }
     const string filePath = mGif->Save();
 
-    string command = "/usr/local/bin/aws s3 cp ";
-    command += filePath;
-    command += " s3://joyridegame/ --acl public-read";
-    CI_LOG_V(command.c_str());
-    string result = exec(command.c_str());
-    CI_LOG_V(result);
+	//// /usr/local/bin/aws
+ //   string command = "\"C:\\Program Files\\Amazon\\AWSCLI\\bin\\aws.exe\" s3 cp ";
+ //   command += filePath;
+ //   command += " s3://joyridegame/ --acl public-read";
+ //   CI_LOG_V(command.c_str());
+ //   string result = exec(command.c_str());
+ //   CI_LOG_V(result);
+	//// /usr/bin/curl
+ //   command = "\"C:\\Windows\\System32\\curl.exe\" -d \"gameid=";
+ //   command += gameID;
+ //   command += "&image_url=";
+ //   command += url_encode("https://joyridegame.s3.amazonaws.com/" + gameID + ".gif");
+ //   command +="\" -X POST \"https://joyridegame.reconstrukt.net/api/v1/game/finish\"";
 
-    command = "/usr/bin/curl -d 'gameid=";
-    command += gameID;
-    command += "&image_url=";
-    command += url_encode("https://joyridegame.s3.amazonaws.com/" + gameID + ".gif");
-    command +="' -X POST https://joyridegame.reconstrukt.net/api/v1/game/finish";
-
-    CI_LOG_V(command.c_str());
-    result = exec(command.c_str());
-    CI_LOG_V(result);
+ //   CI_LOG_V(command.c_str());
+ //   result = exec(command.c_str());
+ //   CI_LOG_V(result);
 
 }
 
 bool CameraManager::Update(){
     bool result = false;
+	
     for(std::size_t i=0; i<mCapture.size(); ++i)
     {
         result = Update(i);
@@ -78,11 +80,23 @@ bool CameraManager::Update(){
 
 bool CameraManager::Update(int cameraIndex)
 {
-    if (mCapture.size() && mCapture[cameraIndex]->checkNewFrame()) {
+	bool isCameraReady = mCapture[cameraIndex]->checkNewFrame();
+	//CI_LOG_V(cameraIndex);
+	//CI_LOG_V(isCameraReady);
+	//CI_LOG_V(" ");
+	if (mCurrentCamera<0 || mCurrentCamera > mCapture.size() || mCurrentCamera != cameraIndex)return true;
+	if (mCapture.size() && isCameraReady) {
         auto surface = *mCapture[cameraIndex]->getSurface();
         mPreviews.at(cameraIndex)->update(surface);
-
-        if(mCurrentCamera<0 || mCurrentCamera > mCapture.size() || mCurrentCamera != cameraIndex)return true;
+		//if (mCurrentCamera == 2) {
+		//	CI_LOG_V("mCurrentCamera");
+		//	CI_LOG_V(mCurrentCamera);
+			//CI_LOG_V("cameraIndex");
+			/*CI_LOG_V(cameraIndex);*/
+		//	
+		//}
+		//
+        /*if(mCurrentCamera<0 || mCurrentCamera > mCapture.size() || mCurrentCamera != cameraIndex)return true;*/
         CI_LOG_V("attempting updating camera index");
         CI_LOG_V(mCurrentCamera);
         if (!mTexture) {

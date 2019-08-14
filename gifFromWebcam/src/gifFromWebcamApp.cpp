@@ -60,10 +60,10 @@ void gifFromWebcamApp::setup()
                               mOSCManager->callback("/game/start RECEIVED");
                               CI_LOG_D("Message received");
                               try {
-                                  auto j = json::parse(msg.getArgString(0));
+                                  json j = json::parse(msg.getArgString(0));
                                   CI_LOG_D(j.dump(4));
                                   int camera_index = j["camera"];
-                                  auto game_id = std::string(j["game_id"]);
+                                  std::string game_id = j["game_id"];
                                   mCameraManager->StartCapture(camera_index, game_id);
                               } catch (nlohmann::detail::parse_error& e) {
                                   CI_LOG_E("Message is no bueno");
@@ -77,9 +77,9 @@ void gifFromWebcamApp::setup()
                                mOSCManager->callback("/game/end RECEIVED");
                                CI_LOG_D("Message received");
                                try {
-                                   auto j = json::parse(msg.getArgString(0));
+                                   json j = json::parse(msg.getArgString(0));
                                    CI_LOG_D(j.dump(4));
-                                   auto game_id = std::string(j["game_id"]);
+								   std::string game_id = j["game_id"];
                                    mCameraManager->EndGame(game_id);
                                } catch (nlohmann::detail::parse_error& e) {
                                    CI_LOG_E("Message is no bueno");
