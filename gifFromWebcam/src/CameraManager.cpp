@@ -47,23 +47,23 @@ void CameraManager::EndGame(std::string& gameID){
     }
     const string filePath = mGif->Save();
 
-	//// /usr/local/bin/aws
- //   string command = "\"C:\\Program Files\\Amazon\\AWSCLI\\bin\\aws.exe\" s3 cp ";
- //   command += filePath;
- //   command += " s3://joyridegame/ --acl public-read";
- //   CI_LOG_V(command.c_str());
- //   string result = exec(command.c_str());
- //   CI_LOG_V(result);
-	//// /usr/bin/curl
- //   command = "\"C:\\Windows\\System32\\curl.exe\" -d \"gameid=";
- //   command += gameID;
- //   command += "&image_url=";
- //   command += url_encode("https://joyridegame.s3.amazonaws.com/" + gameID + ".gif");
- //   command +="\" -X POST \"https://joyridegame.reconstrukt.net/api/v1/game/finish\"";
+	// /usr/local/bin/aws
+    string command = "\"C:\\Program Files\\Amazon\\AWSCLI\\bin\\aws.exe\" s3 cp ";
+    command += filePath;
+    command += " s3://joyridegame/ --acl public-read";
+    CI_LOG_V(command.c_str());
+    string result = exec(command.c_str());
+    CI_LOG_V(result);
+	// /usr/bin/curl
+    command = "\"C:\\Windows\\System32\\curl.exe\" -d \"gameid=";
+    command += gameID;
+    command += "&image_url=";
+    command += url_encode("https://joyridegame.s3.amazonaws.com/" + gameID + ".gif");
+    command +="\" -X POST \"http://joyridegame.reconstrukt.net/api/v1/game/finish\"";
 
- //   CI_LOG_V(command.c_str());
- //   result = exec(command.c_str());
- //   CI_LOG_V(result);
+    CI_LOG_V(command.c_str());
+    result = exec(command.c_str());
+    CI_LOG_V(result);
 
 }
 
@@ -84,7 +84,7 @@ bool CameraManager::Update(int cameraIndex)
 	//CI_LOG_V(cameraIndex);
 	//CI_LOG_V(isCameraReady);
 	//CI_LOG_V(" ");
-	if (mCurrentCamera<0 || mCurrentCamera > mCapture.size() || mCurrentCamera != cameraIndex)return true;
+	//if (mCurrentCamera<0 || mCurrentCamera > mCapture.size() || mCurrentCamera != cameraIndex)return true;
 	if (mCapture.size() && isCameraReady) {
         auto surface = *mCapture[cameraIndex]->getSurface();
         mPreviews.at(cameraIndex)->update(surface);
@@ -96,9 +96,11 @@ bool CameraManager::Update(int cameraIndex)
 		//	
 		//}
 		//
-        /*if(mCurrentCamera<0 || mCurrentCamera > mCapture.size() || mCurrentCamera != cameraIndex)return true;*/
+        if(mCurrentCamera<0 || mCurrentCamera > mCapture.size() || mCurrentCamera != cameraIndex)return true;
         CI_LOG_V("attempting updating camera index");
         CI_LOG_V(mCurrentCamera);
+		//Surface newSurface(surface.getWidth() / 2, oldSurface.getHeight(), false);
+		//newSurface.copyFrom(surface, newSurface.getBounds());
         if (!mTexture) {
             // Capture images come back as top-down, and it's more efficient to keep them that way
             mTexture = gl::Texture::create(surface, gl::Texture::Format().loadTopDown());
