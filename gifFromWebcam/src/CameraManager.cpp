@@ -2,9 +2,8 @@
 #include "CommandManager.h"
 #include "cinder/Utilities.h"
 #include "cinder/Log.h"
-#include "cinder/ConcurrentCircularBuffer.h"
 
-ConcurrentCircularBuffer<gl::TextureRef>    *mImages;
+
 using namespace std;
 using namespace ci;
 using namespace ci::app;
@@ -65,25 +64,31 @@ void CameraManager::EndGame(std::string& gameID){
     }
     const string filePath = mGif->Save();
 //
-//    // S3 Upload
-//    string command = awsCommand;
-//    command += filePath;
-//    command += " s3://joyridegame/ --acl public-read";
-//    CI_LOG_V(command.c_str());
-//    string result = exec(command.c_str());
-//    CI_LOG_V(result);
-//    
-//    // End Game Endpoint API
-//    command = curlCommand;
-//    command += gameID;
-//    command += "&image_url=";
-//    command += url_encode("https://joyridegame.s3.amazonaws.com/" + gameID + ".gif");
-//    command +="\" -X POST \"http://joyridegame.reconstrukt.net/api/v1/game/finish\"";
-//
-//    CI_LOG_V(command.c_str());
-//    result = exec(command.c_str());
-//    CI_LOG_V(result);
+	mGif->mMaxFrames = 30;
+	mGif->mFrameCounter = 0;
+	mFrameCounter = 0;
+	mCurrentCamera = -1;
 
+#ifdef CINDER_MSW
+	// S3 Upload
+    string command = awsCommand;
+    command += filePath;
+    command += " s3://joyridegame/ --acl public-read";
+    CI_LOG_V(command.c_str());
+    string result = exec(command.c_str());
+    CI_LOG_V(result);
+    
+    // End Game Endpoint API
+    command = curlCommand;
+    command += gameID;
+    command += "&image_url=";
+    command += url_encode("https://joyridegame.s3.amazonaws.com/" + gameID + ".gif");
+    command +="\" -X POST \"http://joyridegame.reconstrukt.net/api/v1/game/finish\"";
+
+    CI_LOG_V(command.c_str());
+    result = exec(command.c_str());
+    CI_LOG_V(result);
+#endif //CINDER_MSW
 }
 
 bool CameraManager::Update(){

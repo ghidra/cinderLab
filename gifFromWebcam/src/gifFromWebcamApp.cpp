@@ -125,9 +125,13 @@ void gifFromWebcamApp::draw()
             int height = texture->getHeight() / nCameras;
             
             Rectf window = getWindowBounds();
-            int halfHeight = height/2;
-            int wierdOffset = window.getHeight()/nCameras;
-            
+#ifdef CINDER_MSW
+			int halfHeight = 0;// height / 2;
+			int wierdOffset = 0;// window.getHeight() / nCameras;
+#else
+			int halfHeight = height / 2;
+			int wierdOffset = window.getHeight() / nCameras;
+#endif // CINDER_MSW
             int startX1 = xIndex * width;
             int startY1 = wierdOffset + halfHeight + yIndex * height;
             int endX2 = startX1 + width;
