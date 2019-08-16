@@ -9,7 +9,13 @@ using namespace std;
 using namespace ci;
 using namespace ci::app;
 using namespace mlx;
-
+#ifdef CINDER_MSW
+const string awsCommand =  "\"C:\\Program Files\\Amazon\\AWSCLI\\bin\\aws.exe\" s3 cp ";
+const string curlCommand =  "\"C:\\Windows\\System32\\curl.exe\" -d \"gameid=";
+#else
+const string awsCommand = "/usr/local/bin/aws s3 cp ";
+const string curlCommand =  "/usr/bin/curl -d \"gameid=";
+#endif //CINDER_MSW
 
 void CameraManager::AddCamera(Capture::DeviceRef device, int width, int height)
 {
@@ -59,31 +65,30 @@ void CameraManager::EndGame(std::string& gameID){
     }
     const string filePath = mGif->Save();
 //
-//    string command = "/usr/local/bin/aws s3 cp ";
+//    // S3 Upload
+//    string command = awsCommand;
 //    command += filePath;
 //    command += " s3://joyridegame/ --acl public-read";
 //    CI_LOG_V(command.c_str());
 //    string result = exec(command.c_str());
 //    CI_LOG_V(result);
-//
-//    command = "/usr/bin/curl -d 'gameid=";
+//    
+//    // End Game Endpoint API
+//    command = curlCommand;
 //    command += gameID;
 //    command += "&image_url=";
 //    command += url_encode("https://joyridegame.s3.amazonaws.com/" + gameID + ".gif");
-//    command +="' -X POST https://joyridegame.reconstrukt.net/api/v1/game/finish";
+//    command +="\" -X POST \"http://joyridegame.reconstrukt.net/api/v1/game/finish\"";
 //
 //    CI_LOG_V(command.c_str());
 //    result = exec(command.c_str());
 //    CI_LOG_V(result);
-    // reset frame counter effectively starting the countdown on the next tick
-    mGif->mMaxFrames = 30;
-    mGif->mFrameCounter = 0;
-    mFrameCounter = 0;
-    mCurrentCamera = -1;
+
 }
 
 bool CameraManager::Update(){
     bool result = false;
+	
     for(std::size_t i=0; i<mCapture.size(); ++i)
     {
         result = Update(i);

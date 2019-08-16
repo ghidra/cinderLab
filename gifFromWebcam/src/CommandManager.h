@@ -7,6 +7,10 @@
 #ifndef CommandManager_h
 #define CommandManager_h
 
+#ifdef CINDER_MSW
+#include <windows.h>
+#include <process.h>
+#else
 #include <cstdio>
 #include <iostream>
 #include <memory>
@@ -14,7 +18,10 @@
 #include <string>
 #include <array>
 
-
+#include <cstdint>
+#include <deque>
+#include <thread>
+#endif //CINDER_MSW
 using namespace std;
 
 string url_encode(const string &value) {
@@ -41,18 +48,21 @@ string url_encode(const string &value) {
 }
 
 
-string exec(const char* cmd) {
-    array<char, 128> buffer;
-    string result;
-    unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
-    if (!pipe) {
-        throw runtime_error("popen() failed!");
-    }
-    while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
-        result += buffer.data();
-    }
-    return result;
+string exec(const char * cmd){
+#ifdef CINDER_MSW
+	system(cmd);
+	return "OK";
+#else
+     array<char, 128> buffer;
+     string result;
+     unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
+     if (!pipe) {
+         throw runtime_error("popen() failed!");
+     }
+     while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+         result += buffer.data();
+     }
+     return result;
+#endif //CINDER_MSW
 }
-
-
 #endif /* CommandManager_h */
