@@ -8,11 +8,11 @@ using namespace ci;
 using namespace ci::app;
 using namespace mlx;
 
-Gif::Gif(int maxFrames)
+Gif::Gif(int width, int height, int maxFrames, float frameDuration)
 : mMaxFrames( maxFrames )
 , mFrameCounter(0)
 {
-	mGifEncoder.setup(640,480,0.02f);
+	mGifEncoder.setup(width, height, frameDuration);
     mCurrentGameID = "THIS-IS-NOT-A-GAME";
 }
 

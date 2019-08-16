@@ -15,10 +15,11 @@ namespace mlx
 	typedef std::shared_ptr<class Gif> GifRef;
 	class Gif {
 		public:
-			Gif(int maxFrames = 1);
+			Gif(int width, int height, int maxFrames, float frameDuration);
 			~Gif(){}
 
 			void AddFrame(gl::TextureRef frame);
+            int GetNumberOfFrames() const {return mGifEncoder.getNumberOfFrames();};
             const string Save();
 
 			GifEncoder	mGifEncoder;
