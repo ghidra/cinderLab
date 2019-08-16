@@ -130,6 +130,17 @@ bool CameraManager::Update(int cameraIndex)
             Area gifArea = mGifAreaOffset[cameraIndex];
             Surface newSurface( mGifWidth, mGifHeight, false );
             newSurface.copyFrom( surface, gifArea,  -gifArea.getUL() );
+
+            Surface::ConstIter maskIter( overlay.getIter() ); // using const because we're not modifying it
+            Surface::Iter targetIter( newSurface.getIter() ); // not using const because we are modifying it
+            while( maskIter.line() && targetIter.line() ) { // line by line
+                while( maskIter.pixel() && targetIter.pixel() ) { // pixel by pixel
+                    float maskValue = maskIter.a();
+                    targetIter.r() = maskValue ? maskIter.r() : targetIter.r();
+                    targetIter.g() = maskValue ? maskIter.g() : targetIter.g();
+                    targetIter.b() = maskValue ? maskIter.b() : targetIter.b();
+                }
+            }
             
             if (!mTexture) {
                 mTexture = gl::Texture::create(newSurface, gl::Texture::Format().loadTopDown());

@@ -5,6 +5,7 @@
 #include "cinder/gl/gl.h"
 #include "cinder/Capture.h"
 #include "cinder/Log.h"
+#include "cinder/ip/Premultiply.h"
 
 #include "Gif.h"
 
@@ -29,6 +30,8 @@ namespace mlx
         mFrameDuration(1.0/recordFPS)
         {
             mGif = GifRef(new Gif(mGifWidth, mGifHeight, -1, mFrameDuration));
+            overlay = Surface(loadImage(getAssetPath("")/ "overlay.png"));
+            ip::premultiply(&overlay);
         };
 			~CameraManager(){}
         
@@ -55,6 +58,7 @@ namespace mlx
             float mFrameDuration;
             int mRecordEveryFrame;
             int mFrameCounter;
+            Surface overlay;
         
     };
 }
