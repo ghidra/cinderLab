@@ -16,28 +16,65 @@ const string awsCommand = "/usr/local/bin/aws s3 cp ";
 const string curlCommand =  "/usr/bin/curl -d \"gameid=";
 #endif //CINDER_MSW
 
-void CameraManager::AddCamera(Capture::DeviceRef device, int width, int height)
+void CameraManager::AddCamera(Capture::DeviceRef device)
 {
-        //connect to the camera
-        try {
-            CaptureRef capture = Capture::create(width, height, device);
-            mCapture.push_back(capture);
-            capture->start();
-        }
-        catch (ci::Exception &exc) {
-            CI_LOG_EXCEPTION("Failed to init capture ", exc);
-            return;
-        }
+    //connect to the camera
+    try {
+        CaptureRef capture = Capture::create(mFeedWidth, mFeedWidth, device);
+        mCaptures.push_back(capture);
+        capture->start();
+    }
+    catch (ci::Exception &exc) {
+        CI_LOG_EXCEPTION("Failed to init capture ", exc);
+        return;
+    }
+    
+ 
+
+}
+void CameraManager::SetupPreviewsAndOffsets(){
+    
+    int nCameras = mCaptures.size();
+    int maxPerRow = int(ceil(sqrt(double(nCameras))));
+    int widthPreview = mFeedWidth / nCameras;
+    int heightPreview = mFeedHeight / nCameras;
     
     
-    vec2 center = vec2(mWidth/2, mHeight/2);
+    vec2 center = vec2(mFeedWidth/2, mFeedHeight/2);
     float gifHalfWidth = mGifWidth/2;
     float gifHalfHeight = mGifHeight/2;
     vec2 ul = vec2(center.x - gifHalfWidth, center.y - gifHalfHeight);
     vec2 lr = ul + vec2(mGifWidth, mGifHeight);
-    Area gifArea = Area(ul, lr);
-    mGifAreaOffset.push_back(gifArea);
+    
+    float scale = 1.0f/maxPerRow;
 
+    for (auto cameraIndex=0; cameraIndex<nCameras; cameraIndex++){
+
+        Area gifArea(ul, lr);
+        mGifAreaOffset.push_back(gifArea);
+
+        // create the preview texture at original resuolution
+        mFeeds[cameraIndex] = gl::Texture::create(mFeedWidth, mFeedHeight);
+        
+        int xIndex = cameraIndex % maxPerRow;
+        int yIndex = cameraIndex / maxPerRow;
+
+        int startX1 = xIndex * widthPreview;
+        int startY1 = yIndex * heightPreview;
+        int endX2 = startX1 + widthPreview;
+        int endY2 = startY1 + heightPreview;
+
+        // create feed drawing rectangle
+        Rectf drawRect( startX1, startY1, endX2, endY2 );
+        mFeedRectPreview.push_back(drawRect);
+        
+        // create gif drawing rectangle
+        Rectf myGifArea(gifArea);
+        myGifArea.scale(scale);
+        myGifArea.offset(drawRect.getUpperLeft());
+        mGifRectPreview.push_back(myGifArea);
+        }
+    
 }
 void CameraManager::StartCapture(int cameraIndex, std::string& gameID)
 {
@@ -63,7 +100,7 @@ void CameraManager::EndGame(std::string& gameID){
         return;
     }
     const string filePath = mGif->Save();
-//
+
 	mGif->mMaxFrames = 30;
 	mGif->mFrameCounter = 0;
 	mFrameCounter = 0;
@@ -94,7 +131,7 @@ void CameraManager::EndGame(std::string& gameID){
 bool CameraManager::Update(){
     bool result = false;
 	
-    for(std::size_t i=0; i<mCapture.size(); ++i)
+    for(std::size_t i=0; i<mCaptures.size(); ++i)
     {
         result = Update(i);
     }
@@ -104,12 +141,12 @@ bool CameraManager::Update(){
 
 bool CameraManager::Update(int cameraIndex)
 {
-    if (mCapture.size() && mCapture[cameraIndex]->checkNewFrame()) {
-        auto surface = *mCapture[cameraIndex]->getSurface();
-        mPreviews.at(cameraIndex)->update(surface);
+    if (mCaptures.size() && mCaptures[cameraIndex]->checkNewFrame()) {
+        auto surface = *mCaptures[cameraIndex]->getSurface();
+        mFeeds.at(cameraIndex)->update(surface);
 
         // check that no camera need to be captured
-        if(mCurrentCamera<0 || mCurrentCamera > mCapture.size() || mCurrentCamera != cameraIndex)return true;
+        if(mCurrentCamera<0 || mCurrentCamera > mCaptures.size() || mCurrentCamera != cameraIndex)return true;
         // if a camera needs capturing, check if we can capture this frame
         if(mFrameCounter % mRecordEveryFrame != 0){
             console() << "skipping frame: " << mFrameCounter << endl;
@@ -118,7 +155,7 @@ bool CameraManager::Update(int cameraIndex)
         }
         console() << "capturing frame from camera index: " << mCurrentCamera << endl;
 
-        if(mGifWidth == mWidth && mGifHeight == mHeight){
+        if(mGifWidth == mFeedWidth && mGifHeight == mFeedHeight){
             if (!mTexture) {
                 mTexture = gl::Texture::create(surface, gl::Texture::Format().loadTopDown());
             }
@@ -131,14 +168,14 @@ bool CameraManager::Update(int cameraIndex)
             Surface newSurface( mGifWidth, mGifHeight, false );
             newSurface.copyFrom( surface, gifArea,  -gifArea.getUL() );
 
-            Surface::ConstIter maskIter( overlay.getIter() ); // using const because we're not modifying it
-            Surface::Iter targetIter( newSurface.getIter() ); // not using const because we are modifying it
-            while( maskIter.line() && targetIter.line() ) { // line by line
-                while( maskIter.pixel() && targetIter.pixel() ) { // pixel by pixel
-                    float maskValue = maskIter.a();
-                    targetIter.r() = maskValue ? maskIter.r() : targetIter.r();
-                    targetIter.g() = maskValue ? maskIter.g() : targetIter.g();
-                    targetIter.b() = maskValue ? maskIter.b() : targetIter.b();
+            Surface::ConstIter maskIter( overlay.getIter() );
+            Surface::Iter targetIter( newSurface.getIter() );
+            while( maskIter.line() && targetIter.line() ) {
+                while( maskIter.pixel() && targetIter.pixel() ) {
+                    float maskValue = maskIter.a() / 255.0;
+                    targetIter.r() = (maskIter.r()*maskValue) + ((1.0 - maskValue) * targetIter.r());
+                    targetIter.g() = (maskIter.g()*maskValue) + ((1.0 - maskValue) * targetIter.g());
+                    targetIter.b() = (maskIter.b()*maskValue) + ((1.0 - maskValue) * targetIter.b());
                 }
             }
             

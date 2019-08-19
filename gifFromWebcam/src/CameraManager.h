@@ -19,9 +19,9 @@ namespace mlx
 	typedef std::shared_ptr<class CameraManager> CameraManagerRef;
 	class CameraManager {
 		public:
-        CameraManager(int cameraWidth, int cameraHeight, int gifWidth, int gifHeight, int feedFPS, int recordFPS)
-        : mWidth(cameraWidth),
-        mHeight(cameraHeight),
+        CameraManager(int feedWidth, int feedHeight, int gifWidth, int gifHeight, int feedFPS, int recordFPS)
+        : mFeedWidth(feedWidth),
+        mFeedHeight(feedHeight),
         mGifWidth(gifWidth),
         mGifHeight(gifHeight),
         mFrameCounter(0),
@@ -30,7 +30,7 @@ namespace mlx
         mFrameDuration(1.0/recordFPS)
         {
             mGif = GifRef(new Gif(mGifWidth, mGifHeight, -1, mFrameDuration));
-            overlay = Surface(loadImage(getAssetPath("")/ "overlay.png"));
+            overlay = Surface(loadImage(getAssetPath("") / "overlay.png"));
             ip::premultiply(&overlay);
         };
 			~CameraManager(){}
@@ -39,20 +39,23 @@ namespace mlx
         
         bool Update(int cameraIndex);
         void StartCapture(int cameraIndex, std::string& gameID);
-        void AddCamera(Capture::DeviceRef device, int width, int height);
+        void AddCamera(Capture::DeviceRef device);
         void EndGame(std::string& gameID);
+        void SetupPreviewsAndOffsets();
         const int GetCurrentCamera() const {return mCurrentCamera;};
 
-            vector<CaptureRef>			mCapture;
-            map<int, gl::TextureRef>    mPreviews;
+            vector<CaptureRef>			mCaptures;
+            map<int, gl::TextureRef>    mFeeds;
             vector<Area> mGifAreaOffset;
+            vector<Rectf> mGifRectPreview;
+            vector<Rectf> mFeedRectPreview;
 
         private:
             gl::TextureRef        mTexture;
             GifRef      mGif;
             int mCurrentCamera;
-            int mWidth;
-            int mHeight;
+            int mFeedWidth;
+            int mFeedHeight;
             int mGifWidth;
             int mGifHeight;
             float mFrameDuration;
