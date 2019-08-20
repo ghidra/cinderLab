@@ -31,7 +31,8 @@ namespace mlx
         mFrameDuration(1.0/recordFPS)
         {
             mGif = GifRef(new Gif(mGifWidth, mGifHeight, -1, mFrameDuration));
-            overlay = Surface(loadImage(getAssetPath("") / "overlay.png"));
+            string overlayName = "overlay_" + to_string(mGifWidth) + ".png";
+            overlay = Surface(loadImage(getAssetPath("") / overlayName));
             ip::premultiply(&overlay);
         };
 			~CameraManager(){}
