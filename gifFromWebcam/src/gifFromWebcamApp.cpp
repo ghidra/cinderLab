@@ -17,10 +17,11 @@ const int WIDTH = 1280;
 const int HEIGHT = 720;
 const int FEED_WIDTH = 1280;
 const int FEED_HEIGHT = 720;
-const int GIF_WIDTH = 480;
-const int GIF_HEIGHT = 480;
+const int GIF_WIDTH = 710;
+const int GIF_HEIGHT = 710;
 const float FEED_FPS = 30.0;
 const int GIF_FPS = 5;
+const int MAX_FRAMES_PER_GAME = 15;
 
 class gifFromWebcamApp : public App {
 public:
@@ -58,7 +59,7 @@ void gifFromWebcamApp::prepare( Settings *settings )
 
 void gifFromWebcamApp::setup()
 {
-    mCameraManager = mlx::CameraManagerRef(new mlx::CameraManager(FEED_WIDTH, FEED_HEIGHT, GIF_WIDTH, GIF_HEIGHT, FEED_FPS, GIF_FPS));
+    mCameraManager = mlx::CameraManagerRef(new mlx::CameraManager(FEED_WIDTH, FEED_HEIGHT, GIF_WIDTH, GIF_HEIGHT, FEED_FPS, GIF_FPS, MAX_FRAMES_PER_GAME));
     
     //cameras
 

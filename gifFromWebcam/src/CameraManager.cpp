@@ -1,7 +1,9 @@
+#include "HTTPRequest.hpp"
 #include "CameraManager.h"
 #include "CommandManager.h"
 #include "cinder/Utilities.h"
 #include "cinder/Log.h"
+
 
 
 using namespace std;
@@ -10,7 +12,7 @@ using namespace ci::app;
 using namespace mlx;
 #ifdef CINDER_MSW
 const string awsCommand =  "\"C:\\Program Files\\Amazon\\AWSCLI\\bin\\aws.exe\" s3 cp ";
-const string curlCommand =  "\"C:\\Windows\\System32\\curl.exe\" -d \"gameid=";
+const string curlCommand =  "\"C:\\Windows\\System32\\curl.exe\" -o result.txt -d \"gameid=";
 #else
 const string awsCommand = "/usr/local/bin/aws s3 cp ";
 const string curlCommand =  "/usr/bin/curl -d \"gameid=";
@@ -87,7 +89,7 @@ void CameraManager::StartCapture(int cameraIndex, std::string& gameID)
     }
 
     // reset frame counter effectively starting the countdown on the next tick
-    mGif->mMaxFrames = 30;
+    mGif->mMaxFrames = mMaxFramesPerGame;
     mGif->mFrameCounter = 0;
     mFrameCounter = 0;
     mCurrentCamera = cameraIndex;
@@ -101,7 +103,7 @@ void CameraManager::EndGame(std::string& gameID){
     }
     const string filePath = mGif->Save();
 
-	mGif->mMaxFrames = 30;
+	mGif->mMaxFrames = mMaxFramesPerGame;
 	mGif->mFrameCounter = 0;
 	mFrameCounter = 0;
 	mCurrentCamera = -1;
@@ -111,20 +113,53 @@ void CameraManager::EndGame(std::string& gameID){
     string command = awsCommand;
     command += filePath;
     command += " s3://joyridegame/ --acl public-read";
-    CI_LOG_V(command.c_str());
+	console() << command.c_str() << endl;
     string result = exec(command.c_str());
-    CI_LOG_V(result);
-    
-    // End Game Endpoint API
-    command = curlCommand;
-    command += gameID;
-    command += "&image_url=";
-    command += url_encode("https://joyridegame.s3.amazonaws.com/" + gameID + ".gif");
-    command +="\" -X POST \"http://joyridegame.reconstrukt.net/api/v1/game/finish\"";
+	console() << result << endl;
 
-    CI_LOG_V(command.c_str());
-    result = exec(command.c_str());
-    CI_LOG_V(result);
+
+
+	try
+	{
+		// you can pass http::InternetProtocol::V6 to Request to make an IPv6 request
+		http::Request request("http://joyridegame.reconstrukt.net/api/v1/game/finish");
+
+		// pass parameters as a map
+		std::map<std::string, std::string> parameters = { {"gameid", gameID}, {"image_url",  "https://joyridegame.s3.amazonaws.com/" + gameID + ".gif"} };
+		http::Response response = request.send("POST", parameters, {
+			"Content-Type: application/x-www-form-urlencoded"
+			});
+		console() << std::string(response.body.begin(), response.body.end()) << std::endl; // print the result
+	}
+	catch (const std::exception& e)
+	{
+		console() << "Request failed, error: " << e.what() << std::endl;
+	}
+
+ //   // End Game Endpoint API
+ //   string command2 = curlCommand;
+ //   command2 += gameID;
+ //   command2 += "&image_url=";
+ //   command2 += url_encode("https://joyridegame.s3.amazonaws.com/" + gameID + ".gif");
+	//command2 += "\" -X POST \"http://joyridegame.reconstrukt.net/api/v1/game/finish\" & timeout 10";
+	////console() << (command2.c_str()) << endl;
+	////command2 = "\"C:\\Windows\\System32\\curl.exe\" -o poop http://google.com && timeout 10";
+	////command2 = "echo %cd% && timeout 5";
+
+	//std::ofstream file("cmd.bat");
+
+	//file << command2;
+	//
+
+	//console() << (command2.c_str()) << endl;
+	//string result2 = exec("cmd.bat");
+	//console() << result2 << endl;
+
+	////command = "type \"C:\\Users\\mill\\f.dot\\src\\cinderLab\\gifFromWebcam\\assets\\curlresult\"";
+	////console() << (command.c_str()) << endl;
+	////result = exec(command.c_str());
+	////console() << result << endl;
+
 #endif //CINDER_MSW
 }
 

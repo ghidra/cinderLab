@@ -19,13 +19,14 @@ namespace mlx
 	typedef std::shared_ptr<class CameraManager> CameraManagerRef;
 	class CameraManager {
 		public:
-        CameraManager(int feedWidth, int feedHeight, int gifWidth, int gifHeight, int feedFPS, int recordFPS)
+        CameraManager(int feedWidth, int feedHeight, int gifWidth, int gifHeight, int feedFPS, int recordFPS, int maxFramesPerGame)
         : mFeedWidth(feedWidth),
         mFeedHeight(feedHeight),
         mGifWidth(gifWidth),
         mGifHeight(gifHeight),
         mFrameCounter(0),
         mCurrentCamera(-1),
+		mMaxFramesPerGame(maxFramesPerGame),
         mRecordEveryFrame(feedFPS/recordFPS),
         mFrameDuration(1.0/recordFPS)
         {
@@ -61,6 +62,7 @@ namespace mlx
             float mFrameDuration;
             int mRecordEveryFrame;
             int mFrameCounter;
+			int mMaxFramesPerGame;
             Surface overlay;
         
     };
