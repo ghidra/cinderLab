@@ -179,9 +179,12 @@ bool CameraManager::Update(int cameraIndex)
             while( maskIter.line() && targetIter.line() ) {
                 while( maskIter.pixel() && targetIter.pixel() ) {
                     float maskValue = maskIter.a() / 255.0;
-                    targetIter.r() = (maskIter.r()*maskValue) + ((1.0 - maskValue) * targetIter.r());
-                    targetIter.g() = (maskIter.g()*maskValue) + ((1.0 - maskValue) * targetIter.g());
-                    targetIter.b() = (maskIter.b()*maskValue) + ((1.0 - maskValue) * targetIter.b());
+                    //targetIter.r() = (maskIter.r()*maskValue) + ((1.0 - maskValue) * targetIter.r());
+                    //targetIter.g() = (maskIter.g()*maskValue) + ((1.0 - maskValue) * targetIter.g());
+                    //targetIter.b() = (maskIter.b()*maskValue) + ((1.0 - maskValue) * targetIter.b());
+                    targetIter.r() = (255.0*maskValue) + ((1.0 - maskValue) * targetIter.r());
+                    targetIter.g() = (255.0*maskValue) + ((1.0 - maskValue) * targetIter.g());
+                    targetIter.b() = (255.0*maskValue) + ((1.0 - maskValue) * targetIter.b());
                 }
             }
             
