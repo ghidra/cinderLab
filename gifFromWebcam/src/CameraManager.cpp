@@ -105,33 +105,33 @@ void CameraManager::EndGame(std::string& gameID){
 	mGif->mFrameCounter = 0;
 	mFrameCounter = 0;
 	mCurrentCamera = -1;
-
-#ifdef CINDER_MSW
+    CI_LOG_I("Uploading image to S3");
+//#ifdef CINDER_MSW
 	// S3 Upload
     string command = awsCommand;
     command += filePath;
     command += " s3://joyridegame/ --acl public-read";
-	console() << command.c_str() << endl;
+    CI_LOG_I("Command: " << command.c_str());
     string result = exec(command.c_str());
-	console() << result << endl;
+	CI_LOG_I("Result: " << result);
 
 
 //    End Game Endpoint API
+    CI_LOG_I("Sending POST request to API");
 	try
 	{
 		http::Request request("http://joyridegame.reconstrukt.net/api/v1/game/finish");
-
 		std::map<std::string, std::string> parameters = { {"gameid", gameID}, {"image_url",  "https://joyridegame.s3.amazonaws.com/" + gameID + ".gif"} };
 		http::Response response = request.send("POST", parameters, {
 			"Content-Type: application/x-www-form-urlencoded"
 			});
-		console() << std::string(response.body.begin(), response.body.end()) << std::endl; // print the result
+        CI_LOG_I("Response: " << std::string(response.body.begin(), response.body.end()));
 	}
 	catch (const std::exception& e)
 	{
-		console() << "Request failed, error: " << e.what() << std::endl;
+        CI_LOG_E("Request failed, error: " << e.what());
 	}
-#endif //CINDER_MSW
+//#endif //CINDER_MSW
 }
 
 bool CameraManager::Update(){
@@ -155,11 +155,11 @@ bool CameraManager::Update(int cameraIndex)
         if(mCurrentCamera<0 || mCurrentCamera > mCaptures.size() || mCurrentCamera != cameraIndex)return true;
         // if a camera needs capturing, check if we can capture this frame
         if(mFrameCounter % mRecordEveryFrame != 0){
-            console() << "skipping frame: " << mFrameCounter << endl;
+            CI_LOG_I("skipping frame: " << mFrameCounter);
             mFrameCounter++;
             return true;
         }
-        console() << "capturing frame from camera index: " << mCurrentCamera << endl;
+        CI_LOG_I("Capturing frame from camera index: " << mCurrentCamera);
 
         if(mGifWidth == mFeedWidth && mGifHeight == mFeedHeight){
             if (!mTexture) {
@@ -198,7 +198,7 @@ bool CameraManager::Update(int cameraIndex)
         
 
         mGif->AddFrame(mTexture);
-        console() << "gif now contains: " << mGif->GetNumberOfFrames() << " frames" << endl;
+        CI_LOG_I("gif now contains: " << mGif->GetNumberOfFrames() << " frames");
         //no more frames need to be added for this camera, reset;
         if(mGif->mFrameCounter == -1){
             mCurrentCamera = -1;

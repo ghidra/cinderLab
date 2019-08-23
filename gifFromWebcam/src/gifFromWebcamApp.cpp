@@ -59,14 +59,27 @@ void gifFromWebcamApp::prepare( Settings *settings )
 
 void gifFromWebcamApp::setup()
 {
+    
+    log::manager()->restoreToDefault();
+    log::makeLogger<log::LoggerFileRotating>( getAssetPath(""), "logs.%Y.%m.%d.log", false );
+    
+//    // read a JSON file
+//    auto options =  getAssetPath("") / "options.json";
+//    std::ifstream i(options.c_str());
+//    json j;
+//    i >> j;
+//
+//    console() << j.dump(4) << endl;
+
     mCameraManager = mlx::CameraManagerRef(new mlx::CameraManager(FEED_WIDTH, FEED_HEIGHT, GIF_WIDTH, GIF_HEIGHT, FEED_FPS, GIF_FPS, MAX_FRAMES_PER_GAME));
     
     //cameras
-
+    
     for (const auto &device : Capture::getDevices()) {
-        console() << "Device: " << device->getName() << endl;
+        CI_LOG_I("Adding device: " << device->getName());
         mCameraManager->AddCamera(device);
     }
+    
 
     selectedGifIndex = -1;
     // setup feed and gif preview Rect and gif offset;
@@ -132,7 +145,7 @@ void gifFromWebcamApp::mouseDown( MouseEvent event )
 //        }
 
         if(gifRect.contains(click)){
-            console() << "Click intersected for scaling gif area: " << cameraIndex << " at: " << click << " inside of: " << gifRect << endl;
+            CI_LOG_I("Click intersected for scaling gif area: " << cameraIndex << " at: " << click << " inside of: " << gifRect);
             selectedGifIndex = cameraIndex;
             lastPosition = click;
             interactionMode = "MOVE";

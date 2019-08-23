@@ -57,5 +57,5 @@ jniLibs/
 
 #dont save
 *.gif
-
-
+*.psd
+*.log
