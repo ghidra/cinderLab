@@ -155,11 +155,11 @@ bool CameraManager::Update(int cameraIndex)
         if(mCurrentCamera<0 || mCurrentCamera > mCaptures.size() || mCurrentCamera != cameraIndex)return true;
         // if a camera needs capturing, check if we can capture this frame
         if(mFrameCounter % mRecordEveryFrame != 0){
-            CI_LOG_I("skipping frame: " << mFrameCounter);
+            CI_LOG_D("skipping frame: " << mFrameCounter);
             mFrameCounter++;
             return true;
         }
-        CI_LOG_I("Capturing frame from camera index: " << mCurrentCamera);
+        CI_LOG_D("Capturing frame from camera index: " << mCurrentCamera);
 
         if(mGifWidth == mFeedWidth && mGifHeight == mFeedHeight){
             if (!mTexture) {
@@ -179,9 +179,6 @@ bool CameraManager::Update(int cameraIndex)
             while( maskIter.line() && targetIter.line() ) {
                 while( maskIter.pixel() && targetIter.pixel() ) {
                     float maskValue = maskIter.a() / 255.0;
-                    //targetIter.r() = (maskIter.r()*maskValue) + ((1.0 - maskValue) * targetIter.r());
-                    //targetIter.g() = (maskIter.g()*maskValue) + ((1.0 - maskValue) * targetIter.g());
-                    //targetIter.b() = (maskIter.b()*maskValue) + ((1.0 - maskValue) * targetIter.b());
                     targetIter.r() = (255.0*maskValue) + ((1.0 - maskValue) * targetIter.r());
                     targetIter.g() = (255.0*maskValue) + ((1.0 - maskValue) * targetIter.g());
                     targetIter.b() = (255.0*maskValue) + ((1.0 - maskValue) * targetIter.b());
@@ -198,7 +195,7 @@ bool CameraManager::Update(int cameraIndex)
         
 
         mGif->AddFrame(mTexture);
-        CI_LOG_I("gif now contains: " << mGif->GetNumberOfFrames() << " frames");
+        CI_LOG_D("gif now contains: " << mGif->GetNumberOfFrames() << " frames");
         //no more frames need to be added for this camera, reset;
         if(mGif->mFrameCounter == -1){
             mCurrentCamera = -1;

@@ -91,15 +91,15 @@ void gifFromWebcamApp::setup()
     mOSCManager->mReceiver.setListener( "/game/start",
                           [&]( const osc::Message &msg ){
                               mOSCManager->callback("/game/start RECEIVED");
-                              CI_LOG_D("Message received");
+                              CI_LOG_I("/game/start message received");
                               try {
                                   json j = json::parse(msg.getArgString(0));
-                                  CI_LOG_D(j.dump(4));
+                                  CI_LOG_I(j.dump(4));
                                   int camera_index = j["camera"];
                                   std::string game_id = j["game_id"];
                                   mCameraManager->StartCapture(camera_index, game_id);
                               } catch (nlohmann::detail::parse_error& e) {
-                                  CI_LOG_E("Message is no bueno");
+                                  CI_LOG_E("/game/start message is no bueno");
                                   CI_LOG_E(e.what());
                                   return;
                               }
@@ -108,14 +108,14 @@ void gifFromWebcamApp::setup()
     mOSCManager->mReceiver.setListener( "/game/end",
                            [&]( const osc::Message &msg ){
                                mOSCManager->callback("/game/end RECEIVED");
-                               CI_LOG_D("Message received");
+                               CI_LOG_I("/game/end message received");
                                try {
                                    json j = json::parse(msg.getArgString(0));
-                                   CI_LOG_D(j.dump(4));
+                                   CI_LOG_I(j.dump(4));
 								   std::string game_id = j["game_id"];
                                    mCameraManager->EndGame(game_id);
                                } catch (nlohmann::detail::parse_error& e) {
-                                   CI_LOG_E("Message is no bueno");
+                                   CI_LOG_E("/game/end message is no bueno");
                                    CI_LOG_E(e.what());
                                    return;
                                }

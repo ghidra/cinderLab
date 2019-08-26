@@ -29,10 +29,10 @@ void Gif::AddFrame(gl::TextureRef frame)
 }
 
 const string Gif::Save(){
-    CI_LOG_D("saving gif");
+    CI_LOG_I("saving gif");
     
     fs::path fr = getAssetPath("") / mFileName;
-    CI_LOG_D(fr.string());
+    CI_LOG_I(fr.string());
     mGifEncoder.save(fr.string());
     mGifEncoder.clearFrames();
     return fr.string();
